@@ -1,0 +1,230 @@
+{
+  "updated": "2026-09-26T02:00:00.000Z",
+  "lastRun": {
+    "at": "2026-09-26T02:00:00.000Z",
+    "seen": 2,
+    "new": 2,
+    "archived": 0,
+    "reopened": 0,
+    "duplicates": 0,
+    "boardsOk": 5,
+    "boardsFailed": 0
+  },
+  "jobs": [
+    {
+      "source": "ashby",
+      "company": "Cohere",
+      "companySlug": "cohere",
+      "jobId": "3136a5a5-06fd-4c82-8b72-a43467e6b128",
+      "title": "Member of Technical Staff, Modeling",
+      "locationRaw": "London",
+      "locations": [
+        "London",
+        "San Francisco",
+        "New York",
+        "Paris",
+        "Toronto",
+        "Montreal"
+      ],
+      "country": "United Kingdom",
+      "mode": "remote",
+      "url": "https://jobs.ashbyhq.com/cohere/3136a5a5-06fd-4c82-8b72-a43467e6b128",
+      "postedAt": "2024-11-01",
+      "description": "Who are we?\n\nCohere is the leading security-first enterprise AI company.  We build cutting-edge foundation AI models and end-to-end products that are designed to solve real-world business problems.\n\nWe’re training and deploying frontier models for enterprises who are building AI systems. We believe that our work is instrumental to the widespread adoption of AI and we are looking for folks that want to be part of that.\n\nWe obsess over what we build. Each one of us is responsible for contributing ",
+      "compensation": {
+        "compensationTierSummary": "CA$250K – CA$535K • Offers Equity • Multiple Ranges",
+        "scrapeableCompensationSalarySummary": "CA$250K - CA$535K",
+        "compensationTiers": [
+          {
+            "id": "8a3cbd03-b280-43f3-ae5e-317d4dff2771",
+            "tierSummary": "Base Salary CA$295K – CA$535K • Offers Equity",
+            "title": "Canada - Toronto (GTA), Montreal",
+            "additionalInformation": null,
+            "components": [
+              {
+                "id": "e1664463-befc-483f-8d27-5a383f3175b2",
+                "summary": "Base Salary CA$295K – CA$535K",
+                "compensationType": "Salary",
+                "interval": "1 YEAR",
+                "currencyCode": "CAD",
+                "minValue": 295000,
+                "maxValue": 535000
+              },
+              {
+                "id": "f08feab7-c112-473f-a11a-ef2b3c9214d7",
+                "summary": "Offers Equity",
+                "compensationType": "EquityPercentage",
+                "interval": "NONE",
+                "currencyCode": null,
+                "minValue": null,
+                "maxValue": null
+              }
+            ]
+          },
+          {
+            "id": "12fc2a9a-c6c6-4972-af59-7eecc4e03bb4",
+            "tierSummary": "Base Salary CA$250K – CA$460K • Offers Equity",
+            "title": "Canada",
+            "additionalInformation": null,
+            "components": [
+              {
+                "id": "6282ad0a-09f8-4c4c-b31f-96b2b6f8d6c4",
+                "summary": "Offers Equity",
+                "compensationType": "EquityPercentage",
+                "interval": "NONE",
+                "currencyCode": null,
+                "minValue": null,
+                "maxValue": null
+              },
+              {
+                "id": "9c45a31a-cf8f-400f-a570-02a16ee4e44c",
+                "summary": "Base Salary CA$250K – CA$460K",
+                "compensationType": "Salary",
+                "interval": "1 YEAR",
+                "currencyCode": "CAD",
+                "minValue": 250000,
+                "maxValue": 460000
+              }
+            ]
+          },
+          {
+            "id": "08500dad-ba3e-4d55-ba70-9e7ad6943e0c",
+            "tierSummary": "Base Salary $205K – $380K • Offers Equity",
+            "title": "USA - California, New York and Washington",
+            "additionalInformation": null,
+            "components": [
+              {
+                "id": "4029b7d3-1bc7-42c0-8a72-3498733e1c2c",
+                "summary": "Offers Equity",
+                "compensationType": "EquityPercentage",
+                "interval": "NONE",
+                "currencyCode": null,
+                "minValue": null,
+                "maxValue": null
+              },
+              {
+                "id": "78eb432f-5dbb-43c8-b031-08af0c9bbcd3",
+                "summary": "Base Salary $205K – $380K",
+                "compensationType": "Salary",
+                "interval": "1 YEAR",
+                "currencyCode": "USD",
+                "minValue": 205000,
+                "maxValue": 380000
+              }
+            ]
+          },
+          {
+            "id": "141e0f70-be43-4944-99e2-81ec56c84233",
+            "tierSummary": "Base Salary $175K – $325K • Offers Equity",
+            "title": "USA - All Other States",
+            "additionalInformation": null,
+            "components": [
+              {
+                "id": "72df3cc8-64c4-45b9-94b9-1660b62adb2b",
+                "summary": "Offers Equity",
+                "compensationType": "EquityPercentage",
+                "interval": "NONE",
+                "currencyCode": null,
+                "minValue": null,
+                "maxValue": null
+              },
+              {
+                "id": "588cf37c-fd74-470a-8fd8-59f1bc91a8f9",
+                "summary": "Base Salary $175K – $325K",
+                "compensationType": "Salary",
+                "interval": "1 YEAR",
+                "currencyCode": "USD",
+                "minValue": 175000,
+                "maxValue": 325000
+              }
+            ]
+          }
+        ],
+        "summaryComponents": [
+          {
+            "minValue": 250000,
+            "maxValue": 535000,
+            "currencyCode": "CAD",
+            "interval": "1 YEAR",
+            "compensationType": "Salary"
+          },
+          {
+            "compensationType": "EquityPercentage",
+            "minValue": null,
+            "maxValue": null,
+            "interval": "1 YEAR"
+          }
+        ]
+      },
+      "dedupeKey": "ashby:cohere:3136a5a5-06fd-4c82-8b72-a43467e6b128",
+      "seniority": "unlabeled",
+      "levelSource": "tier-assumed",
+      "location": {
+        "raw": "London",
+        "cities": [],
+        "mode": "remote",
+        "indiaScope": "remote_global"
+      },
+      "pay": {
+        "published": true,
+        "currency": "CAD",
+        "raw": "CA$250K – CA$535K • Offers Equity • Multiple Ranges",
+        "totalOnly": false,
+        "baseMinLpa": 160,
+        "baseMaxLpa": 342.4
+      },
+      "category": "ai-ml",
+      "tags": [],
+      "needsClassify": false,
+      "id": "ashby:cohere:3136a5a5-06fd-4c82-8b72-a43467e6b128",
+      "firstSeen": "2026-09-26T02:00:00.000Z",
+      "lastSeen": "2026-09-26T02:00:00.000Z",
+      "misses": 0,
+      "status": "active",
+      "closedAt": null,
+      "reopenedAt": null
+    },
+    {
+      "source": "sr",
+      "company": "Freshworks",
+      "companySlug": "Freshworks",
+      "jobId": "744000151772990",
+      "title": "Lead Software Engineer - Site Reliability",
+      "locationRaw": "Hyderabad, TS, India",
+      "locations": [
+        "Hyderabad, TS, India"
+      ],
+      "country": "IN",
+      "mode": null,
+      "url": "https://jobs.smartrecruiters.com/Freshworks/744000151772990",
+      "postedAt": "2026-09-25",
+      "description": null,
+      "employmentType": "Full-time",
+      "dedupeKey": "sr:Freshworks:744000151772990",
+      "seniority": "lead",
+      "levelSource": "title",
+      "location": {
+        "raw": "Hyderabad, TS, India",
+        "cities": [
+          "Hyderabad"
+        ],
+        "mode": null,
+        "indiaScope": "located"
+      },
+      "pay": {
+        "published": false,
+        "vettedSeniorMinLpa": 55
+      },
+      "category": "platform-infra",
+      "tags": [],
+      "needsClassify": false,
+      "id": "sr:Freshworks:744000151772990",
+      "firstSeen": "2026-09-26T02:00:00.000Z",
+      "lastSeen": "2026-09-26T02:00:00.000Z",
+      "misses": 0,
+      "status": "active",
+      "closedAt": null,
+      "reopenedAt": null
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+name: crawl
+
+on:
+  schedule:
+    # 01:30 UTC = 07:00 IST, daily
+    - cron: "30 1 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Fetch and render only — never commit or deploy"
+        type: boolean
+        default: false
+      company:
+        description: "Limit the crawl to one company (name or slug)"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  models: read
+
+concurrency:
+  group: crawl
+  cancel-in-progress: false
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Crawl
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          ARGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          if [ -n "${{ inputs.company }}" ]; then ARGS="$ARGS --company ${{ inputs.company }}"; fi
+          node scripts/crawl.mjs $ARGS
+
+      - name: Render site
+        run: node scripts/render.mjs
+
+      - name: Commit data changes
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          git config user.name "job-radar[bot]"
+          git config user.email "job-radar@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "no data changes to commit"
+          else
+            MSG=$(node -e "const s=require('./data/jobs.json');const r=s.lastRun||{};console.log('crawl: '+new Date().toISOString().slice(0,10)+' — +'+(r.new||0)+' new, '+(r.archived||0)+' archived, '+(r.seen||0)+' seen, '+(r.boardsOk||0)+'/'+(r.boardsTotal||0)+' boards ok')")
+            git commit -m "$MSG"
+            git push
+          fi
+
+      - name: Board health issues
+        if: ${{ inputs.dry_run != true }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node scripts/health-issues.mjs
+
+      - name: Configure Pages
+        if: ${{ inputs.dry_run != true }}
+        uses: actions/configure-pages@v5
+
+      - name: Upload site artifact
+        if: ${{ inputs.dry_run != true }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        if: ${{ inputs.dry_run != true }}
+        id: deployment
+        uses: actions/deploy-pages@v4

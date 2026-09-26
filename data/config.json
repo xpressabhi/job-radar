@@ -16,5 +16,9 @@
   "timeoutMs": 20000,
   "retries": 1,
   "archiveMisses": 2,
+  "llm": {
+    "model": "openai/gpt-4o-mini",
+    "maxPerRun": 40
+  },
   "userAgent": "job-radar/1.0 (+https://github.com/xpressabhi/job-radar)"
 }

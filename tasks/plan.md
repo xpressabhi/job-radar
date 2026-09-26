@@ -39,8 +39,8 @@ static page with filters, an archive of closed roles, and JSON/RSS feeds. Full d
 ### Phase 2 — Crawl core
 
 - [x] T3: Fetch lib + adapter framework + Greenhouse adapter + crawl CLI skeleton
-- [ ] T4: Lever + Ashby adapters
-- [ ] T5: SmartRecruiters + Workable adapters
+- [x] T4: Lever + Ashby adapters
+- [x] T5: SmartRecruiters + Workable adapters
 - [ ] T6: Normalizer + geo/senior/pay filters + FX
 - [ ] T7: Store merge + two-strike archiving + comp evidence + health
 

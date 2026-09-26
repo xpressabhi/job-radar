@@ -1,4 +1,5 @@
 import { isoDate } from "../lib/dates.mjs";
+import { stripHtml } from "../lib/html.mjs";
 
 // Greenhouse Job Board API adapter — public, no auth, documented.
 // List carries no descriptions; descriptions, first_published, and pay transparency live on
@@ -38,21 +39,6 @@ export async function listBoard({ fetcher, company }) {
     total: res.data?.meta?.total ?? jobs.length,
     postings: jobs.map((job) => toPosting(company, job)),
   };
-}
-
-export function stripHtml(html) {
-  // Greenhouse escapes the HTML (`&lt;div&gt;`), so decode entities BEFORE stripping tags,
-  // and decode `&amp;` last so `&amp;lt;` cannot become a tag.
-  return String(html ?? "")
-    .replace(/&nbsp;/g, " ")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&#39;|&rsquo;|&lsquo;/g, "'")
-    .replace(/&quot;|&ldquo;|&rdquo;/g, '"')
-    .replace(/&amp;/g, "&")
-    .replace(/<[^>]*>/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
 }
 
 export async function fetchJobDetail({ fetcher, company, jobId }) {

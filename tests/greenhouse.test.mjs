@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { listBoard, fetchJobDetail, stripHtml } from "../scripts/sources/greenhouse.mjs";
+import { listBoard, fetchJobDetail } from "../scripts/sources/greenhouse.mjs";
 
 const fixture = (name) => JSON.parse(readFileSync(new URL(`./fixtures/${name}`, import.meta.url), "utf8"));
 const company = { name: "Groww", slug: "groww", ats: "gh" };
@@ -48,12 +48,4 @@ test("fetchJobDetail returns description, postedAt, and null pay ranges when emp
   assert.ok(!res.description.includes("<"));
   assert.match(res.postedAt, /^\d{4}-\d{2}-\d{2}$/);
   assert.equal(res.payInputRanges, null);
-});
-
-test("stripHtml collapses whitespace and decodes entities", () => {
-  assert.equal(stripHtml("<p>Hello&nbsp;<b>World</b> &amp; co</p>"), "Hello World & co");
-});
-
-test("stripHtml handles Greenhouse's escaped HTML (regression)", () => {
-  assert.equal(stripHtml("&lt;div&gt;&lt;strong&gt;About&lt;/strong&gt;&lt;/div&gt;"), "About");
 });

@@ -1,0 +1,185 @@
+{
+  "offset": 0,
+  "limit": 100,
+  "totalFound": 125,
+  "content": [
+    {
+      "id": "744000151905570",
+      "name": "Lead - Program Management",
+      "uuid": "0553cafe-7d49-4ca0-811a-5af3844dbf9b",
+      "jobAdId": "277b81f6-7a7a-4daf-ab18-d25ad1cf966d",
+      "defaultJobAd": true,
+      "refNumber": "P102010_1",
+      "company": {
+        "identifier": "Freshworks",
+        "name": "Freshworks"
+      },
+      "releasedDate": "2026-09-25T17:24:12.734Z",
+      "location": {
+        "city": "San Mateo",
+        "country": "us",
+        "remote": false,
+        "hybrid": true,
+        "hybridDescription": "3x a week onsite Tue-Thur",
+        "fullLocation": "San Mateo, , United States"
+      },
+      "industry": {
+        "id": "it_and_services",
+        "label": "Information Technology And Services"
+      },
+      "department": {},
+      "function": {
+        "id": "other",
+        "label": "Other"
+      },
+      "typeOfEmployment": {
+        "id": "permanent",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "mid_senior_level",
+        "label": "Mid-Senior Level"
+      },
+      "customField": [
+        {
+          "fieldId": "618bba30fa9dfa25d877c58b",
+          "fieldLabel": "Brands",
+          "valueId": "default",
+          "valueLabel": "Freshworks"
+        },
+        {
+          "fieldId": "COUNTRY",
+          "fieldLabel": "Country/Region",
+          "valueId": "us",
+          "valueLabel": "United States"
+        }
+      ],
+      "visibility": "PUBLIC",
+      "ref": "https://api.smartrecruiters.com/v1/companies/Freshworks/postings/744000151905570",
+      "language": {
+        "code": "en",
+        "label": "English",
+        "labelNative": "English (US)"
+      }
+    },
+    {
+      "id": "744000151805094",
+      "name": "Lead - Solution Engineer",
+      "uuid": "829e2b6d-e9a8-426e-963a-913d45875138",
+      "jobAdId": "c58b031b-ba5a-4e5d-9eca-c60eb8a6783b",
+      "defaultJobAd": true,
+      "refNumber": "P103141",
+      "company": {
+        "identifier": "Freshworks",
+        "name": "Freshworks"
+      },
+      "releasedDate": "2026-09-25T09:44:53.811Z",
+      "location": {
+        "city": "Singapore",
+        "country": "sg",
+        "remote": false,
+        "hybrid": false,
+        "fullLocation": "Singapore, , Singapore"
+      },
+      "industry": {
+        "id": "it_and_services",
+        "label": "Information Technology And Services"
+      },
+      "department": {},
+      "function": {
+        "id": "other",
+        "label": "Other"
+      },
+      "typeOfEmployment": {
+        "id": "permanent",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "mid_senior_level",
+        "label": "Mid-Senior Level"
+      },
+      "customField": [
+        {
+          "fieldId": "618bba30fa9dfa25d877c58b",
+          "fieldLabel": "Brands",
+          "valueId": "default",
+          "valueLabel": "Freshworks"
+        },
+        {
+          "fieldId": "COUNTRY",
+          "fieldLabel": "Country/Region",
+          "valueId": "sg",
+          "valueLabel": "Singapore"
+        }
+      ],
+      "visibility": "PUBLIC",
+      "ref": "https://api.smartrecruiters.com/v1/companies/Freshworks/postings/744000151805094",
+      "language": {
+        "code": "en",
+        "label": "English",
+        "labelNative": "English (US)"
+      }
+    },
+    {
+      "id": "744000151772990",
+      "name": "Lead Software Engineer - Site Reliability",
+      "uuid": "9709d0cf-9ab7-45b1-b913-65b909266fa8",
+      "jobAdId": "28a49ff9-fcd0-4ffb-b7dc-ee17ac0a1ebe",
+      "defaultJobAd": true,
+      "refNumber": "P100545_1",
+      "company": {
+        "identifier": "Freshworks",
+        "name": "Freshworks"
+      },
+      "releasedDate": "2026-09-25T07:15:59.566Z",
+      "location": {
+        "city": "Hyderabad",
+        "region": "TS",
+        "country": "in",
+        "remote": false,
+        "hybrid": false,
+        "latitude": "17.406498",
+        "longitude": "78.47724389999999",
+        "fullLocation": "Hyderabad, TS, India"
+      },
+      "industry": {
+        "id": "it_and_services",
+        "label": "Information Technology And Services"
+      },
+      "department": {},
+      "function": {
+        "id": "other",
+        "label": "Other"
+      },
+      "typeOfEmployment": {
+        "id": "permanent",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "mid_senior_level",
+        "label": "Mid-Senior Level"
+      },
+      "customField": [
+        {
+          "fieldId": "618bba30fa9dfa25d877c58b",
+          "fieldLabel": "Brands",
+          "valueId": "default",
+          "valueLabel": "Freshworks"
+        },
+        {
+          "fieldId": "COUNTRY",
+          "fieldLabel": "Country/Region",
+          "valueId": "in",
+          "valueLabel": "India"
+        }
+      ],
+      "visibility": "PUBLIC",
+      "ref": "https://api.smartrecruiters.com/v1/companies/Freshworks/postings/744000151772990",
+      "language": {
+        "code": "en",
+        "label": "English",
+        "labelNative": "English (US)"
+      }
+    }
+  ]
+}

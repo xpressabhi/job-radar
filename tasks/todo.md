@@ -86,13 +86,14 @@ writes) and `--company <name>`. Trimmed real payload fixtures for tests.
 both, including an Ashby board with compensation and one with `isRemote: null`.
 
 **Acceptance criteria:**
-- [ ] Both adapters normalize location, mode, dates, salary/base components per fixture
-- [ ] Ashby `isListed: false` postings are excluded; `isRemote: null` does not crash parsing
-- [ ] Lever multi-location postings keep all locations in `raw` and primary city first
+- [x] Both adapters normalize location, mode, dates, salary/base components per fixture
+- [x] Ashby `isListed: false` postings are excluded; `isRemote: null` does not crash parsing
+- [x] Lever multi-location postings keep all locations in `raw` and primary city first
 
 **Verification:**
-- [ ] `npm test`
-- [ ] `node scripts/crawl.mjs --dry-run --company Palantir` and `--company OpenAI`
+- [x] `npm test` — 35 passing
+- [x] Live: `--company Palantir` (321 postings), `--company Supabase` (56 postings)
+- [x] Shared `lib/dates.mjs`; Greenhouse refactored onto it
 
 **Dependencies:** T3 · **Scope:** Medium (4 files)
 
@@ -107,13 +108,14 @@ care: SmartRecruiters remote/hybrid flags and location shape; Workable `telecomm
 `country`, `published_on`.
 
 **Acceptance criteria:**
-- [ ] Pagination walks all pages for a >100-posting tenant (fixture with 2 pages)
-- [ ] `totalFound: 0` returns an empty result, not a failure
-- [ ] Workable `telecommuting: true` maps to `mode: remote` with the right `indiaScope` input
+- [x] Pagination walks all pages for a >100-posting tenant (2-page test synthesized from real payloads)
+- [x] `totalFound: 0` returns an empty result, not a failure
+- [x] Workable `telecommuting: true` maps to `mode: remote` with the right `indiaScope` input
 
 **Verification:**
-- [ ] `npm test`
-- [ ] `node scripts/crawl.mjs --dry-run --company Atlassian` and `--company "Hugging Face"`
+- [x] `npm test` — 47 passing
+- [x] Live: `--company Atlassian` (sr, 3 postings), `--company "Hugging Face"` (workable, 8 postings)
+- [x] `stripHtml` moved to shared `lib/html.mjs` (Greenhouse + SR + Workable use it)
 
 **Dependencies:** T3 · **Scope:** Medium (4 files)
 

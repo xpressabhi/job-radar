@@ -1,0 +1,126 @@
+{
+  "offset": 100,
+  "limit": 100,
+  "totalFound": 125,
+  "content": [
+    {
+      "id": "744000139050259",
+      "name": "Lead - Business Systems Services (Workday Technical Lead)",
+      "uuid": "da165cda-c6c4-49fb-be78-cb750ceed32e",
+      "jobAdId": "16bb29d5-ba44-4a81-8786-58fe91dbc739",
+      "defaultJobAd": true,
+      "refNumber": "P-1009195_3",
+      "company": {
+        "identifier": "Freshworks",
+        "name": "Freshworks"
+      },
+      "releasedDate": "2026-07-22T11:11:18.857Z",
+      "location": {
+        "city": "Bengaluru",
+        "country": "in",
+        "remote": false,
+        "hybrid": false,
+        "fullLocation": "Bengaluru, , India"
+      },
+      "industry": {
+        "id": "it_and_services",
+        "label": "Information Technology And Services"
+      },
+      "department": {},
+      "function": {
+        "id": "other",
+        "label": "Other"
+      },
+      "typeOfEmployment": {
+        "id": "permanent",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "mid_senior_level",
+        "label": "Mid-Senior Level"
+      },
+      "customField": [
+        {
+          "fieldId": "618bba30fa9dfa25d877c58b",
+          "fieldLabel": "Brands",
+          "valueId": "default",
+          "valueLabel": "Freshworks"
+        },
+        {
+          "fieldId": "COUNTRY",
+          "fieldLabel": "Country/Region",
+          "valueId": "in",
+          "valueLabel": "India"
+        }
+      ],
+      "visibility": "PUBLIC",
+      "ref": "https://api.smartrecruiters.com/v1/companies/Freshworks/postings/744000139050259",
+      "language": {
+        "code": "en",
+        "label": "English",
+        "labelNative": "English (US)"
+      }
+    },
+    {
+      "id": "744000138960089",
+      "name": "Lead - Procurement Systems",
+      "uuid": "f8223f12-b20c-483e-9f53-f70dcaa2b3df",
+      "jobAdId": "87c609ea-01ec-4fc3-8570-00911f7dccd7",
+      "defaultJobAd": true,
+      "refNumber": "P103053",
+      "company": {
+        "identifier": "Freshworks",
+        "name": "Freshworks"
+      },
+      "releasedDate": "2026-07-21T21:18:06.925Z",
+      "location": {
+        "city": "San Mateo",
+        "region": "CA",
+        "country": "us",
+        "postalCode": "94403",
+        "remote": false,
+        "hybrid": true,
+        "hybridDescription": "Tu-Th In-office (M/F WFH)",
+        "fullLocation": "San Mateo, CA, United States"
+      },
+      "industry": {
+        "id": "it_and_services",
+        "label": "Information Technology And Services"
+      },
+      "department": {},
+      "function": {
+        "id": "other",
+        "label": "Other"
+      },
+      "typeOfEmployment": {
+        "id": "permanent",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "mid_senior_level",
+        "label": "Mid-Senior Level"
+      },
+      "customField": [
+        {
+          "fieldId": "618bba30fa9dfa25d877c58b",
+          "fieldLabel": "Brands",
+          "valueId": "default",
+          "valueLabel": "Freshworks"
+        },
+        {
+          "fieldId": "COUNTRY",
+          "fieldLabel": "Country/Region",
+          "valueId": "us",
+          "valueLabel": "United States"
+        }
+      ],
+      "visibility": "PUBLIC",
+      "ref": "https://api.smartrecruiters.com/v1/companies/Freshworks/postings/744000138960089",
+      "language": {
+        "code": "en",
+        "label": "English",
+        "labelNative": "English (US)"
+      }
+    }
+  ]
+}

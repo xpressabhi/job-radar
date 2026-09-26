@@ -65,10 +65,14 @@ static page with filters, an archive of closed roles, and JSON/RSS feeds. Full d
 - [ ] T13: Health auto-issues + `verify-companies.mjs`
 - [ ] T14: README/methodology + first live run review + handover
 
-#### Checkpoint D: Complete
+### Checkpoint D: Complete
 - [ ] First scheduled run green; page fresh; archive page correct; degraded-run path tested
 - [ ] Portfolio nav link decision (separate follow-up)
 - [ ] All acceptance criteria met; ready for review
+
+### Phase 5 — Optional personal layer (after v1)
+
+- [ ] T15: Local Jev ranking over `jobs.json` (keys stay local; never in CI)
 
 ## Risks and Mitigations
 
@@ -85,4 +89,6 @@ static page with filters, an archive of closed roles, and JSON/RSS feeds. Full d
 
 ## Open Questions
 
-- None blocking. Portfolio nav link deferred to a later, separate decision.
+- None blocking for v1. Portfolio nav link deferred to a later, separate decision.
+- Personal layer: standalone `personal-rank.mjs` vs. teaching the job-finder skill to consume
+  `jobs.json` as a source — decide at T15.

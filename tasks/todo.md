@@ -313,3 +313,23 @@ the user, tune token lists/pay parsing if real data disagrees, then flip cron on
 #### Checkpoint D: Complete
 - [ ] All acceptance criteria met; cron running unattended
 - [ ] Portfolio nav-link decision recorded (separate follow-up)
+
+---
+
+## Task 15 (optional, after v1): Local Jev ranking over `jobs.json`
+
+**Description:** `scripts/personal-rank.mjs`, run only on the user's machine: reads
+`data/jobs.json` + the local profile/CV, calls the job-finder-style Jev judges
+(`TYPESAFE_API_KEY` from shell env; never a repo secret) for eligibility, level/stack match,
+and red flags, and writes a ranked `output/personal-shortlist.md` with named gaps. Leaves
+the job-finder tracker (`~/.job-search/`) as the personal memory layer. Never runs in CI.
+
+**Acceptance criteria:**
+- [ ] Script refuses to run without `TYPESAFE_API_KEY` and never logs the key
+- [ ] Shortlist ranks only jobs passing the public pay/geo gates, annotating eligibility
+- [ ] Missing key/API failure degrades to an unranked listing, not a crash
+- [ ] No personal data or keys are written into the repo or CI
+
+**Verification:** [ ] Local run over a fixture `jobs.json`; inspect `personal-shortlist.md`
+
+**Dependencies:** T14 · **Scope:** Medium (1 script + tests)

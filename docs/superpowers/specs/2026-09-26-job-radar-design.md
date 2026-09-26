@@ -46,6 +46,8 @@ per-user profile; a small set of preset filters on the page covers the personal 
 | Comp published as total only | Keep if converted total ≥₹50L, flag `base unverified` |
 | Archiving | Two consecutive successful fetch misses; failures never archive |
 | Stack | Node 20+, ESM `.mjs`, zero runtime dependencies |
+| Ambiguous-title LLM | GitHub Models via `GITHUB_TOKEN` (no secret); API keys stay out of CI |
+| Personal shortlist | Local-only Jev (TypeSafe) ranking over `jobs.json`; keys and state never in the repo |
 
 ## 4. Architecture
 
@@ -345,8 +347,28 @@ Each kept job gets `cities[]`, `mode` (`onsite` | `hybrid` | `remote`), and `ind
 6. Renderer + feeds.
 7. Workflows (crawl, CI) + health auto-issues.
 8. First live run review → tune → hand over to cron. Later: Workday adapter, portfolio nav link.
+9. Optional personal layer: local Jev ranking of `jobs.json` (see §14).
 
-## 14. Open questions
+## 14. Personal layer (optional, local-only, after v1)
+
+The public page is objective: it filters by pay, geography, and seniority. The personal
+shortlist is profile-relative, so it runs locally, never in CI:
+
+- `scripts/personal-rank.mjs` (local-only; requires `TYPESAFE_API_KEY` in the shell env,
+  which is never added to the repo or Actions) reads `data/jobs.json` plus the local/CV
+  profile and runs the job-finder-style Jev judges over candidates: eligibility (is this
+  remote role really open to India?), level + stack match, red flags. Output: a ranked
+  `output/personal-shortlist.md` with named gaps.
+- Personal state stays under `~/.job-search/` (the job-finder tracker); nothing personal
+  is committed to `job-radar`.
+- Deterministic jobs (pay parsing, dedupe, archiving) never depend on Jev; it only ranks
+  and annotates.
+- If an API key is ever wanted inside Actions for better title classification, that is a
+  separate decision requiring evidence that the GitHub Models fallback is insufficient.
+
+## 15. Open questions
 
 - None blocking. Portfolio nav link is a later, separate decision.
 - `jobs.json` split-by-year threshold (5MB) is a guess; revisit when the store approaches it.
+- Personal layer (§14): standalone `personal-rank.mjs` vs. teaching the job-finder skill to
+  consume `jobs.json` as a source — decide when that task is picked up.

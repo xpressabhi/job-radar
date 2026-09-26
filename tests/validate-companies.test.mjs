@@ -2,7 +2,10 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { validateCompanies } from "../scripts/validate-companies.mjs";
 
-const config = { payFloorBaseLpa: 50, companyPayFloorBaseLpa: 20 };
+const strict = {
+  pay: { currency: "INR", floorAnnual: 5000000, companyFloorAnnual: 2000000, vettingRequired: true },
+};
+const optional = { pay: { currency: "USD", vettingRequired: false } };
 
 const company = (overrides = {}) => ({
   name: "Example",
@@ -10,10 +13,10 @@ const company = (overrides = {}) => ({
   slug: "example",
   careersUrl: "https://job-boards.greenhouse.io/example",
   tier: "saas",
-  india: { offices: [], remoteOk: true, note: "test" },
+  location: { offices: [], remoteOk: true, note: "test" },
   payVetting: {
-    generalBaseMinLpa: 25,
-    seniorBaseMinLpa: 55,
+    generalBaseMin: 2500000,
+    seniorBaseMin: 5500000,
     confidence: "estimate",
     sources: ["tier estimate 2026-09-26"],
     verifiedOn: "2026-09-26",
@@ -23,55 +26,57 @@ const company = (overrides = {}) => ({
   ...overrides,
 });
 
-test("a valid company passes", () => {
-  assert.deepEqual(validateCompanies([company()], config), []);
+test("a valid company passes in strict mode", () => {
+  assert.deepEqual(validateCompanies([company()], strict), []);
 });
 
-test("missing payVetting fails", () => {
+test("missing payVetting fails only when pay.vettingRequired is true", () => {
   const { payVetting, ...rest } = company();
-  assert.match(validateCompanies([rest], config).join("\n"), /missing payVetting/);
+  assert.match(validateCompanies([rest], strict).join("\n"), /missing payVetting \(pay\.vettingRequired is true\)/);
+  assert.deepEqual(validateCompanies([rest], optional), []);
+  assert.deepEqual(validateCompanies([{ ...rest, enabled: false }], strict), [], "disabled companies are exempt in strict mode");
 });
 
-test("senior band below the role floor fails", () => {
-  const c = company();
-  c.payVetting.seniorBaseMinLpa = 45;
-  assert.match(validateCompanies([c], config).join("\n"), /seniorBaseMinLpa below role floor/);
+test("vetting amounts must clear the configured floors (annual, base currency)", () => {
+  const senior = company();
+  senior.payVetting.seniorBaseMin = 4500000;
+  assert.match(validateCompanies([senior], strict).join("\n"), /seniorBaseMin must be a number >= 5000000 \(annual, INR\)/);
+
+  const general = company();
+  general.payVetting.generalBaseMin = 1500000;
+  assert.match(validateCompanies([general], strict).join("\n"), /generalBaseMin must be a number >= 2000000/);
 });
 
-test("general band below the company floor fails", () => {
-  const c = company();
-  c.payVetting.generalBaseMinLpa = 15;
-  assert.match(validateCompanies([c], config).join("\n"), /generalBaseMinLpa below company floor/);
+test("free-form tiers are allowed and location is optional", () => {
+  assert.deepEqual(validateCompanies([company({ tier: "unicorn" })], strict), []);
+  const { tier, location, ...rest } = company();
+  assert.deepEqual(validateCompanies([rest], strict), []);
+  assert.match(validateCompanies([company({ tier: "" })], strict).join("\n"), /tier must be a non-empty string/);
+  assert.match(validateCompanies([company({ location: { offices: "nope" } })], strict).join("\n"), /location\.offices must be an array/);
 });
 
 test("duplicate ats:slug fails", () => {
-  const errors = validateCompanies([company(), company({ name: "Other" })], config);
+  const errors = validateCompanies([company(), company({ name: "Other" })], strict);
   assert.match(errors.join("\n"), /duplicate board gh:example/);
 });
 
-test("invalid tier fails", () => {
-  assert.match(validateCompanies([company({ tier: "unicorn" })], config).join("\n"), /invalid tier/);
-});
+test("empty sources and unknown confidence fail", () => {
+  const noSources = company();
+  noSources.payVetting.sources = ["  "];
+  assert.match(validateCompanies([noSources], strict).join("\n"), /sources must be non-empty strings/);
 
-test("empty sources fail", () => {
-  const c = company();
-  c.payVetting.sources = ["  "];
-  assert.match(validateCompanies([c], config).join("\n"), /sources must be non-empty strings/);
+  const badConfidence = company();
+  badConfidence.payVetting.confidence = "probably";
+  assert.match(validateCompanies([badConfidence], strict).join("\n"), /invalid confidence/);
 });
 
 test("http careersUrl fails", () => {
   assert.match(
-    validateCompanies([company({ careersUrl: "http://example.com" })], config).join("\n"),
+    validateCompanies([company({ careersUrl: "http://example.com" })], strict).join("\n"),
     /careersUrl must be an https URL/,
   );
 });
 
-test("unknown confidence fails", () => {
-  const c = company();
-  c.payVetting.confidence = "probably";
-  assert.match(validateCompanies([c], config).join("\n"), /invalid confidence/);
-});
-
 test("empty array fails", () => {
-  assert.match(validateCompanies([], config).join("\n"), /non-empty array/);
+  assert.match(validateCompanies([], strict).join("\n"), /non-empty array/);
 });

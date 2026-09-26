@@ -15,11 +15,11 @@ const fixture = (name) => JSON.parse(readFileSync(new URL(`./fixtures/${name}`, 
 const config = loadConfigFile(new URL("./fixtures/config.json", import.meta.url));
 
 const companies = {
-  groww: { name: "Groww", slug: "groww", ats: "gh", tier: "india-product", payVetting: { seniorBaseMinLpa: 55 } },
-  meesho: { name: "Meesho", slug: "meesho", ats: "lever", tier: "india-product", payVetting: { seniorBaseMinLpa: 60 } },
-  cohere: { name: "Cohere", slug: "cohere", ats: "ashby", tier: "frontier-ai", payVetting: { seniorBaseMinLpa: 70 } },
-  Freshworks: { name: "Freshworks", slug: "Freshworks", ats: "sr", tier: "india-product", payVetting: { seniorBaseMinLpa: 55 } },
-  huggingface: { name: "Hugging Face", slug: "huggingface", ats: "workable", tier: "remote-first", payVetting: { seniorBaseMinLpa: 60 } },
+  groww: { name: "Groww", slug: "groww", ats: "gh", tier: "india-product", payVetting: { seniorBaseMin: 5500000 } },
+  meesho: { name: "Meesho", slug: "meesho", ats: "lever", tier: "india-product", payVetting: { seniorBaseMin: 6000000 } },
+  cohere: { name: "Cohere", slug: "cohere", ats: "ashby", tier: "frontier-ai", payVetting: { seniorBaseMin: 7000000 } },
+  Freshworks: { name: "Freshworks", slug: "Freshworks", ats: "sr", tier: "india-product", payVetting: { seniorBaseMin: 5500000 } },
+  huggingface: { name: "Hugging Face", slug: "huggingface", ats: "workable", tier: "remote-first", payVetting: { seniorBaseMin: 6000000 } },
 };
 
 const fetchers = {

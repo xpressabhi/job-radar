@@ -5,7 +5,7 @@
     "slug": "airbnb",
     "careersUrl": "https://job-boards.greenhouse.io/airbnb",
     "tier": "big-tech",
-    "india": {
+    "location": {
       "offices": [
         "Gurugram",
         "Bengaluru"
@@ -14,8 +14,8 @@
       "note": "India offices"
     },
     "payVetting": {
-      "generalBaseMinLpa": 30,
-      "seniorBaseMinLpa": 70,
+      "generalBaseMin": 3000000,
+      "seniorBaseMin": 7000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -31,14 +31,14 @@
     "slug": "airtable",
     "careersUrl": "https://job-boards.greenhouse.io/airtable",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -54,14 +54,14 @@
     "slug": "amplitude",
     "careersUrl": "https://job-boards.greenhouse.io/amplitude",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -77,7 +77,7 @@
     "slug": "anthropic",
     "careersUrl": "https://job-boards.greenhouse.io/anthropic",
     "tier": "frontier-ai",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru"
       ],
@@ -85,8 +85,8 @@
       "note": "Bengaluru office; office-first policy"
     },
     "payVetting": {
-      "generalBaseMinLpa": 30,
-      "seniorBaseMinLpa": 70,
+      "generalBaseMin": 3000000,
+      "seniorBaseMin": 7000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -102,14 +102,14 @@
     "slug": "asana",
     "careersUrl": "https://job-boards.greenhouse.io/asana",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -125,14 +125,14 @@
     "slug": "atlan",
     "careersUrl": "https://jobs.ashbyhq.com/atlan",
     "tier": "india-product",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India-first; remote"
     },
     "payVetting": {
-      "generalBaseMinLpa": 20,
-      "seniorBaseMinLpa": 55,
+      "generalBaseMin": 2000000,
+      "seniorBaseMin": 5500000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -148,7 +148,7 @@
     "slug": "Atlassian2",
     "careersUrl": "https://careers.smartrecruiters.com/Atlassian2",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru"
       ],
@@ -156,8 +156,8 @@
       "note": "Bengaluru + India-remote"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -173,14 +173,14 @@
     "slug": "braze",
     "careersUrl": "https://job-boards.greenhouse.io/braze",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -196,14 +196,14 @@
     "slug": "brex",
     "careersUrl": "https://job-boards.greenhouse.io/brex",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -219,14 +219,14 @@
     "slug": "clerk",
     "careersUrl": "https://jobs.ashbyhq.com/clerk",
     "tier": "remote-first",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Small board; remote"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 55,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 5500000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -242,14 +242,14 @@
     "slug": "cloudflare",
     "careersUrl": "https://job-boards.greenhouse.io/cloudflare",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Remote-India listed on some roles"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -265,7 +265,7 @@
     "slug": "cohere",
     "careersUrl": "https://jobs.ashbyhq.com/cohere",
     "tier": "frontier-ai",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru"
       ],
@@ -273,8 +273,8 @@
       "note": "Bengaluru office"
     },
     "payVetting": {
-      "generalBaseMinLpa": 30,
-      "seniorBaseMinLpa": 70,
+      "generalBaseMin": 3000000,
+      "seniorBaseMin": 7000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -290,14 +290,14 @@
     "slug": "contentful",
     "careersUrl": "https://job-boards.greenhouse.io/contentful",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -313,7 +313,7 @@
     "slug": "cred",
     "careersUrl": "https://jobs.lever.co/cred",
     "tier": "india-product",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru"
       ],
@@ -321,8 +321,8 @@
       "note": "Bengaluru"
     },
     "payVetting": {
-      "generalBaseMinLpa": 20,
-      "seniorBaseMinLpa": 55,
+      "generalBaseMin": 2000000,
+      "seniorBaseMin": 5500000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -338,7 +338,7 @@
     "slug": "databricks",
     "careersUrl": "https://job-boards.greenhouse.io/databricks",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru",
         "Mumbai"
@@ -347,8 +347,8 @@
       "note": "Bengaluru/Mumbai/Remote-India"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -364,7 +364,7 @@
     "slug": "devrev",
     "careersUrl": "https://job-boards.greenhouse.io/devrev",
     "tier": "india-product",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru",
         "Chennai"
@@ -373,8 +373,8 @@
       "note": "India-remote; Bengaluru/Chennai"
     },
     "payVetting": {
-      "generalBaseMinLpa": 20,
-      "seniorBaseMinLpa": 55,
+      "generalBaseMin": 2000000,
+      "seniorBaseMin": 5500000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -390,14 +390,14 @@
     "slug": "discord",
     "careersUrl": "https://job-boards.greenhouse.io/discord",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -413,14 +413,14 @@
     "slug": "doordashusa",
     "careersUrl": "https://job-boards.greenhouse.io/doordashusa",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -436,7 +436,7 @@
     "slug": "dropbox",
     "careersUrl": "https://job-boards.greenhouse.io/dropbox",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru"
       ],
@@ -444,8 +444,8 @@
       "note": "Bengaluru"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -461,14 +461,14 @@
     "slug": "elastic",
     "careersUrl": "https://job-boards.greenhouse.io/elastic",
     "tier": "remote-first",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Remote-India"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -484,14 +484,14 @@
     "slug": "elevenlabs",
     "careersUrl": "https://jobs.ashbyhq.com/elevenlabs",
     "tier": "frontier-ai",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 30,
-      "seniorBaseMinLpa": 70,
+      "generalBaseMin": 3000000,
+      "seniorBaseMin": 7000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -507,7 +507,7 @@
     "slug": "epifi",
     "careersUrl": "https://jobs.lever.co/epifi",
     "tier": "india-product",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru"
       ],
@@ -515,8 +515,8 @@
       "note": "Bengaluru"
     },
     "payVetting": {
-      "generalBaseMinLpa": 20,
-      "seniorBaseMinLpa": 50,
+      "generalBaseMin": 2000000,
+      "seniorBaseMin": 5000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -532,7 +532,7 @@
     "slug": "figma",
     "careersUrl": "https://job-boards.greenhouse.io/figma",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru"
       ],
@@ -540,8 +540,8 @@
       "note": "Bengaluru"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -557,7 +557,7 @@
     "slug": "Freshworks",
     "careersUrl": "https://careers.smartrecruiters.com/Freshworks",
     "tier": "india-product",
-    "india": {
+    "location": {
       "offices": [
         "Chennai"
       ],
@@ -565,8 +565,8 @@
       "note": "Chennai HQ"
     },
     "payVetting": {
-      "generalBaseMinLpa": 20,
-      "seniorBaseMinLpa": 55,
+      "generalBaseMin": 2000000,
+      "seniorBaseMin": 5500000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -582,14 +582,14 @@
     "slug": "gitbook",
     "careersUrl": "https://jobs.ashbyhq.com/gitbook",
     "tier": "remote-first",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Small board; remote"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 55,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 5500000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -605,14 +605,14 @@
     "slug": "gitlab",
     "careersUrl": "https://job-boards.greenhouse.io/gitlab",
     "tier": "remote-first",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "All-remote; India entity + EOR"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -628,7 +628,7 @@
     "slug": "gleanwork",
     "careersUrl": "https://job-boards.greenhouse.io/gleanwork",
     "tier": "frontier-ai",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru",
         "Mumbai"
@@ -637,8 +637,8 @@
       "note": "Bengaluru + Mumbai"
     },
     "payVetting": {
-      "generalBaseMinLpa": 30,
-      "seniorBaseMinLpa": 70,
+      "generalBaseMin": 3000000,
+      "seniorBaseMin": 7000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -654,14 +654,14 @@
     "slug": "godaddy",
     "careersUrl": "https://job-boards.greenhouse.io/godaddy",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India hiring to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -677,14 +677,14 @@
     "slug": "grafanalabs",
     "careersUrl": "https://job-boards.greenhouse.io/grafanalabs",
     "tier": "remote-first",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Remote; India hiring to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -700,7 +700,7 @@
     "slug": "groww",
     "careersUrl": "https://job-boards.greenhouse.io/groww",
     "tier": "india-product",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru"
       ],
@@ -708,8 +708,8 @@
       "note": "Bengaluru"
     },
     "payVetting": {
-      "generalBaseMinLpa": 20,
-      "seniorBaseMinLpa": 55,
+      "generalBaseMin": 2000000,
+      "seniorBaseMin": 5500000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -725,14 +725,14 @@
     "slug": "harvey",
     "careersUrl": "https://jobs.ashbyhq.com/harvey",
     "tier": "frontier-ai",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 30,
-      "seniorBaseMinLpa": 70,
+      "generalBaseMin": 3000000,
+      "seniorBaseMin": 7000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -748,14 +748,14 @@
     "slug": "gohighlevel",
     "careersUrl": "https://jobs.lever.co/gohighlevel",
     "tier": "india-product",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India hiring to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 20,
-      "seniorBaseMinLpa": 50,
+      "generalBaseMin": 2000000,
+      "seniorBaseMin": 5000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -771,14 +771,14 @@
     "slug": "hubspotjobs",
     "careersUrl": "https://job-boards.greenhouse.io/hubspotjobs",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -794,14 +794,14 @@
     "slug": "huggingface",
     "careersUrl": "https://apply.workable.com/huggingface/",
     "tier": "remote-first",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Remote"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -817,7 +817,7 @@
     "slug": "inmobi",
     "careersUrl": "https://job-boards.greenhouse.io/inmobi",
     "tier": "india-product",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru"
       ],
@@ -825,8 +825,8 @@
       "note": "Bengaluru"
     },
     "payVetting": {
-      "generalBaseMinLpa": 20,
-      "seniorBaseMinLpa": 55,
+      "generalBaseMin": 2000000,
+      "seniorBaseMin": 5500000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -842,14 +842,14 @@
     "slug": "instacart",
     "careersUrl": "https://job-boards.greenhouse.io/instacart",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -865,14 +865,14 @@
     "slug": "intercom",
     "careersUrl": "https://job-boards.greenhouse.io/intercom",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -888,14 +888,14 @@
     "slug": "klaviyo",
     "careersUrl": "https://job-boards.greenhouse.io/klaviyo",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -911,14 +911,14 @@
     "slug": "langchain",
     "careersUrl": "https://jobs.ashbyhq.com/langchain",
     "tier": "frontier-ai",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Remote-first; India eligibility per posting"
     },
     "payVetting": {
-      "generalBaseMinLpa": 30,
-      "seniorBaseMinLpa": 70,
+      "generalBaseMin": 3000000,
+      "seniorBaseMin": 7000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -934,14 +934,14 @@
     "slug": "launchdarkly",
     "careersUrl": "https://job-boards.greenhouse.io/launchdarkly",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -957,14 +957,14 @@
     "slug": "linear",
     "careersUrl": "https://jobs.ashbyhq.com/linear",
     "tier": "remote-first",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Remote"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -980,7 +980,7 @@
     "slug": "meesho",
     "careersUrl": "https://jobs.lever.co/meesho",
     "tier": "india-product",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru"
       ],
@@ -988,8 +988,8 @@
       "note": "Bengaluru"
     },
     "payVetting": {
-      "generalBaseMinLpa": 20,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2000000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1005,14 +1005,14 @@
     "slug": "mercury",
     "careersUrl": "https://job-boards.greenhouse.io/mercury",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1028,7 +1028,7 @@
     "slug": "mindtickle",
     "careersUrl": "https://jobs.lever.co/mindtickle",
     "tier": "india-product",
-    "india": {
+    "location": {
       "offices": [
         "Pune"
       ],
@@ -1036,8 +1036,8 @@
       "note": "Pune"
     },
     "payVetting": {
-      "generalBaseMinLpa": 20,
-      "seniorBaseMinLpa": 50,
+      "generalBaseMin": 2000000,
+      "seniorBaseMin": 5000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1053,14 +1053,14 @@
     "slug": "mistral.ai",
     "careersUrl": "https://jobs.ashbyhq.com/mistral.ai",
     "tier": "frontier-ai",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Occasional India roles"
     },
     "payVetting": {
-      "generalBaseMinLpa": 30,
-      "seniorBaseMinLpa": 70,
+      "generalBaseMin": 3000000,
+      "seniorBaseMin": 7000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1076,14 +1076,14 @@
     "slug": "mixpanel",
     "careersUrl": "https://job-boards.greenhouse.io/mixpanel",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1099,14 +1099,14 @@
     "slug": "modal",
     "careersUrl": "https://jobs.ashbyhq.com/modal",
     "tier": "remote-first",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Remote"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1122,7 +1122,7 @@
     "slug": "mongodb",
     "careersUrl": "https://job-boards.greenhouse.io/mongodb",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru"
       ],
@@ -1130,8 +1130,8 @@
       "note": "Bengaluru; remote roles in some regions"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1147,14 +1147,14 @@
     "slug": "neon",
     "careersUrl": "https://jobs.ashbyhq.com/neon",
     "tier": "remote-first",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Small board; remote"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 55,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 5500000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1170,7 +1170,7 @@
     "slug": "notion",
     "careersUrl": "https://jobs.ashbyhq.com/notion",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [
         "Hyderabad"
       ],
@@ -1178,8 +1178,8 @@
       "note": "India roles seen (Hyderabad)"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1195,7 +1195,7 @@
     "slug": "observeai",
     "careersUrl": "https://job-boards.greenhouse.io/observeai",
     "tier": "india-product",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru"
       ],
@@ -1203,8 +1203,8 @@
       "note": "Bengaluru"
     },
     "payVetting": {
-      "generalBaseMinLpa": 20,
-      "seniorBaseMinLpa": 50,
+      "generalBaseMin": 2000000,
+      "seniorBaseMin": 5000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1220,14 +1220,14 @@
     "slug": "okta",
     "careersUrl": "https://job-boards.greenhouse.io/okta",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1243,7 +1243,7 @@
     "slug": "openai",
     "careersUrl": "https://jobs.ashbyhq.com/openai",
     "tier": "frontier-ai",
-    "india": {
+    "location": {
       "offices": [
         "New Delhi"
       ],
@@ -1251,8 +1251,8 @@
       "note": "India entity (New Delhi); board large"
     },
     "payVetting": {
-      "generalBaseMinLpa": 30,
-      "seniorBaseMinLpa": 70,
+      "generalBaseMin": 3000000,
+      "seniorBaseMin": 7000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1268,14 +1268,14 @@
     "slug": "oyster",
     "careersUrl": "https://jobs.ashbyhq.com/oyster",
     "tier": "remote-first",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Global payroll; hires broadly"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1291,14 +1291,14 @@
     "slug": "pagerduty",
     "careersUrl": "https://job-boards.greenhouse.io/pagerduty",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1314,7 +1314,7 @@
     "slug": "palantir",
     "careersUrl": "https://jobs.lever.co/palantir",
     "tier": "frontier-ai",
-    "india": {
+    "location": {
       "offices": [
         "Hyderabad"
       ],
@@ -1322,8 +1322,8 @@
       "note": "Hyderabad office"
     },
     "payVetting": {
-      "generalBaseMinLpa": 30,
-      "seniorBaseMinLpa": 70,
+      "generalBaseMin": 3000000,
+      "seniorBaseMin": 7000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1339,14 +1339,14 @@
     "slug": "perplexity",
     "careersUrl": "https://jobs.ashbyhq.com/perplexity",
     "tier": "frontier-ai",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Verify regional eligibility per posting"
     },
     "payVetting": {
-      "generalBaseMinLpa": 30,
-      "seniorBaseMinLpa": 70,
+      "generalBaseMin": 3000000,
+      "seniorBaseMin": 7000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1362,14 +1362,14 @@
     "slug": "pinterest",
     "careersUrl": "https://job-boards.greenhouse.io/pinterest",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1385,14 +1385,14 @@
     "slug": "railway",
     "careersUrl": "https://jobs.ashbyhq.com/railway",
     "tier": "remote-first",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Small board; remote"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 55,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 5500000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1408,14 +1408,14 @@
     "slug": "ramp",
     "careersUrl": "https://jobs.ashbyhq.com/ramp",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1431,7 +1431,7 @@
     "slug": "razorpaysoftwareprivatelimited",
     "careersUrl": "https://job-boards.greenhouse.io/razorpaysoftwareprivatelimited",
     "tier": "india-product",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru"
       ],
@@ -1439,8 +1439,8 @@
       "note": "Bengaluru"
     },
     "payVetting": {
-      "generalBaseMinLpa": 20,
-      "seniorBaseMinLpa": 55,
+      "generalBaseMin": 2000000,
+      "seniorBaseMin": 5500000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1456,14 +1456,14 @@
     "slug": "reddit",
     "careersUrl": "https://job-boards.greenhouse.io/reddit",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1479,14 +1479,14 @@
     "slug": "remotecom",
     "careersUrl": "https://job-boards.greenhouse.io/remotecom",
     "tier": "remote-first",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Global payroll; hires broadly"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1502,14 +1502,14 @@
     "slug": "render",
     "careersUrl": "https://jobs.ashbyhq.com/render",
     "tier": "remote-first",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Remote"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1525,14 +1525,14 @@
     "slug": "resend",
     "careersUrl": "https://jobs.ashbyhq.com/resend",
     "tier": "remote-first",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Small board; remote"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 55,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 5500000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1548,14 +1548,14 @@
     "slug": "robinhood",
     "careersUrl": "https://job-boards.greenhouse.io/robinhood",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1571,14 +1571,14 @@
     "slug": "runway-ml",
     "careersUrl": "https://jobs.ashbyhq.com/runway-ml",
     "tier": "frontier-ai",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 30,
-      "seniorBaseMinLpa": 70,
+      "generalBaseMin": 3000000,
+      "seniorBaseMin": 7000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1594,7 +1594,7 @@
     "slug": "sarvam",
     "careersUrl": "https://jobs.ashbyhq.com/sarvam",
     "tier": "frontier-ai",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru"
       ],
@@ -1602,8 +1602,8 @@
       "note": "India AI lab"
     },
     "payVetting": {
-      "generalBaseMinLpa": 20,
-      "seniorBaseMinLpa": 55,
+      "generalBaseMin": 2000000,
+      "seniorBaseMin": 5500000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1619,7 +1619,7 @@
     "slug": "scaleai",
     "careersUrl": "https://job-boards.greenhouse.io/scaleai",
     "tier": "frontier-ai",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru"
       ],
@@ -1627,8 +1627,8 @@
       "note": "Bengaluru office"
     },
     "payVetting": {
-      "generalBaseMinLpa": 30,
-      "seniorBaseMinLpa": 70,
+      "generalBaseMin": 3000000,
+      "seniorBaseMin": 7000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1644,14 +1644,14 @@
     "slug": "sentry",
     "careersUrl": "https://jobs.ashbyhq.com/sentry",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1667,14 +1667,14 @@
     "slug": "sierra",
     "careersUrl": "https://jobs.ashbyhq.com/sierra",
     "tier": "frontier-ai",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 30,
-      "seniorBaseMinLpa": 70,
+      "generalBaseMin": 3000000,
+      "seniorBaseMin": 7000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1690,7 +1690,7 @@
     "slug": "slice",
     "careersUrl": "https://job-boards.greenhouse.io/slice",
     "tier": "india-product",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru"
       ],
@@ -1698,8 +1698,8 @@
       "note": "Bengaluru"
     },
     "payVetting": {
-      "generalBaseMinLpa": 20,
-      "seniorBaseMinLpa": 50,
+      "generalBaseMin": 2000000,
+      "seniorBaseMin": 5000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1715,14 +1715,14 @@
     "slug": "sourcegraph91",
     "careersUrl": "https://job-boards.greenhouse.io/sourcegraph91",
     "tier": "remote-first",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Remote"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1738,14 +1738,14 @@
     "slug": "squarespace",
     "careersUrl": "https://job-boards.greenhouse.io/squarespace",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1761,7 +1761,7 @@
     "slug": "stripe",
     "careersUrl": "https://job-boards.greenhouse.io/stripe",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru"
       ],
@@ -1769,8 +1769,8 @@
       "note": "Bengaluru; top-of-market"
     },
     "payVetting": {
-      "generalBaseMinLpa": 30,
-      "seniorBaseMinLpa": 65,
+      "generalBaseMin": 3000000,
+      "seniorBaseMin": 6500000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1786,14 +1786,14 @@
     "slug": "supabase",
     "careersUrl": "https://jobs.ashbyhq.com/supabase",
     "tier": "remote-first",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Remote"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1809,14 +1809,14 @@
     "slug": "temporal",
     "careersUrl": "https://jobs.ashbyhq.com/temporal",
     "tier": "remote-first",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Remote"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1832,14 +1832,14 @@
     "slug": "thinkingmachines",
     "careersUrl": "https://jobs.ashbyhq.com/thinkingmachines",
     "tier": "frontier-ai",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 30,
-      "seniorBaseMinLpa": 70,
+      "generalBaseMin": 3000000,
+      "seniorBaseMin": 7000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1855,14 +1855,14 @@
     "slug": "togetherai",
     "careersUrl": "https://job-boards.greenhouse.io/togetherai",
     "tier": "frontier-ai",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 30,
-      "seniorBaseMinLpa": 70,
+      "generalBaseMin": 3000000,
+      "seniorBaseMin": 7000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1878,7 +1878,7 @@
     "slug": "twilio",
     "careersUrl": "https://job-boards.greenhouse.io/twilio",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru"
       ],
@@ -1886,8 +1886,8 @@
       "note": "Bengaluru"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1903,14 +1903,14 @@
     "slug": "vanta",
     "careersUrl": "https://jobs.ashbyhq.com/vanta",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1926,14 +1926,14 @@
     "slug": "vercel",
     "careersUrl": "https://job-boards.greenhouse.io/vercel",
     "tier": "remote-first",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Remote; India hiring to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1949,14 +1949,14 @@
     "slug": "webflow",
     "careersUrl": "https://job-boards.greenhouse.io/webflow",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "India presence to confirm via crawl"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1972,14 +1972,14 @@
     "slug": "xai",
     "careersUrl": "https://job-boards.greenhouse.io/xai",
     "tier": "frontier-ai",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Remote-heavy; verify country eligibility per posting"
     },
     "payVetting": {
-      "generalBaseMinLpa": 30,
-      "seniorBaseMinLpa": 70,
+      "generalBaseMin": 3000000,
+      "seniorBaseMin": 7000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -1995,14 +1995,14 @@
     "slug": "zapier",
     "careersUrl": "https://jobs.ashbyhq.com/zapier",
     "tier": "remote-first",
-    "india": {
+    "location": {
       "offices": [],
       "remoteOk": true,
       "note": "Remote (timezone hiring varies)"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
@@ -2018,7 +2018,7 @@
     "slug": "zscaler",
     "careersUrl": "https://job-boards.greenhouse.io/zscaler",
     "tier": "saas",
-    "india": {
+    "location": {
       "offices": [
         "Bengaluru",
         "Hyderabad"
@@ -2027,8 +2027,8 @@
       "note": "Bengaluru/Hyderabad Staff/Principal"
     },
     "payVetting": {
-      "generalBaseMinLpa": 25,
-      "seniorBaseMinLpa": 60,
+      "generalBaseMin": 2500000,
+      "seniorBaseMin": 6000000,
       "confidence": "estimate",
       "sources": [
         "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"

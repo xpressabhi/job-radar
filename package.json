@@ -11,6 +11,7 @@
     "crawl": "node scripts/crawl.mjs",
     "crawl:dry": "node scripts/crawl.mjs --dry-run",
     "render": "node scripts/render.mjs",
+    "add-company": "node scripts/add-company.mjs",
     "test": "node --test",
     "replay": "node tests/replay.mjs",
     "validate:config": "node scripts/validate-config.mjs",

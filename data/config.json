@@ -1,0 +1,19 @@
+{
+  "$comment": "Central config for job-radar. Pay floors are INR lakhs per annum and apply to base only.",
+  "payFloorBaseLpa": 50,
+  "companyPayFloorBaseLpa": 20,
+  "fxToInr": {
+    "USD": 87,
+    "EUR": 95,
+    "GBP": 112,
+    "CAD": 64,
+    "AUD": 57,
+    "SGD": 65
+  },
+  "fxNote": "Conservative (rounded down against the employee); reviewed quarterly.",
+  "requestDelayMs": 1000,
+  "timeoutMs": 20000,
+  "retries": 1,
+  "archiveMisses": 2,
+  "userAgent": "job-radar/1.0 (+https://github.com/xpressabhi/job-radar)"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "job-radar",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Daily crawl of senior+ engineering roles in India at top-paying companies → static page, archive, JSON/RSS feeds",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "crawl": "node scripts/crawl.mjs",
+    "crawl:dry": "node scripts/crawl.mjs --dry-run",
+    "render": "node scripts/render.mjs",
+    "test": "node --test",
+    "replay": "node tests/replay.mjs",
+    "validate:companies": "node scripts/validate-companies.mjs",
+    "verify:companies": "node scripts/verify-companies.mjs"
+  }
+}

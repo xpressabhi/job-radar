@@ -64,13 +64,14 @@ per run). `scripts/crawl.mjs` CLI skeleton with `--dry-run` (print normalized po
 writes) and `--company <name>`. Trimmed real payload fixtures for tests.
 
 **Acceptance criteria:**
-- [ ] Adapter returns normalized postings for the fixture; unknown slug fails cleanly (404)
-- [ ] `--dry-run --company <name>` prints normalized postings and writes nothing
-- [ ] Fetch lib respects delay between requests; a 500 triggers exactly one retry
+- [x] Adapter returns normalized postings for the fixture; unknown slug fails cleanly (404)
+- [x] `--dry-run --company <name>` prints normalized postings and writes nothing
+- [x] Fetch lib respects delay between requests; a 500 triggers exactly one retry
 
 **Verification:**
-- [ ] `npm test`
-- [ ] `node scripts/crawl.mjs --dry-run --company Anthropic` (manual, live network)
+- [x] `npm test` — 25 passing (fetch retry/pacing/parse guards, Greenhouse normalize/404/detail)
+- [x] `node scripts/crawl.mjs --dry-run --company Anthropic` — 619/619 postings normalized live
+- [x] Found + fixed: Greenhouse `content` is HTML-escaped — entities decoded before tag stripping
 
 **Dependencies:** T1 · **Scope:** Medium (5 files)
 

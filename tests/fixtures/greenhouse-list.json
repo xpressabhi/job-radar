@@ -1,0 +1,139 @@
+{
+  "meta": {
+    "total": 7
+  },
+  "jobs": [
+    {
+      "absolute_url": "https://job-boards.eu.greenhouse.io/groww/jobs/4970739101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4520058101,
+      "location": {
+        "name": "Bengaluru-VTP, India"
+      },
+      "metadata": [
+        {
+          "id": 9193480101,
+          "name": "Designation",
+          "value": "Assistant Manager",
+          "value_type": "short_text"
+        }
+      ],
+      "id": 4970739101,
+      "updated_at": "2026-09-14T03:52:53-04:00",
+      "requisition_id": "GRID-17832",
+      "title": "Assistant Manager - Internal Audit",
+      "company_name": "Groww",
+      "first_published": "2026-09-14T03:49:28-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://job-boards.eu.greenhouse.io/groww/jobs/4880153101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4477650101,
+      "location": {
+        "name": "Bengaluru-VTP, India"
+      },
+      "metadata": [
+        {
+          "id": 9193480101,
+          "name": "Designation",
+          "value": "Associate",
+          "value_type": "short_text"
+        }
+      ],
+      "id": 4880153101,
+      "updated_at": "2026-08-27T07:35:34-04:00",
+      "requisition_id": "GRID-17155",
+      "title": "Associate - Content (Digest)",
+      "company_name": "Groww",
+      "first_published": "2026-06-03T02:46:08-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://job-boards.eu.greenhouse.io/groww/jobs/4714065101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4399078101,
+      "location": {
+        "name": "Mumbai, India"
+      },
+      "metadata": [
+        {
+          "id": 9193480101,
+          "name": "Designation",
+          "value": "Senior Portfolio Specialist",
+          "value_type": "short_text"
+        }
+      ],
+      "id": 4714065101,
+      "updated_at": "2026-09-10T02:42:18-04:00",
+      "requisition_id": "136",
+      "title": "Portfolio Specialist - Wealth",
+      "company_name": "Groww",
+      "first_published": "2026-03-17T06:24:17-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://job-boards.eu.greenhouse.io/groww/jobs/4714061101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4399073101,
+      "location": {
+        "name": "Mumbai, India"
+      },
+      "metadata": [
+        {
+          "id": 9193480101,
+          "name": "Designation",
+          "value": "Research Specialist",
+          "value_type": "short_text"
+        }
+      ],
+      "id": 4714061101,
+      "updated_at": "2026-08-25T07:25:07-04:00",
+      "requisition_id": "135",
+      "title": "Product Research Specialist (W from Groww)",
+      "company_name": "Groww",
+      "first_published": "2026-02-16T12:43:45-05:00",
+      "language": "en",
+      "application_deadline": null
+    }
+  ]
+}

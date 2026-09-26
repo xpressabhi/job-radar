@@ -653,3 +653,27 @@ currency symbol. Everything else renders identically.
 **Out of scope (unchanged):** taxonomy categories/tags remain the built-in engineering
 set; `personal-rank.mjs` stays local-only (now reads `--config` for display); adapters,
 health issues, and the LLM fallback are untouched.
+
+---
+
+# Track focus — frontend + AI (2026-09-26)
+
+Design: `docs/superpowers/specs/2026-09-26-track-focus-frontend-ai-design.md`
+
+- **Config gate** — `roles.tracks` (title include/exclude patterns) in `scripts/lib/config.mjs`
+  defaults (inert; forks keep every engineering role) + `classifyTrack()` in
+  `scripts/lib/filters.mjs`, wired into `applyFilters` and the crawl pre-detail check.
+  Validation, `docs/configuration.md`, tests: **164 passing**, replay golden unchanged.
+- **Geography fix (found during the sweep)** — the default exclusion regex `u\.?s\.?a\.?`
+  required the "A", so plain "US"/"U.S." never matched, and "North America"/"South America"
+  were absent; US-only roles (Linear "North America", Vanta "Remote U.S.") had therefore been
+  stored as `remote_global`. Fixed + regression test.
+- **Store prune** — 470 → **28 active** (archived 0), applying the track gate + geography fix.
+  Dry crawl confirms the gate end-to-end: **86/86 boards ok, 12,290 raw → 28 kept**
+  (`output/crawl-dry-track-focus.txt`).
+- **Site copy** — title/tagline/description/about now state the two-track focus.
+- **Local personal layer (never committed)** — both CV variants stored under `~/.job-search/cv/`
+  (+ `cv.variants`); tracker profile narrowed to the two tracks; **391 off-track `shown` roles
+  marked `not_interested`** (report: `~/.job-search/reports/2026-09-26-track-purge.md`);
+  per-track Jev-ranked shortlists in `output/shortlist-frontend.md` / `output/shortlist-ai.md`
+  (frontend: 3 eligible; AI: 2 eligible + 1 partial).

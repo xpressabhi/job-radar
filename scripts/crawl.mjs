@@ -4,6 +4,7 @@
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 import { createFetcher } from "./lib/fetch.mjs";
+import { loadConfig } from "./lib/config.mjs";
 import { getAdapter } from "./sources/index.mjs";
 import { applyFilters, classifyGeography, classifySeniority, isEngineeringTitle } from "./lib/filters.mjs";
 import { cleanTitle } from "./lib/normalize.mjs";
@@ -54,7 +55,7 @@ export async function main(argv = process.argv.slice(2), io = console, env = pro
     io.log(USAGE);
     return 0;
   }
-  const config = readData("config.json");
+  const config = loadConfig(readData("config.json", {}), { env });
   const companies = readData("companies.json");
 
   let selected = companies.filter((c) => c.enabled);

@@ -2,8 +2,9 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { annualize, toLpa, convertToLpa, parseRangeString } from "../scripts/lib/fx.mjs";
+import { loadConfigFile } from "../scripts/lib/config.mjs";
 
-const config = JSON.parse(readFileSync(new URL("../data/config.json", import.meta.url), "utf8"));
+const config = loadConfigFile(new URL("./fixtures/config.json", import.meta.url));
 
 test("annualize understands ATS interval dialects", () => {
   assert.equal(annualize(100, "per-year-salary"), 100);

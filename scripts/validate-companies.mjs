@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
+import { loadConfigFile } from "./lib/config.mjs";
 
 export const TIERS = ["frontier-ai", "big-tech", "saas", "india-product", "remote-first"];
 export const ATS = ["gh", "lever", "ashby", "sr", "workable"];
@@ -51,7 +52,7 @@ export function validateCompanies(companies, config) {
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const companies = JSON.parse(readFileSync(new URL("../data/companies.json", import.meta.url), "utf8"));
-  const config = JSON.parse(readFileSync(new URL("../data/config.json", import.meta.url), "utf8"));
+  const config = loadConfigFile(new URL("../data/config.json", import.meta.url), { env: process.env });
   const errors = validateCompanies(companies, config);
   if (errors.length) {
     console.error(errors.join("\n"));

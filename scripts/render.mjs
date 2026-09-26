@@ -5,6 +5,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from "node
 import { fileURLToPath } from "node:url";
 import { CATEGORIES } from "./lib/taxonomy.mjs";
 import { emptyStore } from "./lib/store.mjs";
+import { loadConfig } from "./lib/config.mjs";
 
 const DATA = new URL("../data/", import.meta.url);
 const TEMPLATES = new URL("../templates/", import.meta.url);
@@ -203,7 +204,7 @@ async function main() {
     return existsSync(url) ? JSON.parse(readFileSync(url, "utf8")) : fallback;
   };
   const store = data("jobs.json", emptyStore());
-  const config = data("config.json", {});
+  const config = loadConfig(data("config.json", {}), { env: process.env });
   const files = renderSite({ store, config });
 
   const outDir = new URL("../site/", import.meta.url);

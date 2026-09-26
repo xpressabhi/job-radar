@@ -7,10 +7,12 @@ import { getAdapter } from "../scripts/sources/index.mjs";
 import { applyFilters } from "../scripts/lib/filters.mjs";
 import { applyClassification } from "../scripts/lib/taxonomy.mjs";
 import { emptyStore, mergeResults } from "../scripts/lib/store.mjs";
+import { loadConfigFile } from "../scripts/lib/config.mjs";
 
 const NOW = "2026-09-26T02:00:00.000Z";
 const fixture = (name) => JSON.parse(readFileSync(new URL(`./fixtures/${name}`, import.meta.url), "utf8"));
-const config = JSON.parse(readFileSync(new URL("../data/config.json", import.meta.url), "utf8"));
+// Pinned so repo config edits (fork personalization) can never change replay output.
+const config = loadConfigFile(new URL("./fixtures/config.json", import.meta.url));
 
 const companies = {
   groww: { name: "Groww", slug: "groww", ats: "gh", tier: "india-product", payVetting: { seniorBaseMinLpa: 55 } },

@@ -3,6 +3,7 @@
 // STATUS: ok | empty | blocked (403/406/429/5xx/timeout) | dead (404) | error
 import { readFileSync } from "node:fs";
 import { createFetcher } from "./lib/fetch.mjs";
+import { loadConfigFile } from "./lib/config.mjs";
 import { getAdapter } from "./sources/index.mjs";
 
 const BLOCKED = new Set([401, 403, 406, 429]);
@@ -17,7 +18,7 @@ export function classifyBoardResult(res, error) {
 }
 
 async function main() {
-  const config = JSON.parse(readFileSync(new URL("../data/config.json", import.meta.url), "utf8"));
+  const config = loadConfigFile(new URL("../data/config.json", import.meta.url), { env: process.env });
   const companies = JSON.parse(readFileSync(new URL("../data/companies.json", import.meta.url), "utf8"));
   const only = process.argv.find((a) => a.startsWith("--company="))?.split("=")[1];
   const selected = companies.filter((c) => c.enabled && (!only || c.name.toLowerCase() === only.toLowerCase() || c.slug === only));

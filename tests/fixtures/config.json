@@ -1,0 +1,21 @@
+{
+  "$comment": "Pinned semantics for tests and the offline replay. Editing the repo's data/config.json must NOT change replay output.",
+  "pay": {
+    "enabled": true,
+    "currency": "INR",
+    "floorAnnual": 5000000,
+    "companyFloorAnnual": 2000000,
+    "fxRates": {
+      "INR": 1,
+      "USD": 87,
+      "EUR": 95,
+      "GBP": 112,
+      "CAD": 64,
+      "AUD": 57,
+      "SGD": 65
+    }
+  },
+  "crawl": {
+    "archiveMisses": 2
+  }
+}

@@ -8,8 +8,9 @@ import {
   classifyPay,
   applyFilters,
 } from "../scripts/lib/filters.mjs";
+import { loadConfigFile } from "../scripts/lib/config.mjs";
 
-const config = JSON.parse(readFileSync(new URL("../data/config.json", import.meta.url), "utf8"));
+const config = loadConfigFile(new URL("./fixtures/config.json", import.meta.url));
 const ghPay = JSON.parse(readFileSync(new URL("./fixtures/gh-pay-detail.json", import.meta.url), "utf8"));
 const leverZero = JSON.parse(readFileSync(new URL("./fixtures/lever-zero-salary.json", import.meta.url), "utf8"));
 

@@ -1,23 +1,99 @@
 {
-  "$comment": "Central config for job-radar. Pay floors are INR lakhs per annum and apply to base only.",
-  "payFloorBaseLpa": 50,
-  "companyPayFloorBaseLpa": 20,
-  "fxToInr": {
-    "INR": 1,
-    "USD": 87,
-    "EUR": 95,
-    "GBP": 112,
-    "CAD": 64,
-    "AUD": 57,
-    "SGD": 65
+  "$comment": "Sparse override over built-in defaults — see docs/configuration.md. Amounts are annual, in pay.currency.",
+  "site": {
+    "name": "Job Radar",
+    "tagline": "Senior+ engineering roles in India (or remote-India) at employers vetted to pay top of market. Crawled daily straight from company ATS boards.",
+    "description": "Daily-updated senior+ engineering roles in India (or remote-India) at companies vetted to pay at least ₹50L base at senior level."
   },
-  "fxNote": "Conservative (rounded down against the employee); reviewed quarterly.",
-  "requestDelayMs": 1000,
-  "timeoutMs": 20000,
-  "retries": 1,
-  "archiveMisses": 2,
+  "location": {
+    "country": "India",
+    "countryCode": "IN",
+    "acceptRemote": true,
+    "cities": {
+      "bengaluru": "Bengaluru",
+      "bangalore": "Bengaluru",
+      "hyderabad": "Hyderabad",
+      "pune": "Pune",
+      "mumbai": "Mumbai",
+      "navi mumbai": "Navi Mumbai",
+      "thane": "Thane",
+      "delhi": "Delhi",
+      "new delhi": "New Delhi",
+      "gurugram": "Gurugram",
+      "gurgaon": "Gurugram",
+      "noida": "Noida",
+      "greater noida": "Greater Noida",
+      "chennai": "Chennai",
+      "kolkata": "Kolkata",
+      "ahmedabad": "Ahmedabad",
+      "jaipur": "Jaipur",
+      "kochi": "Kochi",
+      "cochin": "Kochi",
+      "indore": "Indore",
+      "coimbatore": "Coimbatore",
+      "thiruvananthapuram": "Thiruvananthapuram",
+      "trivandrum": "Thiruvananthapuram",
+      "mysore": "Mysuru",
+      "mysuru": "Mysuru",
+      "mangalore": "Mangaluru",
+      "nagpur": "Nagpur",
+      "surat": "Surat",
+      "vadodara": "Vadodara",
+      "lucknow": "Lucknow",
+      "bhubaneswar": "Bhubaneswar",
+      "visakhapatnam": "Visakhapatnam",
+      "vizag": "Visakhapatnam",
+      "chandigarh": "Chandigarh",
+      "mohali": "Mohali",
+      "madurai": "Madurai",
+      "nashik": "Nashik",
+      "dehradun": "Dehradun",
+      "ranchi": "Ranchi",
+      "patna": "Patna",
+      "guwahati": "Guwahati",
+      "tiruchirappalli": "Tiruchirappalli",
+      "trichy": "Tiruchirappalli",
+      "warangal": "Warangal",
+      "vijayawada": "Vijayawada",
+      "guntur": "Guntur",
+      "hubli": "Hubballi",
+      "belgaum": "Belagavi",
+      "goa": "Goa",
+      "panaji": "Goa",
+      "shimla": "Shimla",
+      "amritsar": "Amritsar"
+    }
+  },
+  "pay": {
+    "enabled": true,
+    "currency": "INR",
+    "floorAnnual": 5000000,
+    "companyFloorAnnual": 2000000,
+    "vettingRequired": true,
+    "display": {
+      "symbol": "₹",
+      "divisor": 100000,
+      "suffix": "L",
+      "decimals": 1
+    },
+    "fxRates": {
+      "INR": 1,
+      "USD": 87,
+      "EUR": 95,
+      "GBP": 112,
+      "CAD": 64,
+      "AUD": 57,
+      "SGD": 65
+    },
+    "fxNote": "Conservative (rounded down against the employee); reviewed quarterly."
+  },
+  "crawl": {
+    "requestDelayMs": 1000,
+    "timeoutMs": 20000,
+    "retries": 1,
+    "archiveMisses": 2
+  },
   "llm": {
     "maxPerRun": 40
-  },
-  "userAgent": "job-radar/1.0 (+https://github.com/xpressabhi/job-radar)"
+  }
 }

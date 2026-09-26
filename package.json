@@ -13,6 +13,7 @@
     "render": "node scripts/render.mjs",
     "test": "node --test",
     "replay": "node tests/replay.mjs",
+    "validate:config": "node scripts/validate-config.mjs",
     "validate:companies": "node scripts/validate-companies.mjs",
     "verify:companies": "node scripts/verify-companies.mjs"
   }

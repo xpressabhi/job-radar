@@ -41,6 +41,38 @@ test("jobs.json and feed.xml are valid and complete", () => {
   assert.equal(jobs.jobs.length, 3);
 });
 
+test("active jobs are ordered by employer posting date, falling back to first seen", () => {
+  const staleFirstSeenFresh = {
+    ...store.jobs[0],
+    id: "x:fresh-post",
+    title: "Fresh Post Engineer",
+    postedAt: "2026-09-25",
+    firstSeen: "2026-09-01T02:00:00.000Z",
+  };
+  const oldPostRecentSeen = {
+    ...store.jobs[0],
+    id: "x:old-post",
+    title: "Old Post Engineer",
+    postedAt: "2026-09-10",
+    firstSeen: "2026-09-20T02:00:00.000Z",
+  };
+  const noPosted = {
+    ...store.jobs[0],
+    id: "x:no-post",
+    title: "No Posted Date Engineer",
+    postedAt: null,
+    firstSeen: "2026-09-22T02:00:00.000Z",
+  };
+  const html = renderSite({
+    store: { jobs: [oldPostRecentSeen, noPosted, staleFirstSeenFresh] },
+    config: {},
+    now: "2026-09-26T02:00:00.000Z",
+  })["index.html"];
+  const order = [...html.matchAll(/<h3><a[^>]*>([^<]+)</g)].map((m) => m[1]);
+  assert.deepEqual(order, ["Fresh Post Engineer", "No Posted Date Engineer", "Old Post Engineer"]);
+  assert.match(html, /data-fresh="2026-09-25"/);
+});
+
 test("empty store renders gracefully", () => {
   const empty = renderSite({ store: emptyStore(), config: {}, now: "2026-09-26T02:00:00.000Z" });
   assert.match(empty["index.html"], /No live roles right now/);

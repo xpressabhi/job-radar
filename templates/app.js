@@ -33,7 +33,7 @@
     const cutoff = state.recency ? Date.now() - Number(state.recency) * 864e5 : null;
     let visible = 0;
     for (const row of rows) {
-      const seen = Date.parse(row.dataset.seen || "") || 0;
+      const seen = Date.parse(row.dataset.fresh || "") || 0;
       const ok =
         (!state.category || row.dataset.category === state.category) &&
         (!state.city || row.dataset.cities.includes(state.city)) &&

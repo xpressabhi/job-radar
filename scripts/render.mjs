@@ -60,7 +60,7 @@ export function jobRow(job) {
   ]
     .filter(Boolean)
     .join("\n    ");
-  return `<li class="job" data-category="${esc(job.category ?? "other")}" data-cities="${esc(cities)}" data-mode="${esc(mode)}" data-scope="${esc(scope)}" data-company="${esc(job.company)}" data-seen="${esc(job.firstSeen ?? "")}" data-search="${esc(search)}">
+  return `<li class="job" data-category="${esc(job.category ?? "other")}" data-cities="${esc(cities)}" data-mode="${esc(mode)}" data-scope="${esc(scope)}" data-company="${esc(job.company)}" data-fresh="${esc(job.postedAt || job.firstSeen || "")}" data-search="${esc(search)}">
   <div class="job-main">
     <h3><a href="${esc(job.url)}" rel="noopener">${esc(job.title)}</a></h3>
     <p class="company">${esc(job.company)} · ${esc(locationLabel(job))}${modeNote}</p>
@@ -154,9 +154,10 @@ ${items}
 
 export function renderSite({ store, config, siteUrl = "https://xpressabhi.github.io/job-radar/", now = new Date().toISOString() }) {
   const jobs = store.jobs ?? [];
+  const freshest = (j) => (j.postedAt || j.firstSeen || "").slice(0, 10);
   const active = jobs
     .filter((j) => j.status === "active")
-    .sort((a, b) => String(b.firstSeen).localeCompare(String(a.firstSeen)));
+    .sort((a, b) => freshest(b).localeCompare(freshest(a)) || String(b.firstSeen ?? "").localeCompare(String(a.firstSeen ?? "")));
   const archived = jobs
     .filter((j) => j.status === "archived")
     .sort((a, b) => String(b.closedAt ?? "").localeCompare(String(a.closedAt ?? "")));

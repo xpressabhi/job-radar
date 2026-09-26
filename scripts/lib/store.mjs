@@ -11,7 +11,7 @@ export function mergeResults({ store, results, config, now, archive = true }) {
   const byId = new Map(jobs.map((j) => [j.id, j]));
   const activeNear = new Map();
   for (const j of jobs) {
-    if (j.status === "active") activeNear.set(nearDupeKey(j), j.id);
+    if (j.status === "active") activeNear.set(nearDupeKey(j, config.location), j.id);
   }
 
   const summary = { seen: 0, new: 0, archived: 0, reopened: 0, duplicates: 0, boardsOk: 0, boardsFailed: 0 };
@@ -32,7 +32,7 @@ export function mergeResults({ store, results, config, now, archive = true }) {
 
     for (const posting of result.postings) {
       const id = posting.dedupeKey;
-      const near = nearDupeKey(posting);
+      const near = nearDupeKey(posting, config.location);
       const existing = byId.get(id);
 
       if (!existing) {

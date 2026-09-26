@@ -44,11 +44,11 @@ const readData = (name, fallback) => {
 };
 const writeData = (name, value) => writeFileSync(new URL(name, DATA), JSON.stringify(value, null, 2) + "\n");
 
-function passesBeforePay(posting, company) {
-  const title = cleanTitle(posting.title);
+function passesBeforePay(posting, company, config) {
+  const title = cleanTitle(posting.title, config.location);
   if (!isEngineeringTitle(title)) return false;
-  if (!classifySeniority(title, company.tier).keep) return false;
-  return classifyGeography(posting).keep;
+  if (!classifySeniority(title, company.tier, config).keep) return false;
+  return classifyGeography(posting, config).keep;
 }
 
 export async function main(argv = process.argv.slice(2), io = console, env = process.env) {
@@ -97,7 +97,7 @@ export async function main(argv = process.argv.slice(2), io = console, env = pro
     if (args.detail && typeof adapter.fetchJobDetail === "function") {
       for (const posting of postings) {
         if (detailFetches >= DETAIL_CAP) break;
-        if (!passesBeforePay(posting, company)) continue;
+        if (!passesBeforePay(posting, company, config)) continue;
         detailFetches++;
         const detail = await adapter.fetchJobDetail({ fetcher, company, jobId: posting.jobId });
         if (detail.ok) {
@@ -144,7 +144,7 @@ export async function main(argv = process.argv.slice(2), io = console, env = pro
   // ---- Classification (rules + cached LLM fallback) ----
   const cache = loadCache(readData("llm-cache.json", {}));
   const keptPostings = resultsFiltered.filter((r) => r.ok).flatMap((r) => r.postings);
-  const { classified } = applyClassification(keptPostings, cache);
+  const { classified } = applyClassification(keptPostings, cache, config.location);
   const pendingTitles = [];
   for (const p of classified) {
     if (p.needsClassify && !pendingTitles.includes(p.title)) pendingTitles.push(p.title);
@@ -158,10 +158,10 @@ export async function main(argv = process.argv.slice(2), io = console, env = pro
     });
     if (llmResult.ok) {
       for (const item of llmResult.items) {
-        saveCache(cache, item.title, "", { category: item.category, tags: item.tags });
+        saveCache(cache, item.title, "", { category: item.category, tags: item.tags }, config.location);
       }
       // Re-apply with the fresh cache entries.
-      const second = applyClassification(keptPostings, cache);
+      const second = applyClassification(keptPostings, cache, config.location);
       classified.length = 0;
       classified.push(...second.classified);
     } else {

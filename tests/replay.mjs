@@ -46,7 +46,7 @@ export async function replay() {
       const res = applyFilters({ posting, company, config });
       if (res.keep) kept.push(res.posting);
     }
-    const { classified } = applyClassification(kept, {});
+    const { classified } = applyClassification(kept, {}, config.location);
     results.push({ ok: true, company: company.name, companySlug: company.slug, source: company.ats, rawCount: board.postings.length, postings: classified });
   }
 

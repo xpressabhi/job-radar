@@ -69,50 +69,66 @@ test("senior+ tokens are recognized with the right label", () => {
     ["Senior SDE", "senior"],
   ];
   for (const [title, label] of cases) {
-    const r = classifySeniority(title, "saas");
+    const r = classifySeniority(title, "saas", config);
     assert.equal(r.keep, true, title);
     assert.equal(r.seniority, label, title);
     assert.equal(r.levelSource, "title");
   }
 });
 
+test("seniority rules are config-overridable (keywords and tiers)", () => {
+  const custom = loadConfigFile(new URL("./fixtures/config.json", import.meta.url));
+  custom.roles = {
+    seniority: {
+      ...custom.roles.seniority,
+      includeKeywords: ["founding engineer"],
+      excludeKeywords: ["forward deployed"],
+      assumeSeniorForTiers: [],
+    },
+  };
+  assert.equal(classifySeniority("Founding Engineer", "saas", custom).keep, true);
+  assert.equal(classifySeniority("Forward Deployed Engineer", "frontier-ai", custom).keep, false, "custom exclusion wins");
+  assert.equal(classifySeniority("Software Engineer", "frontier-ai", custom).keep, false, "tier assumption overridden to none");
+  assert.equal(classifySeniority("Member of Technical Staff", "frontier-ai", custom).keep, false, "MTS still skips keywords to the tier rule");
+});
+
 test("junior/mid markers are excluded even when a senior token is present", () => {
   for (const title of ["Senior Engineer II", "Associate Staff Engineer", "Junior Backend Engineer", "New Grad Software Engineer", "Engineering Intern", "Graduate Developer", "Software Engineer (Entry Level)", "SDE 2"]) {
-    assert.equal(classifySeniority(title, "frontier-ai").keep, false, title);
+    assert.equal(classifySeniority(title, "frontier-ai", config).keep, false, title);
   }
 });
 
-test("unlabeled titles pass only at frontier-ai companies, flagged tier-assumed", () => {
+test("unlabeled titles pass only at assumed-senior tiers, flagged tier-assumed", () => {
   for (const title of ["Member of Technical Staff", "Forward Deployed Engineer", "Software Engineer"]) {
-    const frontier = classifySeniority(title, "frontier-ai");
+    const frontier = classifySeniority(title, "frontier-ai", config);
     assert.equal(frontier.keep, true, title);
     assert.equal(frontier.levelSource, "tier-assumed", title);
-    assert.equal(classifySeniority(title, "saas").keep, false, title);
-    assert.equal(classifySeniority(title, "india-product").keep, false, title);
+    assert.equal(classifySeniority(title, "saas", config).keep, false, title);
+    assert.equal(classifySeniority(title, "india-product", config).keep, false, title);
   }
 });
 
 // ---------- Geography ----------
 
-test("India-located postings are kept and cities extracted", () => {
-  const r = classifyGeography(posting());
+test("home-country postings are kept and cities extracted", () => {
+  const r = classifyGeography(posting(), config);
   assert.equal(r.keep, true);
-  assert.equal(r.indiaScope, "located");
+  assert.equal(r.scope, "located");
   assert.deepEqual(r.cities, ["Bengaluru"]);
 });
 
-test("Remote-India keeps scope remote_india; lowercase Lever text works", () => {
-  const r = classifyGeography(posting({ locations: ["bengaluru"], locationRaw: "bengaluru", country: "IN", mode: "remote" }));
+test("remote home-country postings keep scope remote_home; lowercase Lever text works", () => {
+  const r = classifyGeography(posting({ locations: ["bengaluru"], locationRaw: "bengaluru", country: "IN", mode: "remote" }), config);
   assert.equal(r.keep, true);
-  assert.equal(r.indiaScope, "remote_india");
+  assert.equal(r.scope, "remote_home");
   assert.deepEqual(r.cities, ["Bengaluru"]);
 });
 
 test("remote with no restriction is kept as remote_global", () => {
   for (const loc of ["Remote, Global", "Remote - APAC", "Remote"]) {
-    const r = classifyGeography(posting({ locationRaw: loc, locations: [loc], mode: "remote" }));
+    const r = classifyGeography(posting({ locationRaw: loc, locations: [loc], mode: "remote" }), config);
     assert.equal(r.keep, true, loc);
-    assert.equal(r.indiaScope, "remote_global", loc);
+    assert.equal(r.scope, "remote_global", loc);
   }
 });
 
@@ -127,12 +143,12 @@ test("other-geography restrictions are dropped", () => {
     { locationRaw: "Remote (EMEA)", locations: ["Remote (EMEA)"], mode: "remote" },
   ];
   for (const c of cases) {
-    assert.equal(classifyGeography(posting(c)).keep, false, JSON.stringify(c));
+    assert.equal(classifyGeography(posting(c), config).keep, false, JSON.stringify(c));
   }
 });
 
 test("no location signal at all is dropped", () => {
-  assert.equal(classifyGeography(posting({ locationRaw: "", locations: [] })).keep, false);
+  assert.equal(classifyGeography(posting({ locationRaw: "", locations: [] }), config).keep, false);
 });
 
 // ---------- Pay ----------
@@ -247,7 +263,7 @@ test("applyFilters composes title, geography, and pay into an enriched posting",
   assert.equal(res.posting.dedupeKey, "gh:example:1");
   assert.equal(res.posting.seniority, "senior");
   assert.equal(res.posting.levelSource, "title");
-  assert.deepEqual(res.posting.location, { raw: "Bengaluru, India", cities: ["Bengaluru"], mode: null, indiaScope: "located" });
+  assert.deepEqual(res.posting.location, { raw: "Bengaluru, India", cities: ["Bengaluru"], mode: null, scope: "located" });
   assert.equal(res.posting.pay.vettedMin, 6000000);
 });
 

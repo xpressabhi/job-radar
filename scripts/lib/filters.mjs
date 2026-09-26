@@ -1,5 +1,6 @@
-// Crawl filters — the "high-paying senior engineering, India-eligible" gate.
+// Crawl filters — the "senior engineering at well-paying employers, home-geography-eligible" gate.
 // Deterministic, config-driven, no network. Order (§6): title gate → geography → pay.
+import { DEFAULTS, compileKeywords, compilePatterns } from "./config.mjs";
 import { parseRangeString } from "./fx.mjs";
 import { convertToBase, displayStep } from "./money.mjs";
 import { companyVettedMin } from "./accessors.mjs";
@@ -20,111 +21,115 @@ export function isEngineeringTitle(title) {
   return ENGINEERING_RE.test(t);
 }
 
-const JUNIOR_PATTERNS = [
-  [/\bintern(ship)?\b/i, "intern"],
-  [/\bnew grad(uate)?\b/i, "new grad"],
-  [/\bgraduate\b/i, "graduate"],
-  [/\bjunior\b|\bjr\.?\b/i, "junior"],
-  [/\bassociate\b/i, "associate"],
-  [/\bentry[- ]level\b|\bapprentice\b/i, "entry level"],
-  [/\b(?:engineer|developer|sde|swe)\s+(?:i|1|ii|2)\b/i, "engineer I/II"],
-];
+// ---------- Seniority gate (§6.3) ----------
+// Rules come from `roles.seniority` in the effective config; built-in defaults live in
+// scripts/lib/config.mjs. Compiled once per config object (WeakMap).
 
-const SENIOR_PATTERNS = [
-  [/\b(?:senior|sr\.?)\b/i, "senior"],
-  [/\bstaff\b/i, "staff"],
-  [/\bprincipal\b/i, "principal"],
-  [/\bengineering manager\b|\bmanager,?\s+(?:of\s+)?(?:software|engineering)\b|\bsoftware engineering manager\b/i, "em"],
-  [/\bvp\b|\bvice president\b/i, "vp"],
-  [/\bhead of\b/i, "head"],
-  [/\bdirector\b/i, "director"],
-  [/\barchitect\b/i, "architect"],
-  [/\btech(?:nical)? lead\b|\blead\b|\bleader\b/i, "lead"],
-];
+const seniorityCache = new WeakMap();
 
-// Titles whose words look senior but which are flat, senior-by-default labels at AI labs.
-// They must skip token matching and fall through to the frontier-AI rule.
-const UNLABELED_OVERRIDES = /\bmember of technical staff\b|\bmts\b/i;
+export function seniorityRules(config = {}) {
+  if (!seniorityCache.has(config)) {
+    const s = config.roles?.seniority ?? DEFAULTS.roles.seniority;
+    seniorityCache.set(config, {
+      exclude: [...compilePatterns(s.excludePatterns), ...compileKeywords(s.excludeKeywords)],
+      include: [...compilePatterns(s.includePatterns), ...compileKeywords(s.includeKeywords)],
+      skip: compilePatterns(s.skipSeniorPatterns ?? []),
+      assumeTiers: s.assumeSeniorForTiers ?? [],
+    });
+  }
+  return seniorityCache.get(config);
+}
 
 /**
- * Exclusion beats inclusion. Unlabeled titles pass only at frontier-AI companies
- * (labs use flat, senior-by-default titles) and are flagged `tier-assumed`.
+ * Exclusion beats inclusion. Titles matching `skipSeniorPatterns` (flat, senior-by-default
+ * labels like MTS) bypass keyword matching and fall through to the assume-senior tier rule,
+ * where they are flagged `tier-assumed`.
  */
-export function classifySeniority(title, tier) {
+export function classifySeniority(title, tier, config = {}) {
+  const rules = seniorityRules(config);
   const t = String(title ?? "");
-  for (const [re, label] of JUNIOR_PATTERNS) {
+  for (const { label, re } of rules.exclude) {
     if (re.test(t)) return { keep: false, reason: `junior/mid title (${label})` };
   }
-  if (!UNLABELED_OVERRIDES.test(t)) {
-    for (const [re, label] of SENIOR_PATTERNS) {
+  if (!rules.skip.some(({ re }) => re.test(t))) {
+    for (const { label, re } of rules.include) {
       if (re.test(t)) return { keep: true, seniority: label, levelSource: "title" };
     }
   }
-  if (tier === "frontier-ai") {
+  if (rules.assumeTiers.includes(tier)) {
     return { keep: true, seniority: "unlabeled", levelSource: "tier-assumed" };
   }
-  return { keep: false, reason: "unlabeled title outside frontier-ai tier" };
+  return { keep: false, reason: `unlabeled title outside assumed-senior tiers (${rules.assumeTiers.join(", ") || "none"})` };
 }
 
 // ---------- Geography gate (§6.2) ----------
 
-const INDIA_CITY_ALIASES = new Map([
-  ["bengaluru", "Bengaluru"], ["bangalore", "Bengaluru"], ["hyderabad", "Hyderabad"],
-  ["pune", "Pune"], ["mumbai", "Mumbai"], ["navi mumbai", "Navi Mumbai"], ["thane", "Thane"],
-  ["delhi", "Delhi"], ["new delhi", "New Delhi"], ["gurugram", "Gurugram"], ["gurgaon", "Gurugram"],
-  ["noida", "Noida"], ["greater noida", "Greater Noida"], ["chennai", "Chennai"],
-  ["kolkata", "Kolkata"], ["ahmedabad", "Ahmedabad"], ["jaipur", "Jaipur"], ["kochi", "Kochi"],
-  ["cochin", "Kochi"], ["indore", "Indore"], ["coimbatore", "Coimbatore"],
-  ["thiruvananthapuram", "Thiruvananthapuram"], ["trivandrum", "Thiruvananthapuram"],
-  ["mysore", "Mysuru"], ["mysuru", "Mysuru"], ["mangalore", "Mangaluru"], ["nagpur", "Nagpur"],
-  ["surat", "Surat"], ["vadodara", "Vadodara"], ["lucknow", "Lucknow"],
-  ["bhubaneswar", "Bhubaneswar"], ["visakhapatnam", "Visakhapatnam"], ["vizag", "Visakhapatnam"],
-  ["chandigarh", "Chandigarh"], ["mohali", "Mohali"], ["madurai", "Madurai"], ["nashik", "Nashik"],
-  ["dehradun", "Dehradun"], ["ranchi", "Ranchi"], ["patna", "Patna"], ["guwahati", "Guwahati"],
-  ["tiruchirappalli", "Tiruchirappalli"], ["trichy", "Tiruchirappalli"], ["warangal", "Warangal"],
-  ["vijayawada", "Vijayawada"], ["guntur", "Guntur"], ["hubli", "Hubballi"], ["belgaum", "Belagavi"],
-  ["goa", "Goa"], ["panaji", "Goa"], ["shimla", "Shimla"], ["amritsar", "Amritsar"],
-]);
+// ---------- Geography gate (§6.2) ----------
+// Home country/cities and exclusion lists come from `location` in the effective config.
+// Compiled once per config object (WeakMap).
 
-const CITY_RES = [...INDIA_CITY_ALIASES.keys()]
-  .sort((a, b) => b.length - a.length)
-  .map((alias) => [new RegExp(`\\b${alias.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i"), INDIA_CITY_ALIASES.get(alias)]);
+const geographyCache = new WeakMap();
 
-const OTHER_GEO_RE =
-  /\b(united states|u\.?s\.?a\.?|usa|canada|united kingdom|germany|france|netherlands|ireland|spain|portugal|poland|romania|sweden|switzerland|singapore|australia|new zealand|japan|south korea|china|hong kong|taiwan|brazil|mexico|argentina|israel|united arab emirates|dubai|saudi arabia|philippines|indonesia|vietnam|thailand|malaysia|italy|denmark|norway|finland|austria|belgium|czech|hungary|greece|turkey|south africa|nigeria|kenya|egypt|pakistan|bangladesh|sri lanka|nepal|emea|latam|americas|europe)\b/i;
+const escapeRe = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-const OTHER_COUNTRY_CODES = new Set([
-  "US", "CA", "GB", "UK", "DE", "FR", "NL", "IE", "ES", "PT", "PL", "RO", "SE", "CH", "SG", "AU",
-  "NZ", "JP", "KR", "CN", "HK", "TW", "BR", "MX", "AR", "IL", "AE", "SA", "PH", "ID", "VN", "TH",
-  "MY", "IT", "DK", "NO", "FI", "AT", "BE", "CZ", "HU", "GR", "TR", "ZA", "NG", "KE", "EG", "PK",
-  "BD", "LK", "NP",
-]);
+export function geographyRules(config = {}) {
+  if (!geographyCache.has(config)) {
+    const loc = config.location ?? DEFAULTS.location;
+    const cityRes = Object.entries(loc.cities ?? {})
+      .sort(([a], [b]) => b.length - a.length)
+      .map(([alias, display]) => [new RegExp(`\\b${escapeRe(alias)}\\b`, "i"), display]);
+    let excludeRe = null;
+    try {
+      excludeRe = loc.excludeRegex ? new RegExp(loc.excludeRegex, "i") : null;
+    } catch {
+      excludeRe = null; // invalid regexes are caught by `npm run validate:config` before crawling
+    }
+    let countryRe = null;
+    try {
+      countryRe = loc.country ? new RegExp(`\\b${escapeRe(loc.country)}\\b`, "i") : null;
+    } catch {
+      countryRe = null;
+    }
+    geographyCache.set(config, {
+      cityRes,
+      countryRe,
+      countryCode: loc.countryCode ? String(loc.countryCode).toUpperCase() : null,
+      countryLabel: loc.country ?? "home country",
+      acceptRemote: loc.acceptRemote !== false,
+      excludeRe,
+      excludeRemoteRes: (loc.excludeRemotePatterns ?? []).map((p) => new RegExp(p, "i")),
+      excludeCodes: new Set((loc.excludeCountryCodes ?? []).map((c) => String(c).toUpperCase())),
+    });
+  }
+  return geographyCache.get(config);
+}
 
-export function classifyGeography(posting) {
+export function classifyGeography(posting, config = {}) {
+  const rules = geographyRules(config);
   const texts = [posting.locationRaw, ...(posting.locations ?? [])].filter(Boolean).map(String);
   const joined = texts.join(" | ");
   const code = typeof posting.country === "string" && posting.country.trim() ? posting.country.trim().toUpperCase() : null;
 
   const cities = [];
-  for (const [re, display] of CITY_RES) {
+  for (const [re, display] of rules.cityRes) {
     if (!cities.includes(display) && re.test(joined)) cities.push(display);
   }
-  const indiaText = /\bindia\b/i.test(joined) || cities.length > 0;
+  const homeText = (rules.countryRe?.test(joined) ?? false) || cities.length > 0;
   const remote = posting.mode === "remote";
 
-  if (indiaText || code === "IN") {
-    return { keep: true, cities, mode: posting.mode ?? null, indiaScope: remote ? "remote_india" : "located" };
+  if (homeText || (rules.countryCode && code === rules.countryCode)) {
+    return { keep: true, cities, mode: posting.mode ?? null, scope: remote ? "remote_home" : "located" };
   }
 
-  const otherCode = code && code.length === 2 && code !== "IN" && OTHER_COUNTRY_CODES.has(code);
-  const otherText = OTHER_GEO_RE.test(joined) || /remote\s*[-–(,|/]?\s*us\b/i.test(joined) || /\bus[- ]remote\b/i.test(joined);
+  const otherCode = code && code.length === 2 && code !== rules.countryCode && rules.excludeCodes.has(code);
+  const otherText = (rules.excludeRe?.test(joined) ?? false) || rules.excludeRemoteRes.some((re) => re.test(joined));
   if (otherCode || otherText) {
     return { keep: false, reason: `restricted to another geography (${code ?? ""} ${joined.slice(0, 50)})`.trim() };
   }
-  if (remote) {
-    return { keep: true, cities: [], mode: "remote", indiaScope: "remote_global" };
+  if (remote && rules.acceptRemote) {
+    return { keep: true, cities: [], mode: "remote", scope: "remote_global" };
   }
-  return { keep: false, reason: "no India location signal" };
+  return { keep: false, reason: `no ${rules.countryLabel} location signal` };
 }
 
 // ---------- Pay gate (§6.4) ----------
@@ -238,13 +243,13 @@ export function classifyPay({ posting, company, config }) {
 // ---------- Pipeline ----------
 
 export function applyFilters({ posting, company, config }) {
-  const title = cleanTitle(posting.title);
+  const title = cleanTitle(posting.title, config.location);
   if (!isEngineeringTitle(title)) return { keep: false, drops: ["non-engineering title"] };
 
-  const sen = classifySeniority(title, company.tier);
+  const sen = classifySeniority(title, company.tier, config);
   if (!sen.keep) return { keep: false, drops: [sen.reason] };
 
-  const geo = classifyGeography(posting);
+  const geo = classifyGeography(posting, config);
   if (!geo.keep) return { keep: false, drops: [geo.reason] };
 
   const payRes = classifyPay({ posting, company, config });
@@ -260,7 +265,7 @@ export function applyFilters({ posting, company, config }) {
       dedupeKey: dedupeKey(posting),
       seniority: sen.seniority,
       levelSource: sen.levelSource,
-      location: { raw: posting.locationRaw, cities: geo.cities, mode: geo.mode, indiaScope: geo.indiaScope },
+      location: { raw: posting.locationRaw, cities: geo.cities, mode: geo.mode, scope: geo.scope },
       pay: payRes.pay,
     },
   };

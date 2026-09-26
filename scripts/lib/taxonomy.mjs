@@ -113,14 +113,14 @@ export function classifyPosting(posting) {
 
 // ---------- classification cache ----------
 
-export const cacheKey = (title) => cleanTitle(title).toLowerCase();
+export const cacheKey = (title, location = null) => cleanTitle(title, location).toLowerCase();
 
 export function loadCache(raw) {
   return raw && typeof raw === "object" && !Array.isArray(raw) ? { ...raw } : {};
 }
 
-export function saveCache(cache, title, department, value) {
-  cache[cacheKey(title)] = { category: value.category, tags: value.tags ?? [], department: department ?? "", at: new Date().toISOString() };
+export function saveCache(cache, title, department, value, location = null) {
+  cache[cacheKey(title, location)] = { category: value.category, tags: value.tags ?? [], department: department ?? "", at: new Date().toISOString() };
   return cache;
 }
 
@@ -128,10 +128,10 @@ export function saveCache(cache, title, department, value) {
  * Applies cache → rules to each posting. Postings still categorized `other` and not in the
  * cache are marked `needsClassify` for the LLM fallback.
  */
-export function applyClassification(postings, cache) {
+export function applyClassification(postings, cache, location = null) {
   const classified = [];
   for (const posting of postings) {
-    const key = cacheKey(posting.title);
+    const key = cacheKey(posting.title, location);
     const hit = cache[key];
     if (hit && CATEGORIES.includes(hit.category)) {
       classified.push({ ...posting, category: hit.category, tags: hit.tags?.length ? hit.tags : extractTags(posting.title, posting.description), needsClassify: false });

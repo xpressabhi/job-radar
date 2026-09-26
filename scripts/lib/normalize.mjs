@@ -6,15 +6,37 @@ const REQ_IDS = [
   /\s*[([{]\s*(?:req(?:uisition)?|job|jr|r)[\s#.:-]*\d{3,}\s*[)\]}]/gi,
   /\s*\b(?:req(?:uisition)?|jr)[\s#.:-]?\d{4,}\b/gi,
 ];
-const TRAILING_CITY =
-  /\s*[\-–|,]\s*(bengaluru|bangalore|hyderabad|pune|mumbai|delhi|new delhi|gurugram|gurgaon|noida|chennai|kolkata|ahmedabad|jaipur|kochi|cochin|indore|coimbatore|thiruvananthapuram|trivandrum|india)\s*$/i;
 
-export function cleanTitle(raw) {
+// Trailing location noise ("Senior Engineer - Bengaluru") is stripped using the configured
+// country and city aliases. Compiled once per `location` config object (WeakMap).
+const titleStripCache = new WeakMap();
+
+function trailingLocationRe(location) {
+  if (!location || typeof location !== "object") return null;
+  if (!titleStripCache.has(location)) {
+    const names = new Set();
+    if (location.country) names.add(String(location.country));
+    for (const [alias, display] of Object.entries(location.cities ?? {})) {
+      names.add(alias);
+      names.add(display);
+    }
+    const alts = [...names]
+      .filter(Boolean)
+      .sort((a, b) => b.length - a.length)
+      .map((n) => n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+      .join("|");
+    titleStripCache.set(location, alts ? new RegExp(`\\s*[-–|,]\\s*(?:${alts})\\s*$`, "i") : null);
+  }
+  return titleStripCache.get(location);
+}
+
+export function cleanTitle(raw, location = null) {
   let t = String(raw ?? "");
   t = t.replace(EMOJI, " ");
   t = t.replace(MODE_MARKERS, " ");
   for (const re of REQ_IDS) t = t.replace(re, " ");
-  t = t.replace(TRAILING_CITY, "");
+  const strip = trailingLocationRe(location);
+  if (strip) t = t.replace(strip, "");
   t = t.replace(/\s*[([{]\s*[)\]}]/g, " "); // empty brackets left behind
   t = t.replace(/\s{2,}/g, " ");
   t = t.replace(/^[\s\-–|,]+|[\s\-–|,]+$/g, "");
@@ -43,7 +65,7 @@ export function dedupeKey(posting) {
   return `${posting.source}:${posting.companySlug}:${posting.jobId}`;
 }
 
-export function nearDupeKey(posting) {
+export function nearDupeKey(posting, location = null) {
   const city = (posting.location?.cities?.[0] ?? posting.locationRaw ?? "").toLowerCase();
-  return `${posting.companySlug}|${cleanTitle(posting.title).toLowerCase()}|${city}`;
+  return `${posting.companySlug}|${cleanTitle(posting.title, location).toLowerCase()}|${city}`;
 }

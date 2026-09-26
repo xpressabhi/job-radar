@@ -2,12 +2,21 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { cleanTitle, canonicalUrl, dedupeKey, nearDupeKey } from "../scripts/lib/normalize.mjs";
 
+const LOCATION = { country: "India", cities: { bengaluru: "Bengaluru" } };
+
 test("cleanTitle strips mode markers, req ids, emoji, and whitespace noise", () => {
   assert.equal(cleanTitle("Senior Software Engineer (Remote) [Req #12345]"), "Senior Software Engineer");
-  assert.equal(cleanTitle("Backend Engineer - Bengaluru"), "Backend Engineer");
+  assert.equal(cleanTitle("Backend Engineer - Bengaluru", LOCATION), "Backend Engineer");
   assert.equal(cleanTitle("Staff Engineer 🚀  -  Platform"), "Staff Engineer - Platform");
   assert.equal(cleanTitle("Lead Engineer | Remote"), "Lead Engineer");
   assert.equal(cleanTitle("  Site Reliability Engineer  (Hybrid)  "), "Site Reliability Engineer");
+});
+
+test("trailing-location stripping is config-driven", () => {
+  assert.equal(cleanTitle("Backend Engineer - Bengaluru"), "Backend Engineer - Bengaluru", "no config, no strip");
+  const other = { country: "Germany", cities: { berlin: "Berlin" } };
+  assert.equal(cleanTitle("Backend Engineer - Bengaluru", other), "Backend Engineer - Bengaluru");
+  assert.equal(cleanTitle("Backend Engineer - Berlin", other), "Backend Engineer");
 });
 
 test("cleanTitle keeps meaningful segments", () => {
@@ -33,4 +42,7 @@ test("nearDupeKey ignores case and mode noise", () => {
   const a = nearDupeKey({ companySlug: "stripe", title: "Senior Software Engineer (Remote)", location: { cities: ["Bengaluru"] } });
   const b = nearDupeKey({ companySlug: "stripe", title: "senior software engineer", location: { cities: ["bengaluru"] } });
   assert.equal(a, b);
+
+  const withCity = nearDupeKey({ companySlug: "stripe", title: "Senior Software Engineer - Bengaluru", location: { cities: ["Bengaluru"] } }, LOCATION);
+  assert.equal(withCity, b);
 });

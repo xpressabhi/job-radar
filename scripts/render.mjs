@@ -167,9 +167,9 @@ export function renderSite({ store, config, siteUrl = "https://xpressabhi.github
   const archiveTemplate = readFileSync(new URL("archive.html", TEMPLATES), "utf8");
 
   const rows = active.map(jobRow).join("\n");
-  const categoryOptions = CATEGORIES.filter((c) => c !== "other")
-    .map((c) => `<option value="${esc(c)}">${esc(capitalize(c.replace("-", " ")))}</option>`)
-    .join("");
+  const categoryOptions = CATEGORIES.map(
+    (c) => `<option value="${esc(c)}">${esc(c === "other" ? "Other / uncategorized" : capitalize(c.replace("-", " ")))}</option>`,
+  ).join("");
   const coverage = coverageHtml(store, active.length, archived.length);
 
   const index = indexTemplate
@@ -179,8 +179,7 @@ export function renderSite({ store, config, siteUrl = "https://xpressabhi.github
     .replace("{{ROWS}}", rows || `<li class="empty">No live roles right now — check the archive or the RSS feed.</li>`)
     .replace("{{COVERAGE}}", coverage)
     .replace("{{ARCHIVE_COUNT}}", String(archived.length))
-    .replace("{{UPDATED}}", `${formatDay(now)} ${now.slice(11, 16)} UTC`)
-    .replace("{{DATA}}", JSON.stringify(active));
+    .replace("{{UPDATED}}", `${formatDay(now)} ${now.slice(11, 16)} UTC`);
 
   const archive = archiveTemplate
     .replace("{{STYLE}}", style)

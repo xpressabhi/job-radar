@@ -19,7 +19,6 @@ permissions:
   contents: write
   pages: write
   id-token: write
-  models: read
 
 concurrency:
   group: crawl
@@ -40,6 +39,11 @@ jobs:
       - name: Crawl
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          # Optional LLM fallback for ambiguous titles. Without the secret the crawler is
+          # rules-only and quietly queues those titles for a later run.
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_API_BASE_URL: ${{ vars.LLM_API_BASE_URL }}
+          LLM_MODEL: ${{ vars.LLM_MODEL }}
         run: |
           ARGS=""
           if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi

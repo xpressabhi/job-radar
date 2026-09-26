@@ -19,7 +19,7 @@ export const CATEGORIES = [
 
 // Priority order matters: the first match wins, titles are scanned before descriptions.
 const RULES = [
-  ["engineering-leadership", /\b(engineering manager|director of engineering|head of engineering|vp engineering|vice president,? engineering)\b/i],
+  ["engineering-leadership", /\b(engineering manager|manager\b|head of|director|vp|vice president)\b/i],
   ["ai-ml", /\b(ai|ml|machine learning|deep learning|llm|genai|generative|nlp|computer vision|applied scientist|research engineer(?:ing)?|research scientist|agentic|agents?|rag|recommendation|perception|multimodal)\b/i],
   ["security", /\b(security|cyber|infosec|appsec|threat|penetration|soc analyst)\b/i],
   ["mobile", /\b(ios|android|mobile)\b/i],

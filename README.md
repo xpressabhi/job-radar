@@ -35,8 +35,15 @@ GitHub Actions (daily 01:30 UTC / 07:00 IST, or manual dispatch)
   workflow     → commits data only, deploys the site as a Pages artifact
 ```
 
-No runtime dependencies, no repository secrets. The GitHub Actions `GITHUB_TOKEN` covers
-the LLM fallback (`models: read`), commits, and Pages deployment.
+No runtime dependencies and no required secrets. Crawling, filtering, classification by
+rules, rendering, and deployment all run on the built-in `GITHUB_TOKEN`. An optional
+`LLM_API_KEY` secret (plus `LLM_API_BASE_URL` / `LLM_MODEL` repository variables) enables
+the provider-agnostic LLM classification fallback for ambiguous titles — GitHub Models,
+which used to serve this keylessly, was retired on 2026-07-30.
+
+To enable the fallback: add the secret `LLM_API_KEY` and the variables
+`LLM_API_BASE_URL` (e.g. any OpenAI-compatible endpoint) and `LLM_MODEL`. Without them the
+crawler stays rules-only and retries ambiguous titles on later runs.
 
 ## Commands
 

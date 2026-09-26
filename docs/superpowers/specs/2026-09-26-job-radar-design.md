@@ -46,7 +46,7 @@ per-user profile; a small set of preset filters on the page covers the personal 
 | Comp published as total only | Keep if converted total ≥₹50L, flag `base unverified` |
 | Archiving | Two consecutive successful fetch misses; failures never archive |
 | Stack | Node 20+, ESM `.mjs`, zero runtime dependencies |
-| Ambiguous-title LLM | GitHub Models via `GITHUB_TOKEN` (no secret); API keys stay out of CI |
+| Ambiguous-title LLM | Provider-agnostic OpenAI-compatible fallback, optional (GitHub Models retired 2026-07-30); without a key the pipeline is rules-only |
 | Personal shortlist | Local-only Jev (TypeSafe) ranking over `jobs.json`; keys and state never in the repo |
 
 ## 4. Architecture
@@ -269,11 +269,15 @@ Each kept job gets `cities[]`, `mode` (`onsite` | `hybrid` | `remote`), and `ind
 
 - Rules read the title first, then the description when available, to assign the primary
   category and stack tags (React, Python, Kubernetes, LLM evals, ...).
-- Rule misses (ambiguous titles such as "Member of Technical Staff") go to the GitHub Models
-  LLM fallback in one batched call with a strict JSON schema; results are validated and
-  cached by title hash so each title is classified once ever.
-- If Models is unavailable, misses ship as `other` with a `needsClassify` marker and are
-  retried on the next run. LLM usage is bounded (max ~40 new titles per run).
+- Rule misses (ambiguous titles such as "Member of Technical Staff") go to an optional
+  LLM fallback: a provider-agnostic OpenAI-compatible chat-completions call configured by
+  `LLM_API_BASE_URL` + `LLM_MODEL` (Actions vars) and `LLM_API_KEY` (repo secret), one
+  batched call with a strict JSON schema; results are validated against the taxonomy and
+  cached by title so each title is classified once ever.
+- **GitHub Models was retired on 2026-07-30** (the endpoint now returns a plain-text
+  tombstone), so there is no keyless fallback. Without a key the crawler stays rules-only:
+  misses ship as `other` with a `needsClassify` marker and are retried on the next run.
+  LLM usage is bounded (max ~40 new titles per run).
 - Description text used for tagging is never sent to the LLM beyond title + department +
   company tier; if a description is needed, only the first ~400 characters of requirements.
 
@@ -310,8 +314,9 @@ Each kept job gets `cities[]`, `mode` (`onsite` | `hybrid` | `remote`), and `ind
   `--company` inputs for debugging. Steps: checkout → crawl → render → commit data changes
   (message e.g. `crawl: 2026-09-26 — +12 new, 5 archived, 58/62 boards ok`) → deploy Pages
   artifact. `concurrency` group prevents overlapping runs.
-- Permissions: `contents: write`, `pages: write`, `id-token: write`, `models: read`. No
-  repository secrets.
+- Permissions: `contents: write`, `pages: write`, `id-token: write`. No repository secrets
+  are required; `LLM_API_KEY` (plus optional `LLM_API_BASE_URL` / `LLM_MODEL` vars) enables
+  the classification fallback only.
 - Degraded run: if >50% of boards fail, the run still commits what succeeded and the page
   footer shows "degraded run"; archiving is suspended for that run.
 - Health: each run updates `health.json`. A company failing 3 consecutive runs opens a
@@ -340,7 +345,7 @@ Each kept job gets `cities[]`, `mode` (`onsite` | `hybrid` | `remote`), and `ind
 |---|---|---|
 | ATS endpoints drift (Workable/Workday community endpoints) | Med | Per-adapter fixture tests; adapters fail soft; health issues; Workday deferred to phase 2 |
 | GitHub Actions IPs bot-blocked by some Workday/Akamai tenants | Med | Tolerate; health-visible; alternative is local `workflow_dispatch` runs, not silent breakage |
-| GitHub Models unavailable or rate-limited | Low | Rules-only fallback; cache; bounded batches; `needsClassify` retry |
+| LLM provider unavailable or rate-limited | Low | Rules-only fallback; cache; bounded batches; `needsClassify` retry |
 | Pay vetting wrong for a company | Med | Sources + dates recorded; observed postings append evidence; user review; conservative FX |
 | Strict filters yield too few roles | Med | Start ~70 companies; tune tokens from first runs; add companies from health reports |
 | Company list decay (M&A, board moves) | Low | Auto-issues after 3 failed runs; `verify-companies` table |

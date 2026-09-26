@@ -149,8 +149,9 @@ export async function main(argv = process.argv.slice(2), io = console, env = pro
   if (pendingTitles.length && !args.dryRun) {
     const llmResult = await classifyBatch({
       titles: pendingTitles.slice(0, config.llm?.maxPerRun ?? 40),
-      token: env.GITHUB_TOKEN,
-      model: config.llm?.model,
+      apiKey: env.LLM_API_KEY,
+      baseUrl: env.LLM_API_BASE_URL,
+      model: env.LLM_MODEL,
     });
     if (llmResult.ok) {
       for (const item of llmResult.items) {

@@ -1,25 +1,33 @@
-// LLM fallback classifier via GitHub Models (free in Actions with the built-in GITHUB_TOKEN).
-// Strict JSON out, per-item validation, bounded batches, and a clean no-token/no-network path.
+// LLM fallback classifier — provider-agnostic OpenAI-compatible chat completions.
+// GitHub Models was retired 2026-07-30, so there is no keyless option left: without an
+// API key the crawler is rules-only and titles stay queued (`needsClassify`) for later.
+// Configure via env in CI: LLM_API_KEY (secret), LLM_API_BASE_URL, LLM_MODEL (vars).
 import { CATEGORIES } from "./taxonomy.mjs";
 
-const ENDPOINT = "https://models.github.ai/inference/chat/completions";
-const DEFAULT_MODEL = "openai/gpt-4o-mini";
-
+const DEFAULT_BASE_URL = ""; // must come from env/vars; no vendor is hardcoded
 const SYSTEM_PROMPT = `You classify software job titles for a jobs board.
 Return ONLY JSON: {"items":[{"title":"<exact input title>","category":"<one of: ${CATEGORIES.join(", ")}>","tags":["<0-5 lowercase stack tags>"]}]}
 Rules: engineering-leadership beats other categories for manager/director titles. Use "other" only when nothing fits. Tags are technologies (react, python, kubernetes, llm-evals...), never companies or locations.`;
 
-export async function classifyBatch({ titles, token, model = DEFAULT_MODEL, fetchImpl = globalThis.fetch, timeoutMs = 30000 }) {
+export async function classifyBatch({
+  titles,
+  apiKey,
+  baseUrl = DEFAULT_BASE_URL,
+  model,
+  fetchImpl = globalThis.fetch,
+  timeoutMs = 30000,
+} = {}) {
   const list = (titles ?? []).filter((t) => typeof t === "string" && t.trim()).slice(0, 40);
   if (!list.length) return { ok: true, items: [] };
-  if (!token) return { ok: false, error: "no token" };
+  if (!apiKey) return { ok: false, error: "no API key configured" };
+  if (!baseUrl || !model) return { ok: false, error: "LLM_API_BASE_URL / LLM_MODEL not configured" };
 
   let res;
   try {
-    res = await fetchImpl(ENDPOINT, {
+    res = await fetchImpl(`${baseUrl.replace(/\/+$/, "")}/chat/completions`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
         Accept: "application/json",
       },

@@ -18,6 +18,7 @@ test("titles map to the expected categories", () => {
     ["Applied Scientist, LLM Evals", "ai-ml"],
     ["Site Reliability Engineer", "platform-infra"],
     ["Engineering Manager, Platform", "engineering-leadership"],
+    ["Senior Manager, Customer Engineering", "engineering-leadership"],
     ["Senior Android Engineer", "mobile"],
     ["Security Engineer", "security"],
     ["QA Automation Engineer", "qa"],

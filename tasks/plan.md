@@ -142,13 +142,13 @@ data files are migrated to the new schema along the way.
 
 - [x] T24: README rewrite + `docs/configuration.md` + workflow bot identity +
   CI `validate:config`
-- [ ] T25: Upstream parity and production verification (dry-run dispatch → live run →
+- [x] T25: Upstream parity and production verification (dry-run dispatch → live run →
   Pages), fresh-fork smoke test, completion log
 
 #### Checkpoint H: Complete
-- [ ] Upstream CI and nightly crawl green; live India site unchanged
-- [ ] Fresh-fork path simulated end-to-end; all spec success criteria met
-- [ ] Ready for review
+- [x] Upstream CI and nightly crawl green; live India site unchanged
+- [x] Fresh-fork path simulated end-to-end; all spec success criteria met
+- [x] Ready for review
 
 ## Follow-up Risks and Mitigations
 

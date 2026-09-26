@@ -602,7 +602,54 @@ log.
 
 ## Checkpoints
 
-- **E (after T16–T17):** full suite + replay green, behavior unchanged, `validate:config` green
-- **F (after T18–T21):** new pipeline shapes green with refreshed goldens; India render parity; strict companies validation green
-- **G (after T22–T23):** simulated fork produces valid config/companies; backups respected
-- **H (after T24–T25):** CI + nightly green, live site unchanged, fork simulation clean, ready for review
+- [x] **E (after T16–T17):** full suite + replay green, behavior unchanged, `validate:config` green
+- [x] **F (after T18–T21):** new pipeline shapes green with refreshed goldens; India render parity; strict companies validation green
+- [x] **G (after T22–T23):** simulated fork produces valid config/companies; backups respected
+- [x] **H (after T24–T25):** CI + nightly green, live site unchanged, fork simulation clean, ready for review
+
+---
+
+## Completion log — forkable configuration (2026-09-26)
+
+Executed T16–T25 end-to-end in one session.
+
+- **T16** — `scripts/lib/config.mjs` (generic defaults + sparse override + validation) and
+  `validate:config`; `data/config.json` migrated to the new schema; replay pinned to
+  `tests/fixtures/config.json` (verified tamper-proof: editing `data/config.json` no longer
+  changes replay output).
+- **T17/T18** — `money.mjs` (annual base-currency conversion, display formatting, legacy
+  detection) and the pay-pipeline switch: `pay.baseMin/baseMax/vettedMin` everywhere;
+  legacy `*Lpa` records and `indiaScope` migrate on read and persist on the next crawl;
+  golden refreshed once (diff reviewed: field renames only).
+- **T19** — seniority/geography/title-strip now read `roles`/`location` config; `scope`
+  rename (`located | remote_home | remote_global`); replay golden held exactly (behavior
+  parity).
+- **T20** — branding, about copy, RSS, and site URL are config-driven; per-fork URL
+  resolution (`site.url` → `GITHUB_REPOSITORY` → git remote → omit). India render diff vs
+  the pre-change baseline: `jobs.json` byte-identical; only intended `<title>`,
+  archive-meta, and feed-description differences.
+- **T21** — companies: optional `payVetting`, free-form `tier`, `location` replaces
+  `india`; 86 entries migrated ×100000 to annual INR; strict mode kept via
+  `pay.vettingRequired: true`.
+- **T22/T23** — `add-company` (ATS detection for all five adapters, live board verify,
+  validation) and `setup` (interactive + `--yes`/`--dry-run`/`--data-dir`, sparse output
+  via defaults-pruning, backups). Live-verified during development (Meesho Lever board,
+  54 postings).
+- **T24** — README quick-start for forks + `docs/configuration.md`; workflow bot identity
+  `github-actions[bot]`; CI adds `validate:config`.
+- **T25** — parity and production: local and remote dry runs both
+  **"boards ok 86/86 · raw 12291 · kept 493"** — identical to the last nightly run;
+  160 tests green; CI green on the pushed head; production dispatch
+  [run 36232121855](https://github.com/xpressabhi/job-radar/actions/runs/36232121855)
+  archived 5 roles, migrated all 470 jobs and 67 evidence entries to the new shapes
+  (0 legacy fields left) and deployed. Live page checked: HTTP 200, config-driven title,
+  `feed.xml` link derived from `GITHUB_REPOSITORY`.
+
+**Intended differences (reviewed):** page `<title>` drops "at top-paying companies"; the
+archive meta description drops "senior"; RSS channel description now uses
+`site.description` (includes "Daily-updated"); dry-run console pay labels include the
+currency symbol. Everything else renders identically.
+
+**Out of scope (unchanged):** taxonomy categories/tags remain the built-in engineering
+set; `personal-rank.mjs` stays local-only (now reads `--config` for display); adapters,
+health issues, and the LLM fallback are untouched.

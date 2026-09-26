@@ -29,12 +29,12 @@ static page with filters, an archive of closed roles, and JSON/RSS feeds. Full d
 ### Phase 1 — Foundation
 
 - [x] T1: Repo scaffold + GitHub repo + Pages enabled
-- [ ] T2: `companies.json` draft with pay vetting + validator
+- [x] T2: `companies.json` draft with pay vetting + validator
 
 #### Checkpoint A: Foundation
 - [x] Repo pushed; Pages build source = GitHub Actions
-- [ ] Companies validator passes
-- [ ] **User reviews and prunes the company list before any crawling work**
+- [x] Companies validator passes
+- [x] **User reviewed and signed off the 86-company list (2026-09-26)**
 
 ### Phase 2 — Crawl core
 

@@ -43,7 +43,7 @@ duplicate slug detection, and adapter-name validity. **Stop for user review/prun
 - [x] Validator passes on the full file and fails on: missing `payVetting`, a sub-floor band, duplicate `ats:slug`
 - [x] Every `payVetting.sources` entry carries a source and date; bands are explicitly labeled
       `confidence: "estimate"` (tier-based conservative floors) pending your review — no fabricated precision
-- [ ] User has reviewed the list and signed off (recorded in commit message)
+- [x] User has reviewed the list and signed off (recorded in commit message)
 
 **Verification:**
 - [x] `npm run validate:companies`

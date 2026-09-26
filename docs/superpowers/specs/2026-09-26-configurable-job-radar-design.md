@@ -46,7 +46,8 @@ migrated to the new schema as part of this work.
   floors, `vettingRequired: false`, current politeness values, built-in excluded-region
   terms/country codes, built-in seniority regex patterns, built-in FX rate table.
 - `loadConfig(fileConfig)` — deep merge over `DEFAULTS`; compiles keyword/pattern strings
-  into regexes; strips the home country from the exclusion lists.
+  into regexes; removes the home country code from the exclusion code list (home-country
+  matches are checked before exclusions either way).
 - `validateConfig(effective)` — human-readable errors: required `location.country` (crawl
   refuses to run without it), `pay.currency` when the gate is enabled, regexes compile,
   display settings sane, FX coverage for `pay.currency`, city aliases unique.

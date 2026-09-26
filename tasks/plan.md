@@ -105,42 +105,42 @@ data files are migrated to the new schema along the way.
 
 ### Phase 6 — Config + money foundation
 
-- [ ] T16: Config module (generic defaults + sparse override + validation), repo
+- [x] T16: Config module (generic defaults + sparse override + validation), repo
   `data/config.json` migration, pinned replay config
-- [ ] T17: Money module (annual base-currency amounts, display formatting, legacy detection)
+- [x] T17: Money module (annual base-currency amounts, display formatting, legacy detection)
 
 #### Checkpoint E: Config foundation
-- [ ] Full suite + replay green with unchanged behavior (golden untouched by T16/T17)
-- [ ] `npm run validate:config` green on the migrated repo config
+- [x] Full suite + replay green with unchanged behavior (golden untouched by T16/T17)
+- [x] `npm run validate:config` green on the migrated repo config
 
 ### Phase 7 — Pipeline adoption
 
-- [ ] T18: Pay pipeline switch — filters/store emit `pay.baseMin/baseMax/vettedMin`;
+- [x] T18: Pay pipeline switch — filters/store emit `pay.baseMin/baseMax/vettedMin`;
   evidence write-back migration; tolerant accessors keep consumers working
-- [ ] T19: Filter genericization — config-driven seniority/geography/title cleanup;
+- [x] T19: Filter genericization — config-driven seniority/geography/title cleanup;
   `location.scope` rename (`located | remote_home | remote_global`)
-- [ ] T20: Renderer, templates, branding, about copy; per-fork Pages URL derivation
-- [ ] T21: Companies schema (optional vetting, free-form tier, `location`), validator,
+- [x] T20: Renderer, templates, branding, about copy; per-fork Pages URL derivation
+- [x] T21: Companies schema (optional vetting, free-form tier, `location`), validator,
   upstream `data/companies.json` migration
 
 #### Checkpoint F: Pipeline adoption
-- [ ] Full suite + deliberately refreshed golden green
-- [ ] Dry-run sanity: drop reasons/counts plausible vs last run; India render diff reviewed
-- [ ] `npm run validate:companies` green in strict upstream mode
+- [x] Full suite + deliberately refreshed golden green
+- [x] Dry-run sanity: drop reasons/counts plausible vs last run; India render diff reviewed
+- [x] `npm run validate:companies` green in strict upstream mode
 
 ### Phase 8 — Fork tooling
 
-- [ ] T22: `npm run add-company` — ATS detection from URL/slug, live verify, append entry
-- [ ] T23: `npm run setup` — interactive wizard (`--yes`, `--dry-run`, `--data-dir`)
+- [x] T22: `npm run add-company` — ATS detection from URL/slug, live verify, append entry
+- [x] T23: `npm run setup` — interactive wizard (`--yes`, `--dry-run`, `--data-dir`)
 
 #### Checkpoint G: Fork tooling
-- [ ] Simulated fork in a temp data dir: setup writes valid config/companies; add-company
+- [x] Simulated fork in a temp data dir: setup writes valid config/companies; add-company
   dry-run detects boards; generic-default render contains no upstream URLs
-- [ ] Existing personal files are backed up, never silently overwritten
+- [x] Existing personal files are backed up, never silently overwritten
 
 ### Phase 9 — Docs, automation, migration
 
-- [ ] T24: README rewrite + `docs/configuration.md` + workflow bot identity +
+- [x] T24: README rewrite + `docs/configuration.md` + workflow bot identity +
   CI `validate:config`
 - [ ] T25: Upstream parity and production verification (dry-run dispatch → live run →
   Pages), fresh-fork smoke test, completion log

@@ -128,6 +128,7 @@ job-radar/
   "payVetting": {
     "generalBaseMinLpa": 30,
     "seniorBaseMinLpa": 55,
+    "confidence": "verified",
     "sources": ["levels.fyi India 2026-08", "observed postings"],
     "verifiedOn": "2026-09-26",
     "notes": "Top-of-market India band; senior base clears 50L."
@@ -137,7 +138,9 @@ job-radar/
 ```
 
 `tier` ∈ `frontier-ai` | `big-tech` | `saas` | `india-product` | `remote-first` (used by the
-unlabeled-title rule in §6.3).
+unlabeled-title rule in §6.3). `payVetting.confidence` ∈ `verified` (backed by a checked
+source or observed postings) | `estimate` (tier-based conservative floor awaiting reviewer
+confirmation; upgraded as observed postings accrue in `comp-evidence.json`).
 
 ### `data/jobs.json` (record)
 

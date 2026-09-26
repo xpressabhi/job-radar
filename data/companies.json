@@ -1,0 +1,2041 @@
+[
+  {
+    "name": "Airbnb",
+    "ats": "gh",
+    "slug": "airbnb",
+    "careersUrl": "https://job-boards.greenhouse.io/airbnb",
+    "tier": "big-tech",
+    "india": {
+      "offices": [
+        "Gurugram",
+        "Bengaluru"
+      ],
+      "remoteOk": true,
+      "note": "India offices"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 30,
+      "seniorBaseMinLpa": 70,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (159 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Airtable",
+    "ats": "gh",
+    "slug": "airtable",
+    "careersUrl": "https://job-boards.greenhouse.io/airtable",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (3 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Amplitude",
+    "ats": "gh",
+    "slug": "amplitude",
+    "careersUrl": "https://job-boards.greenhouse.io/amplitude",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (38 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Anthropic",
+    "ats": "gh",
+    "slug": "anthropic",
+    "careersUrl": "https://job-boards.greenhouse.io/anthropic",
+    "tier": "frontier-ai",
+    "india": {
+      "offices": [
+        "Bengaluru"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru office; office-first policy"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 30,
+      "seniorBaseMinLpa": 70,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (619 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Asana",
+    "ats": "gh",
+    "slug": "asana",
+    "careersUrl": "https://job-boards.greenhouse.io/asana",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (97 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Atlan",
+    "ats": "ashby",
+    "slug": "atlan",
+    "careersUrl": "https://jobs.ashbyhq.com/atlan",
+    "tier": "india-product",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India-first; remote"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 20,
+      "seniorBaseMinLpa": 55,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (8 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Atlassian",
+    "ats": "sr",
+    "slug": "Atlassian2",
+    "careersUrl": "https://careers.smartrecruiters.com/Atlassian2",
+    "tier": "saas",
+    "india": {
+      "offices": [
+        "Bengaluru"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru + India-remote"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (3 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Braze",
+    "ats": "gh",
+    "slug": "braze",
+    "careersUrl": "https://job-boards.greenhouse.io/braze",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (325 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Brex",
+    "ats": "gh",
+    "slug": "brex",
+    "careersUrl": "https://job-boards.greenhouse.io/brex",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (259 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Clerk",
+    "ats": "ashby",
+    "slug": "clerk",
+    "careersUrl": "https://jobs.ashbyhq.com/clerk",
+    "tier": "remote-first",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Small board; remote"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 55,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (2 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Cloudflare",
+    "ats": "gh",
+    "slug": "cloudflare",
+    "careersUrl": "https://job-boards.greenhouse.io/cloudflare",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Remote-India listed on some roles"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (395 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Cohere",
+    "ats": "ashby",
+    "slug": "cohere",
+    "careersUrl": "https://jobs.ashbyhq.com/cohere",
+    "tier": "frontier-ai",
+    "india": {
+      "offices": [
+        "Bengaluru"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru office"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 30,
+      "seniorBaseMinLpa": 70,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (147 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Contentful",
+    "ats": "gh",
+    "slug": "contentful",
+    "careersUrl": "https://job-boards.greenhouse.io/contentful",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (20 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "CRED",
+    "ats": "lever",
+    "slug": "cred",
+    "careersUrl": "https://jobs.lever.co/cred",
+    "tier": "india-product",
+    "india": {
+      "offices": [
+        "Bengaluru"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 20,
+      "seniorBaseMinLpa": 55,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (12 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Databricks",
+    "ats": "gh",
+    "slug": "databricks",
+    "careersUrl": "https://job-boards.greenhouse.io/databricks",
+    "tier": "saas",
+    "india": {
+      "offices": [
+        "Bengaluru",
+        "Mumbai"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru/Mumbai/Remote-India"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (888 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "DevRev",
+    "ats": "gh",
+    "slug": "devrev",
+    "careersUrl": "https://job-boards.greenhouse.io/devrev",
+    "tier": "india-product",
+    "india": {
+      "offices": [
+        "Bengaluru",
+        "Chennai"
+      ],
+      "remoteOk": true,
+      "note": "India-remote; Bengaluru/Chennai"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 20,
+      "seniorBaseMinLpa": 55,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (52 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Discord",
+    "ats": "gh",
+    "slug": "discord",
+    "careersUrl": "https://job-boards.greenhouse.io/discord",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (49 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "DoorDash",
+    "ats": "gh",
+    "slug": "doordashusa",
+    "careersUrl": "https://job-boards.greenhouse.io/doordashusa",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (457 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Dropbox",
+    "ats": "gh",
+    "slug": "dropbox",
+    "careersUrl": "https://job-boards.greenhouse.io/dropbox",
+    "tier": "saas",
+    "india": {
+      "offices": [
+        "Bengaluru"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (44 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Elastic",
+    "ats": "gh",
+    "slug": "elastic",
+    "careersUrl": "https://job-boards.greenhouse.io/elastic",
+    "tier": "remote-first",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Remote-India"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (384 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "ElevenLabs",
+    "ats": "ashby",
+    "slug": "elevenlabs",
+    "careersUrl": "https://jobs.ashbyhq.com/elevenlabs",
+    "tier": "frontier-ai",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 30,
+      "seniorBaseMinLpa": 70,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (207 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Fi Money",
+    "ats": "lever",
+    "slug": "epifi",
+    "careersUrl": "https://jobs.lever.co/epifi",
+    "tier": "india-product",
+    "india": {
+      "offices": [
+        "Bengaluru"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 20,
+      "seniorBaseMinLpa": 50,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (11 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Figma",
+    "ats": "gh",
+    "slug": "figma",
+    "careersUrl": "https://job-boards.greenhouse.io/figma",
+    "tier": "saas",
+    "india": {
+      "offices": [
+        "Bengaluru"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (163 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Freshworks",
+    "ats": "sr",
+    "slug": "Freshworks",
+    "careersUrl": "https://careers.smartrecruiters.com/Freshworks",
+    "tier": "india-product",
+    "india": {
+      "offices": [
+        "Chennai"
+      ],
+      "remoteOk": true,
+      "note": "Chennai HQ"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 20,
+      "seniorBaseMinLpa": 55,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (125 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "GitBook",
+    "ats": "ashby",
+    "slug": "gitbook",
+    "careersUrl": "https://jobs.ashbyhq.com/gitbook",
+    "tier": "remote-first",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Small board; remote"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 55,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (1 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "GitLab",
+    "ats": "gh",
+    "slug": "gitlab",
+    "careersUrl": "https://job-boards.greenhouse.io/gitlab",
+    "tier": "remote-first",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "All-remote; India entity + EOR"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (198 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Glean",
+    "ats": "gh",
+    "slug": "gleanwork",
+    "careersUrl": "https://job-boards.greenhouse.io/gleanwork",
+    "tier": "frontier-ai",
+    "india": {
+      "offices": [
+        "Bengaluru",
+        "Mumbai"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru + Mumbai"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 30,
+      "seniorBaseMinLpa": 70,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (130 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "GoDaddy",
+    "ats": "gh",
+    "slug": "godaddy",
+    "careersUrl": "https://job-boards.greenhouse.io/godaddy",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India hiring to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (39 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Grafana Labs",
+    "ats": "gh",
+    "slug": "grafanalabs",
+    "careersUrl": "https://job-boards.greenhouse.io/grafanalabs",
+    "tier": "remote-first",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Remote; India hiring to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (148 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Groww",
+    "ats": "gh",
+    "slug": "groww",
+    "careersUrl": "https://job-boards.greenhouse.io/groww",
+    "tier": "india-product",
+    "india": {
+      "offices": [
+        "Bengaluru"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 20,
+      "seniorBaseMinLpa": 55,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (7 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Harvey",
+    "ats": "ashby",
+    "slug": "harvey",
+    "careersUrl": "https://jobs.ashbyhq.com/harvey",
+    "tier": "frontier-ai",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 30,
+      "seniorBaseMinLpa": 70,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (304 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "HighLevel",
+    "ats": "lever",
+    "slug": "gohighlevel",
+    "careersUrl": "https://jobs.lever.co/gohighlevel",
+    "tier": "india-product",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India hiring to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 20,
+      "seniorBaseMinLpa": 50,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (96 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "HubSpot",
+    "ats": "gh",
+    "slug": "hubspotjobs",
+    "careersUrl": "https://job-boards.greenhouse.io/hubspotjobs",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (133 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Hugging Face",
+    "ats": "workable",
+    "slug": "huggingface",
+    "careersUrl": "https://apply.workable.com/huggingface/",
+    "tier": "remote-first",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Remote"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (8 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "InMobi",
+    "ats": "gh",
+    "slug": "inmobi",
+    "careersUrl": "https://job-boards.greenhouse.io/inmobi",
+    "tier": "india-product",
+    "india": {
+      "offices": [
+        "Bengaluru"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 20,
+      "seniorBaseMinLpa": 55,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (71 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Instacart",
+    "ats": "gh",
+    "slug": "instacart",
+    "careersUrl": "https://job-boards.greenhouse.io/instacart",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (116 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Intercom",
+    "ats": "gh",
+    "slug": "intercom",
+    "careersUrl": "https://job-boards.greenhouse.io/intercom",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (115 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Klaviyo",
+    "ats": "gh",
+    "slug": "klaviyo",
+    "careersUrl": "https://job-boards.greenhouse.io/klaviyo",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (148 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "LangChain",
+    "ats": "ashby",
+    "slug": "langchain",
+    "careersUrl": "https://jobs.ashbyhq.com/langchain",
+    "tier": "frontier-ai",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Remote-first; India eligibility per posting"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 30,
+      "seniorBaseMinLpa": 70,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (102 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "LaunchDarkly",
+    "ats": "gh",
+    "slug": "launchdarkly",
+    "careersUrl": "https://job-boards.greenhouse.io/launchdarkly",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (55 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Linear",
+    "ats": "ashby",
+    "slug": "linear",
+    "careersUrl": "https://jobs.ashbyhq.com/linear",
+    "tier": "remote-first",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Remote"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (30 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Meesho",
+    "ats": "lever",
+    "slug": "meesho",
+    "careersUrl": "https://jobs.lever.co/meesho",
+    "tier": "india-product",
+    "india": {
+      "offices": [
+        "Bengaluru"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 20,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (54 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Mercury",
+    "ats": "gh",
+    "slug": "mercury",
+    "careersUrl": "https://job-boards.greenhouse.io/mercury",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (62 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Mindtickle",
+    "ats": "lever",
+    "slug": "mindtickle",
+    "careersUrl": "https://jobs.lever.co/mindtickle",
+    "tier": "india-product",
+    "india": {
+      "offices": [
+        "Pune"
+      ],
+      "remoteOk": true,
+      "note": "Pune"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 20,
+      "seniorBaseMinLpa": 50,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (18 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Mistral AI",
+    "ats": "ashby",
+    "slug": "mistral.ai",
+    "careersUrl": "https://jobs.ashbyhq.com/mistral.ai",
+    "tier": "frontier-ai",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Occasional India roles"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 30,
+      "seniorBaseMinLpa": 70,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (207 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Mixpanel",
+    "ats": "gh",
+    "slug": "mixpanel",
+    "careersUrl": "https://job-boards.greenhouse.io/mixpanel",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (72 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Modal",
+    "ats": "ashby",
+    "slug": "modal",
+    "careersUrl": "https://jobs.ashbyhq.com/modal",
+    "tier": "remote-first",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Remote"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (39 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "MongoDB",
+    "ats": "gh",
+    "slug": "mongodb",
+    "careersUrl": "https://job-boards.greenhouse.io/mongodb",
+    "tier": "saas",
+    "india": {
+      "offices": [
+        "Bengaluru"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru; remote roles in some regions"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (396 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Neon",
+    "ats": "ashby",
+    "slug": "neon",
+    "careersUrl": "https://jobs.ashbyhq.com/neon",
+    "tier": "remote-first",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Small board; remote"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 55,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (4 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Notion",
+    "ats": "ashby",
+    "slug": "notion",
+    "careersUrl": "https://jobs.ashbyhq.com/notion",
+    "tier": "saas",
+    "india": {
+      "offices": [
+        "Hyderabad"
+      ],
+      "remoteOk": true,
+      "note": "India roles seen (Hyderabad)"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (128 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Observe.AI",
+    "ats": "gh",
+    "slug": "observeai",
+    "careersUrl": "https://job-boards.greenhouse.io/observeai",
+    "tier": "india-product",
+    "india": {
+      "offices": [
+        "Bengaluru"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 20,
+      "seniorBaseMinLpa": 50,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (15 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Okta",
+    "ats": "gh",
+    "slug": "okta",
+    "careersUrl": "https://job-boards.greenhouse.io/okta",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (333 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "OpenAI",
+    "ats": "ashby",
+    "slug": "openai",
+    "careersUrl": "https://jobs.ashbyhq.com/openai",
+    "tier": "frontier-ai",
+    "india": {
+      "offices": [
+        "New Delhi"
+      ],
+      "remoteOk": true,
+      "note": "India entity (New Delhi); board large"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 30,
+      "seniorBaseMinLpa": 70,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (830 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Oyster",
+    "ats": "ashby",
+    "slug": "oyster",
+    "careersUrl": "https://jobs.ashbyhq.com/oyster",
+    "tier": "remote-first",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Global payroll; hires broadly"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (27 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "PagerDuty",
+    "ats": "gh",
+    "slug": "pagerduty",
+    "careersUrl": "https://job-boards.greenhouse.io/pagerduty",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (51 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Palantir",
+    "ats": "lever",
+    "slug": "palantir",
+    "careersUrl": "https://jobs.lever.co/palantir",
+    "tier": "frontier-ai",
+    "india": {
+      "offices": [
+        "Hyderabad"
+      ],
+      "remoteOk": true,
+      "note": "Hyderabad office"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 30,
+      "seniorBaseMinLpa": 70,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (321 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Perplexity",
+    "ats": "ashby",
+    "slug": "perplexity",
+    "careersUrl": "https://jobs.ashbyhq.com/perplexity",
+    "tier": "frontier-ai",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Verify regional eligibility per posting"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 30,
+      "seniorBaseMinLpa": 70,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (122 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Pinterest",
+    "ats": "gh",
+    "slug": "pinterest",
+    "careersUrl": "https://job-boards.greenhouse.io/pinterest",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (153 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Railway",
+    "ats": "ashby",
+    "slug": "railway",
+    "careersUrl": "https://jobs.ashbyhq.com/railway",
+    "tier": "remote-first",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Small board; remote"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 55,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (8 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Ramp",
+    "ats": "ashby",
+    "slug": "ramp",
+    "careersUrl": "https://jobs.ashbyhq.com/ramp",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (157 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Razorpay",
+    "ats": "gh",
+    "slug": "razorpaysoftwareprivatelimited",
+    "careersUrl": "https://job-boards.greenhouse.io/razorpaysoftwareprivatelimited",
+    "tier": "india-product",
+    "india": {
+      "offices": [
+        "Bengaluru"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 20,
+      "seniorBaseMinLpa": 55,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (25 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Reddit",
+    "ats": "gh",
+    "slug": "reddit",
+    "careersUrl": "https://job-boards.greenhouse.io/reddit",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (150 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Remote.com",
+    "ats": "gh",
+    "slug": "remotecom",
+    "careersUrl": "https://job-boards.greenhouse.io/remotecom",
+    "tier": "remote-first",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Global payroll; hires broadly"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (164 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Render",
+    "ats": "ashby",
+    "slug": "render",
+    "careersUrl": "https://jobs.ashbyhq.com/render",
+    "tier": "remote-first",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Remote"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (40 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Resend",
+    "ats": "ashby",
+    "slug": "resend",
+    "careersUrl": "https://jobs.ashbyhq.com/resend",
+    "tier": "remote-first",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Small board; remote"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 55,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (9 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Robinhood",
+    "ats": "gh",
+    "slug": "robinhood",
+    "careersUrl": "https://job-boards.greenhouse.io/robinhood",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (159 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Runway",
+    "ats": "ashby",
+    "slug": "runway-ml",
+    "careersUrl": "https://jobs.ashbyhq.com/runway-ml",
+    "tier": "frontier-ai",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 30,
+      "seniorBaseMinLpa": 70,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (44 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Sarvam AI",
+    "ats": "ashby",
+    "slug": "sarvam",
+    "careersUrl": "https://jobs.ashbyhq.com/sarvam",
+    "tier": "frontier-ai",
+    "india": {
+      "offices": [
+        "Bengaluru"
+      ],
+      "remoteOk": true,
+      "note": "India AI lab"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 20,
+      "seniorBaseMinLpa": 55,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (61 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Scale AI",
+    "ats": "gh",
+    "slug": "scaleai",
+    "careersUrl": "https://job-boards.greenhouse.io/scaleai",
+    "tier": "frontier-ai",
+    "india": {
+      "offices": [
+        "Bengaluru"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru office"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 30,
+      "seniorBaseMinLpa": 70,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (203 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Sentry",
+    "ats": "ashby",
+    "slug": "sentry",
+    "careersUrl": "https://jobs.ashbyhq.com/sentry",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (41 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Sierra",
+    "ats": "ashby",
+    "slug": "sierra",
+    "careersUrl": "https://jobs.ashbyhq.com/sierra",
+    "tier": "frontier-ai",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 30,
+      "seniorBaseMinLpa": 70,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (207 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Slice",
+    "ats": "gh",
+    "slug": "slice",
+    "careersUrl": "https://job-boards.greenhouse.io/slice",
+    "tier": "india-product",
+    "india": {
+      "offices": [
+        "Bengaluru"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 20,
+      "seniorBaseMinLpa": 50,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (27 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Sourcegraph",
+    "ats": "gh",
+    "slug": "sourcegraph91",
+    "careersUrl": "https://job-boards.greenhouse.io/sourcegraph91",
+    "tier": "remote-first",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Remote"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (8 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Squarespace",
+    "ats": "gh",
+    "slug": "squarespace",
+    "careersUrl": "https://job-boards.greenhouse.io/squarespace",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (34 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Stripe",
+    "ats": "gh",
+    "slug": "stripe",
+    "careersUrl": "https://job-boards.greenhouse.io/stripe",
+    "tier": "saas",
+    "india": {
+      "offices": [
+        "Bengaluru"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru; top-of-market"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 30,
+      "seniorBaseMinLpa": 65,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (703 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Supabase",
+    "ats": "ashby",
+    "slug": "supabase",
+    "careersUrl": "https://jobs.ashbyhq.com/supabase",
+    "tier": "remote-first",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Remote"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (56 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Temporal",
+    "ats": "ashby",
+    "slug": "temporal",
+    "careersUrl": "https://jobs.ashbyhq.com/temporal",
+    "tier": "remote-first",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Remote"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (63 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Thinking Machines Lab",
+    "ats": "ashby",
+    "slug": "thinkingmachines",
+    "careersUrl": "https://jobs.ashbyhq.com/thinkingmachines",
+    "tier": "frontier-ai",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 30,
+      "seniorBaseMinLpa": 70,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (47 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Together AI",
+    "ats": "gh",
+    "slug": "togetherai",
+    "careersUrl": "https://job-boards.greenhouse.io/togetherai",
+    "tier": "frontier-ai",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 30,
+      "seniorBaseMinLpa": 70,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (78 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Twilio",
+    "ats": "gh",
+    "slug": "twilio",
+    "careersUrl": "https://job-boards.greenhouse.io/twilio",
+    "tier": "saas",
+    "india": {
+      "offices": [
+        "Bengaluru"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (138 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Vanta",
+    "ats": "ashby",
+    "slug": "vanta",
+    "careersUrl": "https://jobs.ashbyhq.com/vanta",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (88 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Vercel",
+    "ats": "gh",
+    "slug": "vercel",
+    "careersUrl": "https://job-boards.greenhouse.io/vercel",
+    "tier": "remote-first",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Remote; India hiring to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (88 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Webflow",
+    "ats": "gh",
+    "slug": "webflow",
+    "careersUrl": "https://job-boards.greenhouse.io/webflow",
+    "tier": "saas",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "India presence to confirm via crawl"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (27 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "xAI",
+    "ats": "gh",
+    "slug": "xai",
+    "careersUrl": "https://job-boards.greenhouse.io/xai",
+    "tier": "frontier-ai",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Remote-heavy; verify country eligibility per posting"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 30,
+      "seniorBaseMinLpa": 70,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (276 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Zapier",
+    "ats": "ashby",
+    "slug": "zapier",
+    "careersUrl": "https://jobs.ashbyhq.com/zapier",
+    "tier": "remote-first",
+    "india": {
+      "offices": [],
+      "remoteOk": true,
+      "note": "Remote (timezone hiring varies)"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (10 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  },
+  {
+    "name": "Zscaler",
+    "ats": "gh",
+    "slug": "zscaler",
+    "careersUrl": "https://job-boards.greenhouse.io/zscaler",
+    "tier": "saas",
+    "india": {
+      "offices": [
+        "Bengaluru",
+        "Hyderabad"
+      ],
+      "remoteOk": true,
+      "note": "Bengaluru/Hyderabad Staff/Principal"
+    },
+    "payVetting": {
+      "generalBaseMinLpa": 25,
+      "seniorBaseMinLpa": 60,
+      "confidence": "estimate",
+      "sources": [
+        "tier-based conservative floor estimate, 2026-09-26; confirm in review or via observed postings"
+      ],
+      "verifiedOn": "2026-09-26",
+      "notes": "Board verified live 2026-09-26 (380 postings). Pay band awaits reviewer confirmation."
+    },
+    "enabled": true
+  }
+]

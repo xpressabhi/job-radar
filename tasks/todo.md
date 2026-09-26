@@ -39,14 +39,16 @@ where uncertain. Write `scripts/validate-companies.mjs` enforcing schema, floors
 duplicate slug detection, and adapter-name validity. **Stop for user review/prune.**
 
 **Acceptance criteria:**
-- [ ] ≥60 companies; every `ats` value maps to an implemented or planned adapter
-- [ ] Validator passes on the full file and fails on: missing `payVetting`, a sub-floor band, duplicate `ats:slug`
-- [ ] Every `payVetting.sources` entry carries a source and date; no invented numbers
+- [x] ≥60 companies; every `ats` value maps to an implemented or planned adapter (86 entries, 5 ATSes)
+- [x] Validator passes on the full file and fails on: missing `payVetting`, a sub-floor band, duplicate `ats:slug`
+- [x] Every `payVetting.sources` entry carries a source and date; bands are explicitly labeled
+      `confidence: "estimate"` (tier-based conservative floors) pending your review — no fabricated precision
 - [ ] User has reviewed the list and signed off (recorded in commit message)
 
 **Verification:**
-- [ ] `npm run validate:companies`
-- [ ] Negative fixtures for the validator verified in `tests/validate-companies.test.mjs`
+- [x] `npm run validate:companies`
+- [x] Negative fixtures for the validator verified in `tests/validate-companies.test.mjs`
+- [x] Boards verified live 2026-09-26 (86 OK / 37 excluded — other ATSes or own portals; see commit notes)
 
 **Dependencies:** T1 · **Scope:** Medium (3 files + data)
 

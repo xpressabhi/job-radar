@@ -94,3 +94,75 @@ static page with filters, an archive of closed roles, and JSON/RSS feeds. Full d
 - None blocking for v1. Portfolio nav link deferred to a later, separate decision.
 - Personal layer: standalone `personal-rank.mjs` vs. teaching the job-finder skill to consume
   `jobs.json` as a source — decide at T15.
+
+---
+
+## Follow-up: Forkable configuration (2026-09-26)
+
+Design: `docs/superpowers/specs/2026-09-26-configurable-job-radar-design.md`; tasks
+T16–T25 in `tasks/todo.md`. The upstream India instance stays the checked-in default; its
+data files are migrated to the new schema along the way.
+
+### Phase 6 — Config + money foundation
+
+- [ ] T16: Config module (generic defaults + sparse override + validation), repo
+  `data/config.json` migration, pinned replay config
+- [ ] T17: Money module (annual base-currency amounts, display formatting, legacy detection)
+
+#### Checkpoint E: Config foundation
+- [ ] Full suite + replay green with unchanged behavior (golden untouched by T16/T17)
+- [ ] `npm run validate:config` green on the migrated repo config
+
+### Phase 7 — Pipeline adoption
+
+- [ ] T18: Pay pipeline switch — filters/store emit `pay.baseMin/baseMax/vettedMin`;
+  evidence write-back migration; tolerant accessors keep consumers working
+- [ ] T19: Filter genericization — config-driven seniority/geography/title cleanup;
+  `location.scope` rename (`located | remote_home | remote_global`)
+- [ ] T20: Renderer, templates, branding, about copy; per-fork Pages URL derivation
+- [ ] T21: Companies schema (optional vetting, free-form tier, `location`), validator,
+  upstream `data/companies.json` migration
+
+#### Checkpoint F: Pipeline adoption
+- [ ] Full suite + deliberately refreshed golden green
+- [ ] Dry-run sanity: drop reasons/counts plausible vs last run; India render diff reviewed
+- [ ] `npm run validate:companies` green in strict upstream mode
+
+### Phase 8 — Fork tooling
+
+- [ ] T22: `npm run add-company` — ATS detection from URL/slug, live verify, append entry
+- [ ] T23: `npm run setup` — interactive wizard (`--yes`, `--dry-run`, `--data-dir`)
+
+#### Checkpoint G: Fork tooling
+- [ ] Simulated fork in a temp data dir: setup writes valid config/companies; add-company
+  dry-run detects boards; generic-default render contains no upstream URLs
+- [ ] Existing personal files are backed up, never silently overwritten
+
+### Phase 9 — Docs, automation, migration
+
+- [ ] T24: README rewrite + `docs/configuration.md` + workflow bot identity +
+  CI `validate:config`
+- [ ] T25: Upstream parity and production verification (dry-run dispatch → live run →
+  Pages), fresh-fork smoke test, completion log
+
+#### Checkpoint H: Complete
+- [ ] Upstream CI and nightly crawl green; live India site unchanged
+- [ ] Fresh-fork path simulated end-to-end; all spec success criteria met
+- [ ] Ready for review
+
+## Follow-up Risks and Mitigations
+
+| Risk | Impact | Mitigation |
+|---|---|---|
+| Field-shape migration (pay/scope) raced by the live nightly crawl | Med | Tolerant readers for legacy fields; write-back on next crawl; both shapes covered in tests; dry-run parity before dispatch |
+| Scope/pay renames ripple through tests and the golden store | Low | One deliberate golden refresh per shape change; replay pinned to fixture config |
+| Wizard overwrites personal data on the upstream repo | Med | Backups by default, `--dry-run`, explicit confirmation prompts |
+| Per-fork URL/UA derivation differs between Actions and local runs | Low | Resolution-order unit tests with env/remote stubs; remote dry-run dispatch before production |
+| Currency change silently invalidates existing vetting amounts | Low | `validate:config` and wizard warnings; docs state vetting is denominated in `pay.currency` |
+
+## Follow-up Open Questions
+
+- None blocking. Optional: run the fresh-fork walkthrough on a throwaway public repo before
+  announcing forkability.
+- Existing v1 follow-ups (portfolio nav link, dark mode check, Jev pass, Workday adapter,
+  company-band upgrades) are unchanged.

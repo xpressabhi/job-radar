@@ -1,6 +1,7 @@
 # Job Radar — task list
 
-Reference: `tasks/plan.md` · design spec: `docs/superpowers/specs/2026-09-26-job-radar-design.md`
+Reference: `tasks/plan.md` · specs: `2026-09-26-job-radar-design.md` (v1) ·
+`2026-09-26-configurable-job-radar-design.md` (forkability)
 
 ---
 
@@ -374,3 +375,234 @@ Executed end-to-end in one session ("continue till end" waived the human gates).
 Final state: **121 tests green**, zero required secrets, cron armed for 01:30 UTC daily.
 Open follow-ups: portfolio nav link, dark-mode visual check, Jev pass, Workday adapter,
 company-band upgrades from `comp-evidence.json`.
+
+---
+
+# Forkable configuration (T16–T25)
+
+Design: `docs/superpowers/specs/2026-09-26-configurable-job-radar-design.md`
+
+---
+
+## Task 16: Config module + repo config migration + pinned replay config
+
+**Description:** Create `scripts/lib/config.mjs` with generic `DEFAULTS` (no country/cities;
+`pay.currency: "USD"`, zero floors, `vettingRequired: false`; current politeness, LLM,
+FX, excluded-region and seniority-pattern values), `loadConfig()` deep-merge (objects merge,
+arrays replace; keyword/pattern strings compiled; home country/code removed from exclusion
+lists), `validateConfig()` errors (missing `location.country`, invalid regexes, missing
+`pay.currency`/FX coverage) and warnings (unknown keys). Add `scripts/validate-config.mjs`
+(`npm run validate:config`, `--show` prints the effective config). Migrate the repo's
+`data/config.json` to the new schema (location India + city map, INR pay floors/display/FX,
+crawl/LLM keys; `userAgent` derived per-fork when absent). Include a temporary legacy-alias
+view (`payFloorBaseLpa`, `fxToInr`, `archiveMisses`, …) so unmigrated consumers keep working;
+it is removed once T18–T20 switch them. Pin `tests/replay.mjs` to `tests/fixtures/config.json`
+so replay no longer depends on the editable repo config. Rewrite `tests/config.test.mjs` as
+merge/validation tests over fixtures.
+
+**Acceptance criteria:**
+- [ ] `loadConfig({})` is inert; deep merge verified; keyword→regex compilation and
+  home-country stripping work
+- [ ] Validator fails on: missing country, uncompilable regex, `pay.enabled` without
+  currency, missing FX for a published-foreign-currency scenario; unknown keys warn
+- [ ] Repo config migrated; legacy aliases reproduce today's values (floors 50/20, FX table,
+  delay/timeout/retries, archiveMisses 2, llm.maxPerRun 40)
+- [ ] Replay output cannot change by editing `data/config.json`
+
+**Verification:** `npm test` · `npm run replay` · `npm run validate:config --show` ·
+grep: no script reads config keys outside the loader except through the alias view
+
+**Dependencies:** None · **Scope:** Medium (7 files)
+
+---
+
+## Task 17: Money module
+
+**Description:** Create `scripts/lib/money.mjs`: annualize published bands, convert into
+`pay.currency` via `pay.fxRates` (preserving conservative rounding), `formatMoney(amount,
+display)` honoring `{symbol, divisor, suffix, decimals}` (`₹70L`, `$185,000`), and legacy
+detection helpers for `*Lpa` fields (`× 100000`). Pure functions, zero deps.
+
+**Acceptance criteria:**
+- [ ] Conversion/annualization/rounding unit-tested; unknown currency returns null
+- [ ] Display formatting tested for lakh-style and plain styles, min/max bands, null amounts
+- [ ] Legacy detection recognizes old `baseMinLpa`/`seniorBaseMinLpa` fields
+
+**Verification:** `npm test` · `node --test tests/money.test.mjs`
+
+**Dependencies:** T16 · **Scope:** Small (2 files)
+
+---
+
+## Task 18: Pay pipeline switch (filters → store → consumers)
+
+**Description:** Switch the pay path to annual base-currency amounts: `classifyPay` converts
+published bands with `money.mjs`, applies `pay.floorAnnual` honorably of `pay.enabled`
+(disabled = gate off), reads vetted bands tolerantly (legacy `seniorBaseMinLpa`×100000 until
+T21); records become `pay: { published, currency, raw, totalOnly, baseMin, baseMax, vettedMin }`.
+`appendCompEvidence` writes `baseMin`/`baseMax` and migrates old evidence entries on write.
+Add `scripts/lib/accessors.mjs` with tolerant readers (`payMin`, `payMax`, `payVetted`,
+`locationScope`) and switch render/personal-rank/crawl-log reads through them (labels still
+unchanged until T20). Refresh the golden store deliberately.
+
+**Acceptance criteria:**
+- [ ] Filters tests updated: floor compares in base currency; `pay.enabled: false` keeps
+  everything; total-only handling unchanged
+- [ ] Store/evidence tests cover new write shape and legacy-read migration
+- [ ] Consumers still render legacy records; golden diff is field renames only
+
+**Verification:** `npm test` · `npm run replay` (golden refreshed once, diff reviewed)
+
+**Dependencies:** T16, T17 · **Scope:** Large (single coherent switch; one commit)
+
+---
+
+## Task 19: Filter genericization — seniority + geography
+
+**Description:** Drive `classifySeniority` from `roles.seniority` (include/exclude keywords
+and raw patterns, `assumeSeniorForTiers`, unlabeled-title skip patterns) and
+`classifyGeography` from `location` (country name/code, city aliases, remote policy,
+exclude terms/patterns/codes). Rename output `location.indiaScope` → `location.scope`
+(`located | remote_home | remote_global`) with the tolerant accessor handling legacy values.
+Make the trailing-location strip in `normalize.mjs` config-driven. Update render labels via
+the accessor + configured country. Refresh the golden store deliberately.
+
+**Acceptance criteria:**
+- [ ] Keyword and raw-pattern overrides behave per spec (exclusions first, then inclusions,
+  then tier assumption); unlabeled MTS still skips to the tier rule
+- [ ] Home-country match wins over exclusion lists; other-region postings drop;
+  region-less remote keeps `remote_global` + verify flag
+- [ ] Legacy `indiaScope` records still render correctly
+
+**Verification:** `npm test` · `npm run replay` (golden refreshed once, diff reviewed)
+
+**Dependencies:** T16, T18 · **Scope:** Large (7 files)
+
+---
+
+## Task 20: Renderer, branding, per-fork Pages
+
+**Description:** Feed templates from `config.site` (`{{SITE_NAME}}`, tagline, description);
+generate the about bullets from effective config (country, pay floor/currency or "no pay
+floor", remote policy, levels); format pay labels/coverage via `money.mjs`; RSS
+title/description from config. Resolve the site URL per fork: explicit `site.url` →
+`GITHUB_REPOSITORY` → `git remote origin` → omit. No upstream owner appears in output for a
+fork that has not set `site.url`.
+
+**Acceptance criteria:**
+- [ ] India instance render is visually identical (parity diff reviewed)
+- [ ] Fork render with defaults contains no upstream URL; RSS/canonical links follow the
+  resolution order (unit-tested with env/remote stubs)
+- [ ] About copy tracks config (country, floor, remote policy)
+
+**Verification:** `npm test` · `npm run render` + visual/diff check · fork-default render test
+
+**Dependencies:** T16, T19 · **Scope:** Medium (4 files)
+
+---
+
+## Task 21: Companies schema + validator + upstream data migration
+
+**Description:** Update `validate-companies.mjs`: free-form `tier`; `location` replaces
+`india` (optional, validated when present); `payVetting` optional — when present its
+`generalBaseMin`/`seniorBaseMin` (annual, `pay.currency`) must clear the configured floors;
+required for enabled companies only when `pay.vettingRequired`. Migrate all 86 entries
+(`india` → `location`, vetting ×100000) and update replay fixture companies.
+
+**Acceptance criteria:**
+- [ ] Upstream strict mode still fails on missing/sub-floor vetting; a fork with
+  vetting-less companies validates when `vettingRequired: false`
+- [ ] Migrated `companies.json` passes; duplicate/ATS/slug checks unchanged
+- [ ] Replay fixture companies use the new field names
+
+**Verification:** `npm test` · `npm run validate:companies` · negative fixtures updated
+
+**Dependencies:** T16, T18 · **Scope:** Medium (4 files + data)
+
+---
+
+## Task 22: `add-company` helper
+
+**Description:** `scripts/add-company.mjs` (`npm run add-company -- <url|slug>`): detect the
+ATS + slug from Greenhouse / Lever / Ashby / SmartRecruiters / Workable URL patterns (or
+accept `--ats`), verify the board live via the adapters, prompt for display name, optional
+tier, optional vetting bands, then append a valid entry (dedupe by `ats:slug`) and run
+validation. `--dry-run` prints the JSON without writing.
+
+**Acceptance criteria:**
+- [ ] URL parser unit-tested for all five ATSes plus invalid inputs with a helpful message
+- [ ] Live verify reports posting count; dead boards are rejected with the reason
+- [ ] Appended file passes the validator; duplicate slugs update-or-refuse explicitly
+
+**Verification:** `npm test` · `node scripts/add-company.mjs --dry-run <fixture-url>`
+
+**Dependencies:** T21 · **Scope:** Medium (3 files)
+
+---
+
+## Task 23: Setup wizard
+
+**Description:** `scripts/setup.mjs` (`npm run setup`): interactive sections — site identity,
+location (country/code, cities, remote policy), pay (enabled, currency, floors, display, FX),
+levels, companies (import URL list with live checks via T22 detection, or keep/replace).
+Sparse writes to `data/config.json` and `data/companies.json` with backups; `--yes`
+(defaults), `--dry-run`, `--data-dir <path>` for tests. Prints next steps (dry crawl, render,
+enable Pages, optional LLM vars). Never runs in CI.
+
+**Acceptance criteria:**
+- [ ] `--yes --data-dir <tmp>` produces files that pass `validateConfig`/`validateCompanies`
+- [ ] Existing files are backed up, never silently overwritten
+- [ ] Interrupted/declined prompts leave originals untouched
+
+**Verification:** `npm test` · manual wizard run in a temp copy
+
+**Dependencies:** T16, T17, T21, T22 · **Scope:** Medium (3 files)
+
+---
+
+## Task 24: Docs + workflows + CI
+
+**Description:** Rewrite README: fork quick-start first (setup → add companies → Pages →
+optional LLM), configuration summary, commands, then "this repo's live instance". Add
+`docs/configuration.md` covering every key. Workflow bot identity becomes
+`github-actions[bot]`; CI gains `npm run validate:config`.
+
+**Acceptance criteria:**
+- [ ] README takes a stranger from fork to deployed site without reading source
+- [ ] Every effective config key is documented with type/default/example
+- [ ] CI green locally (test, replay, validate:config, validate:companies)
+
+**Verification:** `npm test && npm run replay && npm run validate:config && npm run validate:companies`
+
+**Dependencies:** T16–T23 · **Scope:** Medium (4 files)
+
+---
+
+## Task 25: Upstream parity + production verification
+
+**Description:** Run the full local gate (`test`, `replay`, `validate:config`,
+`validate:companies`, `crawl:dry` sanity, `render` diff) and review results against the
+pre-change site; dispatch `crawl.yml` with `dry_run: true`, then for real; verify the live
+India site is unchanged (content, RSS/canonical URLs), data files migrated to the new shapes,
+and health issues unaffected. Simulate a fresh fork in a temp dir (`setup --yes`, generic
+render, add-company dry-run) and record that no upstream URLs appear. Append the completion
+log.
+
+**Acceptance criteria:**
+- [ ] Dry-run crawl board health and kept counts plausible vs the last nightly run
+- [ ] Production dispatch green; live page unchanged; `jobs.json`/evidence in new shapes
+- [ ] Fork simulation output contains no upstream owner references
+- [ ] Completion log appended with all deviations recorded
+
+**Verification:** Actions runs inspected · live page checked · temp-dir fork walkthrough
+
+**Dependencies:** T16–T24 · **Scope:** Small files, verification-heavy
+
+---
+
+## Checkpoints
+
+- **E (after T16–T17):** full suite + replay green, behavior unchanged, `validate:config` green
+- **F (after T18–T21):** new pipeline shapes green with refreshed goldens; India render parity; strict companies validation green
+- **G (after T22–T23):** simulated fork produces valid config/companies; backups respected
+- **H (after T24–T25):** CI + nightly green, live site unchanged, fork simulation clean, ready for review

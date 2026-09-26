@@ -1,3 +1,5 @@
+import { isoDate } from "../lib/dates.mjs";
+
 // Greenhouse Job Board API adapter — public, no auth, documented.
 // List carries no descriptions; descriptions, first_published, and pay transparency live on
 // the single-job endpoint, fetched only for postings that passed the crawl filters (T6).
@@ -51,12 +53,6 @@ export function stripHtml(html) {
     .replace(/<[^>]*>/g, " ")
     .replace(/\s+/g, " ")
     .trim();
-}
-
-export function isoDate(value) {
-  if (typeof value !== "string" || !value) return null;
-  const d = new Date(value);
-  return Number.isNaN(d.getTime()) ? null : d.toISOString().slice(0, 10);
 }
 
 export async function fetchJobDetail({ fetcher, company, jobId }) {

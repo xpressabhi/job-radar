@@ -10,6 +10,9 @@ import {
   compileKeywords,
   keywordPattern,
   deriveUserAgent,
+  parseGitHubRemote,
+  resolveRepo,
+  resolveSiteUrl,
 } from "../scripts/lib/config.mjs";
 
 const repoRaw = JSON.parse(readFileSync(new URL("../data/config.json", import.meta.url), "utf8"));
@@ -118,6 +121,37 @@ test("user agent derives per fork and honors an explicit override", () => {
   assert.equal(loadConfig({}, { env: { GITHUB_REPOSITORY: "someone/my-jobs" } }).userAgent, "job-radar/1.0 (+https://github.com/someone/my-jobs)");
   const explicit = loadConfig({ crawl: { userAgent: "custom/2.0" } }, { env: { GITHUB_REPOSITORY: "someone/my-jobs" } });
   assert.equal(explicit.userAgent, "custom/2.0");
+});
+
+test("per-fork site URL and repo resolution", () => {
+  assert.equal(parseGitHubRemote("git@github.com:alice/my-jobs.git"), "alice/my-jobs");
+  assert.equal(parseGitHubRemote("https://github.com/alice/my-jobs.git"), "alice/my-jobs");
+  assert.equal(parseGitHubRemote("https://gitlab.com/alice/my-jobs"), null);
+  assert.equal(parseGitHubRemote(""), null);
+
+  assert.equal(resolveRepo({ env: { GITHUB_REPOSITORY: "alice/my-jobs" }, remote: "git@github.com:bob/other.git" }), "alice/my-jobs");
+  assert.equal(resolveRepo({ env: {}, remote: "git@github.com:bob/other.git" }), "bob/other");
+  assert.equal(resolveRepo({}), null);
+
+  assert.equal(
+    resolveSiteUrl({ config: { site: { url: "https://jobs.example.com/" } }, env: { GITHUB_REPOSITORY: "alice/my-jobs" } }),
+    "https://jobs.example.com/",
+    "explicit override wins",
+  );
+  assert.equal(resolveSiteUrl({ env: { GITHUB_REPOSITORY: "alice/my-jobs" } }), "https://alice.github.io/my-jobs/");
+  assert.equal(resolveSiteUrl({ remote: "git@github.com:bob/other.git" }), "https://bob.github.io/other/");
+  assert.equal(resolveSiteUrl({}), null, "no signals → no URL (link is omitted)");
+});
+
+test("site copy validation", () => {
+  const good = validateConfig(
+    loadConfig({ location: { country: "India" }, site: { name: "Discovery Radar", title: "T", about: ["<strong>a</strong>"] } }),
+  );
+  assert.equal(good.errors.length, 0, good.errors.join("\n"));
+
+  const bad = validateConfig(loadConfig({ location: { country: "India" }, site: { name: "", about: "nope" } }));
+  assert.match(bad.errors.join("\n"), /site\.name/);
+  assert.match(bad.errors.join("\n"), /site\.about/);
 });
 
 test("validator catches broken values and warns about unknown keys", () => {

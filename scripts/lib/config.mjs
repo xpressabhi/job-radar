@@ -3,6 +3,7 @@
 // Merge semantics: plain objects merge recursively, arrays replace, scalars (incl. null) win.
 // See docs/superpowers/specs/2026-09-26-configurable-job-radar-design.md.
 import { readFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 
 // Countries/regions to exclude when they appear in a posting: the home country is checked
 // first (see filters), so listing it here is harmless — and warned about by the validator.
@@ -18,8 +19,10 @@ const OTHER_COUNTRY_CODES = [
 export const DEFAULTS = {
   site: {
     name: "Job Radar",
+    title: null,
     tagline: "Engineering roles at employers vetted to pay well. Crawled daily straight from company ATS boards.",
     description: "Daily-updated engineering roles at employers vetted to pay well.",
+    about: null,
     url: null,
   },
   location: {
@@ -123,6 +126,43 @@ export function deriveUserAgent(env = {}) {
   return repo ? `job-radar/1.0 (+https://github.com/${repo})` : "job-radar/1.0";
 }
 
+/** `git@github.com:owner/repo.git` / `https://github.com/owner/repo` → `owner/repo`. */
+export function parseGitHubRemote(remote) {
+  if (!remote) return null;
+  const m = String(remote).trim().match(/^(?:git@github\.com:|https?:\/\/github\.com\/)([^/\s]+)\/([^/\s]+?)(?:\.git)?$/i);
+  return m ? `${m[1]}/${m[2]}` : null;
+}
+
+/** Best-effort `owner/repo` for the checkout, from env first, then the git remote. */
+export function resolveRepo({ env = {}, remote = null } = {}) {
+  const fromEnv = String(env.GITHUB_REPOSITORY ?? "").trim();
+  if (/^[^/\s]+\/[^/\s]+$/.test(fromEnv)) return fromEnv;
+  return parseGitHubRemote(remote);
+}
+
+/** Best-effort synchronous read of `origin`; silent when git or the remote is absent. */
+export function detectGitRemote(cwd = process.cwd()) {
+  try {
+    const out = execFileSync("git", ["config", "--get", "remote.origin.url"], { cwd, stdio: ["ignore", "pipe", "ignore"] });
+    return String(out).trim() || null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Site URL for RSS/canonical links, resolved per fork: explicit override → GITHUB_REPOSITORY
+ * env → git remote → null. No fork should ever claim the upstream owner's Pages URL.
+ */
+export function resolveSiteUrl({ config = {}, env = {}, remote = null } = {}) {
+  const explicit = config.site?.url;
+  if (explicit) return String(explicit);
+  const repo = resolveRepo({ env, remote });
+  if (!repo) return null;
+  const [owner, name] = repo.split("/");
+  return `https://${owner.toLowerCase()}.github.io/${name}/`;
+}
+
 /**
  * Load the effective config: clone defaults, merge the file override, drop the home
  * country's code from the exclusion list, and expose temporary legacy aliases used by
@@ -161,7 +201,7 @@ export function loadConfigFile(file, opts) {
 
 const ALLOWED_KEYS = {
   "": ["$comment", "site", "location", "roles", "pay", "crawl", "llm"],
-  site: ["name", "tagline", "description", "url"],
+  site: ["name", "title", "tagline", "description", "about", "url"],
   location: ["country", "countryCode", "acceptRemote", "cities", "excludeRegex", "excludeRemotePatterns", "excludeCountryCodes"],
   roles: ["seniority"],
   "roles.seniority": [
@@ -219,7 +259,14 @@ export function validateConfig(cfg = {}) {
   }
   if (!Array.isArray(cfg.location?.excludeCountryCodes)) errors.push("location.excludeCountryCodes must be an array");
 
-  const pay = cfg.pay ?? {};
+  const site = cfg.site ?? {};
+if (site.title != null && typeof site.title !== "string") errors.push("site.title must be a string");
+if (site.about != null && (!Array.isArray(site.about) || site.about.some((s) => typeof s !== "string"))) {
+  errors.push("site.about must be an array of strings (HTML allowed)");
+}
+if (typeof site.name !== "string" || !site.name.trim()) errors.push("site.name must be a non-empty string");
+
+const pay = cfg.pay ?? {};
   if (pay.enabled !== false) {
     if (typeof pay.currency !== "string" || !pay.currency.trim()) {
       errors.push("pay.currency is required when pay.enabled is true");

@@ -105,3 +105,47 @@ test("formatDay is deterministic and null-safe", () => {
   assert.equal(formatDay(null), "");
   assert.equal(formatDay("nonsense"), "");
 });
+
+test("branding comes from config; a fork renders no upstream owner URLs", () => {
+  const fork = renderSite({ store: emptyStore(), config: { site: { name: "Discovery Radar" } }, now: "2026-09-26T02:00:00.000Z" });
+  assert.match(fork["index.html"], /Discovery Radar/);
+  assert.match(fork["archive.html"], /Discovery Radar/);
+  assert.ok(!fork["index.html"].includes("xpressabhi"), "index has no upstream URL");
+  assert.ok(!fork["archive.html"].includes("xpressabhi"), "archive has no upstream URL");
+  assert.ok(!fork["feed.xml"].includes("xpressabhi"), "feed has no upstream URL");
+  assert.ok(!fork["feed.xml"].includes("<link>"), "no siteUrl → no channel link");
+  assert.match(fork["index.html"], /Built with no runtime dependencies/, "no repo → generic source note");
+});
+
+test("siteUrl and repo flow into RSS and source links when resolved", () => {
+  const forked = renderSite({
+    store,
+    config,
+    siteUrl: "https://alice.github.io/my-jobs/",
+    repo: "alice/my-jobs",
+    now: "2026-09-26T02:00:00.000Z",
+  });
+  assert.match(forked["feed.xml"], /<link>https:\/\/alice\.github\.io\/my-jobs\/<\/link>/);
+  assert.match(forked["index.html"], /github\.com\/alice\/my-jobs/);
+  assert.match(forked["archive.html"], /github\.com\/alice\/my-jobs/);
+});
+
+test("about bullets: generated from config by default, overridable via site.about", () => {
+  const generated = renderSite({
+    store: emptyStore(),
+    config: {
+      location: { country: "Germany" },
+      pay: { floorAnnual: 90000, companyFloorAnnual: 60000, currency: "EUR", display: { symbol: "€", divisor: 1, suffix: "", decimals: 0 } },
+    },
+    now: "2026-09-26T02:00:00.000Z",
+  })["index.html"];
+  assert.match(generated, /remote-Germany/);
+  assert.match(generated, /€90,000 base at senior level in Germany/);
+
+  const overridden = renderSite({
+    store: emptyStore(),
+    config: { ...config, site: { about: ["<strong>Custom:</strong> copy"] } },
+    now: "2026-09-26T02:00:00.000Z",
+  })["index.html"];
+  assert.match(overridden, /<strong>Custom:<\/strong> copy/);
+});

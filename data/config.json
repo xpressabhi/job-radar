@@ -2,8 +2,15 @@
   "$comment": "Sparse override over built-in defaults — see docs/configuration.md. Amounts are annual, in pay.currency.",
   "site": {
     "name": "Job Radar",
+    "title": "Job Radar — senior engineering roles in India",
     "tagline": "Senior+ engineering roles in India (or remote-India) at employers vetted to pay top of market. Crawled daily straight from company ATS boards.",
-    "description": "Daily-updated senior+ engineering roles in India (or remote-India) at companies vetted to pay at least ₹50L base at senior level."
+    "description": "Daily-updated senior+ engineering roles in India (or remote-India) at companies vetted to pay at least ₹50L base at senior level.",
+    "about": [
+      "<strong>Companies:</strong> a hand-vetted list; each employer must clear ₹20L base pay generally and ₹50L base at senior level in India. Company bands are recorded with sources in the repo and refined by pay data observed in real postings.",
+      "<strong>Roles:</strong> senior+ engineering titles only (Senior / Staff / Principal / Lead / Architect / Director / EM / VP). Where pay is published, the band's <em>lower bound</em> must clear ₹50L base; equity and bonus never count. Where pay is not published, the company's vetted senior band applies.",
+      "<strong>Geography:</strong> India-located, remote-India, and unrestricted-remote roles (the latter flagged \"verify eligibility\"). Roles restricted to other regions are excluded.",
+      "<strong>Freshness:</strong> crawled daily from public ATS boards. A role leaves the active list after two consecutive successful crawls without it, and lives on in the archive. Failed crawls never remove anything."
+    ]
   },
   "location": {
     "country": "India",

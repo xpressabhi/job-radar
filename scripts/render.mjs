@@ -5,7 +5,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from "node
 import { fileURLToPath } from "node:url";
 import { CATEGORIES } from "./lib/taxonomy.mjs";
 import { emptyStore } from "./lib/store.mjs";
-import { loadConfig } from "./lib/config.mjs";
+import { loadConfig, resolveRepo, resolveSiteUrl, detectGitRemote } from "./lib/config.mjs";
 import { formatBand, formatMoney } from "./lib/money.mjs";
 import { payMax, payMin, payVetted, locationScope } from "./lib/accessors.mjs";
 
@@ -110,6 +110,58 @@ function archiveGroups(archived, config = {}) {
     .join("\n");
 }
 
+// ---------- site branding (config-driven; per-fork URLs) ----------
+
+export function siteText(config = {}, repo = null) {
+  const site = config.site ?? {};
+  const name = site.name ?? "Job Radar";
+  const fallbackTitle = [name, site.tagline ?? site.description ?? ""].filter(Boolean).join(" — ");
+  return {
+    name,
+    title: site.title ?? fallbackTitle,
+    tagline: site.tagline ?? "",
+    description: site.description ?? "",
+    sourceNote: repo
+      ? `Built by <a href="${esc(`https://github.com/${repo}`)}">${esc(repo)}</a> with no runtime dependencies and no secrets.`
+      : "Built with no runtime dependencies and no secrets.",
+    sourceLink: repo ? ` · <a href="${esc(`https://github.com/${repo}`)}">source</a>` : "",
+  };
+}
+
+/** About bullets: `site.about` (raw HTML) wins; otherwise generated from the effective config. */
+export function aboutItems(config = {}) {
+  const site = config.site ?? {};
+  if (Array.isArray(site.about) && site.about.length) {
+    return site.about.map((item) => `<li>${item}</li>`).join("\n    ");
+  }
+  const loc = config.location ?? {};
+  const pay = config.pay ?? {};
+  const country = loc.country ?? "your region";
+  const items = [];
+  if (pay.enabled !== false) {
+    const senior = formatMoney(pay.floorAnnual, pay.display ?? DEFAULT_PAY_DISPLAY);
+    const general = formatMoney(pay.companyFloorAnnual, pay.display ?? DEFAULT_PAY_DISPLAY);
+    items.push(
+      `<strong>Companies:</strong> a curated list; where vetting is recorded, employers must clear ${general} base generally and ${senior} base at senior level${loc.country ? ` in ${esc(loc.country)}` : ""}.`,
+    );
+    items.push(
+      `<strong>Roles:</strong> senior+ engineering titles. Where pay is published, the band's <em>lower bound</em> must clear ${senior} base; equity and bonus never count. Where pay is not published, the company's vetted band applies when one is recorded.`,
+    );
+  } else {
+    items.push("<strong>Companies:</strong> a curated list of employers.");
+    items.push("<strong>Roles:</strong> senior+ engineering titles (pay is not gated in this instance).");
+  }
+  items.push(
+    `<strong>Geography:</strong> ${esc(country)}-located${
+      loc.acceptRemote !== false ? `, remote-${esc(country)}, and unrestricted-remote roles (the latter flagged "verify eligibility")` : ""
+    }. Roles restricted to other regions are excluded.`,
+  );
+  items.push(
+    "<strong>Freshness:</strong> crawled daily from public ATS boards. A role leaves the active list after two consecutive successful crawls without it, and lives on in the archive. Failed crawls never remove anything.",
+  );
+  return items.map((item) => `<li>${item}</li>`).join("\n    ");
+}
+
 function coverageHtml(store, activeCount, archivedCount, config = {}) {
   const run = store.lastRun ?? {};
   const total = run.boardsTotal ?? null;
@@ -130,7 +182,7 @@ function coverageHtml(store, activeCount, archivedCount, config = {}) {
   return bits.join("\n  ");
 }
 
-function rssFeed(active, siteUrl, config = {}) {
+function rssFeed(active, siteUrl, config = {}, site = {}) {
   const items = active
     .slice(0, 50)
     .map((job) => {
@@ -149,9 +201,9 @@ function rssFeed(active, siteUrl, config = {}) {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
-  <title>Job Radar — senior engineering roles in India</title>
-  <link>${esc(siteUrl)}</link>
-  <description>Senior+ engineering roles in India (or remote-India) at companies vetted to pay at least ₹50L base at senior level.</description>
+  <title>${esc(site.title ?? "Job Radar")}</title>
+  ${siteUrl ? `<link>${esc(siteUrl)}</link>` : ""}
+  <description>${esc(site.description ?? "")}</description>
   <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
 ${items}
 </channel>
@@ -159,7 +211,8 @@ ${items}
 `;
 }
 
-export function renderSite({ store, config, siteUrl = "https://xpressabhi.github.io/job-radar/", now = new Date().toISOString() }) {
+export function renderSite({ store, config, siteUrl = null, repo = null, now = new Date().toISOString() }) {
+  const site = siteText(config, repo);
   const jobs = store.jobs ?? [];
   const freshest = (j) => (j.postedAt || j.firstSeen || "").slice(0, 10);
   const active = jobs
@@ -183,6 +236,12 @@ export function renderSite({ store, config, siteUrl = "https://xpressabhi.github
   const index = indexTemplate
     .replace("{{STYLE}}", style)
     .replace("{{SCRIPT}}", script)
+    .replace("{{SITE_TITLE}}", esc(site.title))
+    .replace("{{SITE_DESCRIPTION}}", esc(site.description))
+    .replace("{{SITE_NAME}}", esc(site.name))
+    .replace("{{SITE_TAGLINE}}", esc(site.tagline))
+    .replace("{{ABOUT_ITEMS}}", aboutItems(config))
+    .replace("{{SOURCE_NOTE}}", site.sourceNote)
     .replace("{{CATEGORY_OPTIONS}}", categoryOptions)
     .replace("{{ROWS}}", rows || `<li class="empty">No live roles right now — check the archive or the RSS feed.</li>`)
     .replace("{{COVERAGE}}", coverage)
@@ -191,6 +250,8 @@ export function renderSite({ store, config, siteUrl = "https://xpressabhi.github
 
   const archive = archiveTemplate
     .replace("{{STYLE}}", style)
+    .replaceAll("{{SITE_NAME}}", esc(site.name))
+    .replace("{{SOURCE_LINK}}", site.sourceLink)
     .replace("{{GROUPS}}", archiveGroups(archived, config) || `<p class="empty">Nothing archived yet.</p>`)
     .replace("{{COVERAGE}}", coverage)
     .replace("{{ARCHIVE_COUNT}}", String(archived.length))
@@ -200,7 +261,7 @@ export function renderSite({ store, config, siteUrl = "https://xpressabhi.github
     "index.html": index,
     "archive.html": archive,
     "jobs.json": JSON.stringify(store, null, 2) + "\n",
-    "feed.xml": rssFeed(active, siteUrl, config),
+    "feed.xml": rssFeed(active, siteUrl, config, site),
   };
 }
 
@@ -211,7 +272,10 @@ async function main() {
   };
   const store = data("jobs.json", emptyStore());
   const config = loadConfig(data("config.json", {}), { env: process.env });
-  const files = renderSite({ store, config });
+  const remote = detectGitRemote();
+  const repo = resolveRepo({ env: process.env, remote });
+  const siteUrl = resolveSiteUrl({ config, env: process.env, remote });
+  const files = renderSite({ store, config, siteUrl, repo });
 
   const outDir = new URL("../site/", import.meta.url);
   rmSync(outDir, { recursive: true, force: true });

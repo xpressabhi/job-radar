@@ -62,6 +62,37 @@ export function classifySeniority(title, tier, config = {}) {
   return { keep: false, reason: `unlabeled title outside assumed-senior tiers (${rules.assumeTiers.join(", ") || "none"})` };
 }
 
+// ---------- Track gate (optional instance focus) ----------
+// A role's cleaned title must match an `includePatterns` entry and must not match any
+// `excludePatterns` entry (exclusions checked first). An empty include list disables the
+// gate, so generic forks keep every engineering role. Compiled once per config object.
+
+const trackCache = new WeakMap();
+
+export function trackRules(config = {}) {
+  if (!trackCache.has(config)) {
+    const t = config.roles?.tracks ?? DEFAULTS.roles.tracks;
+    trackCache.set(config, {
+      include: compilePatterns(t.includePatterns ?? []),
+      exclude: compilePatterns(t.excludePatterns ?? []),
+    });
+  }
+  return trackCache.get(config);
+}
+
+export function classifyTrack(title, config = {}) {
+  const rules = trackRules(config);
+  if (!rules.include.length) return { keep: true, track: null };
+  const t = String(title ?? "");
+  for (const { label, re } of rules.exclude) {
+    if (re.test(t)) return { keep: false, reason: `track excluded (${label})` };
+  }
+  for (const { label, re } of rules.include) {
+    if (re.test(t)) return { keep: true, track: label };
+  }
+  return { keep: false, reason: "outside tracked roles (no frontend/AI title signal)" };
+}
+
 // ---------- Geography gate (§6.2) ----------
 
 // ---------- Geography gate (§6.2) ----------
@@ -248,6 +279,9 @@ export function applyFilters({ posting, company, config }) {
 
   const sen = classifySeniority(title, company.tier, config);
   if (!sen.keep) return { keep: false, drops: [sen.reason] };
+
+  const track = classifyTrack(title, config);
+  if (!track.keep) return { keep: false, drops: [track.reason] };
 
   const geo = classifyGeography(posting, config);
   if (!geo.keep) return { keep: false, drops: [geo.reason] };

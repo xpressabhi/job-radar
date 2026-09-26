@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 import {
   isEngineeringTitle,
   classifySeniority,
+  classifyTrack,
   classifyGeography,
   classifyPay,
   applyFilters,
@@ -108,6 +109,54 @@ test("unlabeled titles pass only at assumed-senior tiers, flagged tier-assumed",
   }
 });
 
+// ---------- Track gate ----------
+
+test("track gate is off by default (generic forks keep every engineering role)", () => {
+  assert.equal(classifyTrack("Senior Backend Engineer", config).keep, true);
+  assert.equal(classifyTrack("Data Platform Engineer", config).keep, true);
+});
+
+test("track gate keeps only matching titles, exclusions first", () => {
+  const cfg = loadConfigFile(new URL("./fixtures/config.json", import.meta.url));
+  cfg.roles = {
+    ...cfg.roles,
+    tracks: {
+      includePatterns: [
+        { label: "frontend", pattern: "\\bfront[- ]?end\\b" },
+        { label: "agents", pattern: "\\bagent(?:s|ic)?\\b" },
+      ],
+      excludePatterns: [
+        { label: "solutions", pattern: "\\bsolutions?\\b" },
+        { label: "leadership", pattern: "\\b(?:manager|director)\\b" },
+      ],
+    },
+  };
+  assert.equal(classifyTrack("Senior Frontend Engineer", cfg).keep, true);
+  assert.equal(classifyTrack("Software Engineer, Agents", cfg).keep, true);
+  assert.equal(classifyTrack("Senior Backend Engineer", cfg).keep, false, "no include match");
+  assert.equal(classifyTrack("Engineering Manager, Agentic Platform", cfg).keep, false, "exclusion beats inclusion");
+  assert.equal(classifyTrack("Solutions Engineer, Agent Platform", cfg).keep, false);
+});
+
+test("applyFilters drops roles outside the track gate", () => {
+  const cfg = loadConfigFile(new URL("./fixtures/config.json", import.meta.url));
+  cfg.roles = {
+    ...cfg.roles,
+    tracks: {
+      includePatterns: [{ label: "ai", pattern: "\\bai\\b" }],
+      excludePatterns: [{ label: "solutions", pattern: "\\bsolutions?\\b" }],
+    },
+  };
+  const kept = applyFilters({ posting: posting({ title: "Senior AI Engineer" }), company: company(), config: cfg });
+  assert.equal(kept.keep, true);
+  const excluded = applyFilters({ posting: posting({ title: "Senior Solutions Engineer, AI" }), company: company(), config: cfg });
+  assert.equal(excluded.keep, false);
+  assert.match(excluded.drops[0], /track excluded \(solutions\)/);
+  const untracked = applyFilters({ posting: posting({ title: "Senior Security Engineer" }), company: company(), config: cfg });
+  assert.equal(untracked.keep, false);
+  assert.match(untracked.drops[0], /outside tracked roles/);
+});
+
 // ---------- Geography ----------
 
 test("home-country postings are kept and cities extracted", () => {
@@ -149,6 +198,14 @@ test("other-geography restrictions are dropped", () => {
 
 test("no location signal at all is dropped", () => {
   assert.equal(classifyGeography(posting({ locationRaw: "", locations: [] }), config).keep, false);
+});
+
+test("US tokens and multi-country regions are excluded (regex regression)", () => {
+  const cases = ["US", "U.S.", "U.S.A", "USA", "US Remote", "Remote U.S.", "Remote (US)", "United States of America", "North America", "South America"];
+  for (const loc of cases) {
+    const r = classifyGeography(posting({ locationRaw: loc, locations: [loc], mode: "remote" }), config);
+    assert.equal(r.keep, false, loc);
+  }
 });
 
 // ---------- Pay ----------

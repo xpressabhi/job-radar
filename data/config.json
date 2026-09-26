@@ -2,12 +2,12 @@
   "$comment": "Sparse override over built-in defaults — see docs/configuration.md. Amounts are annual, in pay.currency.",
   "site": {
     "name": "Job Radar",
-    "title": "Job Radar — senior engineering roles in India",
-    "tagline": "Senior+ engineering roles in India (or remote-India) at employers vetted to pay top of market. Crawled daily straight from company ATS boards.",
-    "description": "Daily-updated senior+ engineering roles in India (or remote-India) at companies vetted to pay at least ₹50L base at senior level.",
+    "title": "Job Radar — frontend & AI engineering roles in India",
+    "tagline": "Senior+ frontend (React/TypeScript) and AI engineering (agents, LLM apps, evals) roles in India (or remote-India) at employers vetted to pay top of market. Crawled daily straight from company ATS boards.",
+    "description": "Daily-updated senior+ frontend and AI engineering roles in India (or remote-India) at companies vetted to pay at least ₹50L base at senior level.",
     "about": [
       "<strong>Companies:</strong> a hand-vetted list; each employer must clear ₹20L base pay generally and ₹50L base at senior level in India. Company bands are recorded with sources in the repo and refined by pay data observed in real postings.",
-      "<strong>Roles:</strong> senior+ engineering titles only (Senior / Staff / Principal / Lead / Architect / Director / EM / VP). Where pay is published, the band's <em>lower bound</em> must clear ₹50L base; equity and bonus never count. Where pay is not published, the company's vetted senior band applies.",
+      "<strong>Roles:</strong> two tracks only — frontend (React/TypeScript) and AI engineering (agents, LLM apps, evals) — at senior+ levels (Senior / Staff / Principal / Lead). Where pay is published, the band's <em>lower bound</em> must clear ₹50L base; equity and bonus never count. Where pay is not published, the company's vetted senior band applies.",
       "<strong>Geography:</strong> India-located, remote-India, and unrestricted-remote roles (the latter flagged \"verify eligibility\"). Roles restricted to other regions are excluded.",
       "<strong>Freshness:</strong> crawled daily from public ATS boards. A role leaves the active list after two consecutive successful crawls without it, and lives on in the archive. Failed crawls never remove anything."
     ]
@@ -69,6 +69,40 @@
       "panaji": "Goa",
       "shimla": "Shimla",
       "amritsar": "Amritsar"
+    }
+  },
+  "roles": {
+    "tracks": {
+      "includePatterns": [
+        { "label": "frontend", "pattern": "\\bfront[- ]?end\\b" },
+        { "label": "react", "pattern": "\\breact\\b" },
+        { "label": "next.js", "pattern": "\\bnext\\.?js\\b" },
+        { "label": "web engineer", "pattern": "\\bweb (?:engineer|developer|platform)\\b" },
+        { "label": "ui engineer", "pattern": "\\bui (?:software )?(?:engineer|developer)\\b" },
+        { "label": "design engineer", "pattern": "\\bdesign (?:engineer|systems?)\\b" },
+        { "label": "product engineer", "pattern": "\\bproduct engineer\\b" },
+        { "label": "ai", "pattern": "\\bai\\b" },
+        { "label": "ml", "pattern": "\\bml\\b|\\bmachine learning\\b|\\bdeep learning\\b" },
+        { "label": "llm", "pattern": "\\bllms?\\b" },
+        { "label": "genai", "pattern": "\\bgenai\\b|\\bgenerative ai\\b" },
+        { "label": "agents", "pattern": "\\bagent(?:s|ic)?\\b" },
+        { "label": "rag", "pattern": "\\brag\\b" },
+        { "label": "evals", "pattern": "\\bevals?\\b|\\bevaluation\\b" },
+        { "label": "mcp", "pattern": "\\bmcp\\b|\\bmodel context protocol\\b" },
+        { "label": "nlp", "pattern": "\\bnlp\\b" },
+        { "label": "applied ai/ml", "pattern": "\\bapplied (?:ai|ml)\\b" }
+      ],
+      "excludePatterns": [
+        { "label": "leadership", "pattern": "\\b(?:manager|director|head of|vp|vice president)\\b" },
+        { "label": "solutions/sales/support", "pattern": "\\b(?:solutions?|sales|gtm|go[- ]to[- ]market|presales|pre[- ]sales|support|customer|partner)\\b" },
+        { "label": "analyst/people/recruiting", "pattern": "\\b(?:analyst|analytics|consult\\w*|recruit\\w*|talent|people|marketing|account|advocate|evangelist|hr|operations|strateg\\w*)\\b" },
+        { "label": "architect", "pattern": "\\barchitect\\b" },
+        { "label": "research/model", "pattern": "\\bresearch\\w*\\b|\\bscientist\\b|\\bpre[- ]?training\\b|\\bfoundational\\b|\\bsynthetic data\\b|\\bmultimodal\\b|\\bmodel (?:efficiency|training|serving)\\b|\\bml (?:systems|platform|infra)\\b|\\bmlops\\b|\\bml ops\\b" },
+        { "label": "infra/ops", "pattern": "\\binfra(?:structure)?\\b|\\bsre\\b|\\bsite reliability\\b|\\bdevops\\b|\\bkubernetes\\b|\\bk8s\\b|\\bdistributed\\b|\\bnetworking\\b|\\bstorage\\b|\\bdatabases?\\b|\\bobservability\\b|\\bperformance engineer\\b|\\bkernels?\\b|\\bdeployment\\b|\\bdeployed\\b" },
+        { "label": "security/qa/test", "pattern": "\\bsecurity\\b|\\bcompliance\\b|\\bpenetration\\b|\\bqa\\b|\\bquality\\b|\\btest(?:ing)?\\b|\\bsdet\\b" },
+        { "label": "mobile", "pattern": "\\bmobile\\b|\\bios\\b|\\bandroid\\b|\\breact native\\b|\\bflutter\\b" },
+        { "label": "backend/other", "pattern": "\\bbackend\\b|\\bback[- ]end\\b|\\bsap\\b|\\bsalesforce\\b|\\bzuora\\b|\\bdata\\b|\\bsearch\\b|\\bscalability\\b" }
+      ]
     }
   },
   "pay": {

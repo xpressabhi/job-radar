@@ -13,7 +13,7 @@ npm run validate:config -- --show
 ```
 
 Everything below has a generic default. The upstream instance only overrides `site`,
-`location`, `pay`, and `crawl` — see `data/config.json`.
+`location`, `roles.tracks`, `pay`, and `crawl` — see `data/config.json`.
 
 ## `site`
 
@@ -55,6 +55,43 @@ Controls which titles count as senior+ (the engineering-title gate itself is bui
 
 Patterns first, then keywords; exclusions beat inclusions. `npm run validate:config` checks
 that every raw pattern compiles.
+
+## `roles.tracks`
+
+Optional instance focus. When `includePatterns` is non-empty, a role's cleaned **title** must
+match one include pattern and must not match any exclude pattern — exclusions are checked
+first, so `Engineering Manager, Agentic Platform` is dropped even though it says "agentic".
+An empty include list (the default) switches the gate off, so forks keep every engineering
+role.
+
+| Key | Type | Default | Meaning |
+|---|---|---|---|
+| `includePatterns` | `{label, pattern}[]` | `[]` | Raw case-insensitive regexes; the match label is kept for the crawl log but not persisted |
+| `excludePatterns` | `{label, pattern}[]` | `[]` | Raw case-insensitive regexes; a match drops the role with `track excluded (<label>)` as the reason |
+
+Why title-level: taxonomy categories are assigned from title **and description**, so
+descriptions that merely name AI ("we use agents", vendor boilerplate) push unrelated roles
+(payments, infra, research) into `ai-ml`. Titles are the reliable signal for track focus.
+
+Example — frontend + AI engineering only:
+
+```jsonc
+{
+  "roles": {
+    "tracks": {
+      "includePatterns": [
+        { "label": "frontend", "pattern": "\\bfront[- ]?end\\b" },
+        { "label": "ai", "pattern": "\\bai\\b" },
+        { "label": "agents", "pattern": "\\bagent(?:s|ic)?\\b" }
+      ],
+      "excludePatterns": [
+        { "label": "solutions", "pattern": "\\b(?:solutions?|sales|support|partner)\\b" },
+        { "label": "research", "pattern": "\\bresearch\\w*\\b|\\bscientist\\b" }
+      ]
+    }
+  }
+}
+```
 
 ## `pay`
 

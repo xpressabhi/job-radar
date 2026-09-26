@@ -4,9 +4,10 @@ Daily crawl of engineering roles straight from company ATS boards → a static G
 site, an archive of closed roles, and JSON/RSS feeds. Zero runtime dependencies, no
 required secrets.
 
-The upstream instance tracks senior+ engineering roles in India at employers vetted to pay
-top of market: **https://xpressabhi.github.io/job-radar/**. Fork it and it becomes yours —
-your country, your currency, your pay floors, your levels, your company list, your Pages.
+The upstream instance tracks senior+ frontend (React/TypeScript) and AI engineering roles in
+India at employers vetted to pay top of market: **https://xpressabhi.github.io/job-radar/**.
+Fork it and it becomes yours — your country, your currency, your pay floors, your levels,
+your company list, your tracks, your Pages.
 
 ## Run your own (fork quick start)
 

@@ -27,6 +27,7 @@ test("bare defaults are inert and generic", () => {
   assert.deepEqual(cfg.pay.fxRates, {});
   assert.ok(cfg.location.excludeRegex, "world exclusion regex ships as a default");
   assert.ok(cfg.roles.seniority.includePatterns.length > 0, "seniority patterns ship as defaults");
+  assert.deepEqual(cfg.roles.tracks, { includePatterns: [], excludePatterns: [] }, "track gate ships inert");
 
   const { errors } = validateConfig(cfg);
   assert.match(errors.join("\n"), /location\.country/);
@@ -174,6 +175,9 @@ test("validator catches broken values and warns about unknown keys", () => {
 
   const badPattern = validateConfig(loadConfig({ roles: { seniority: { includePatterns: [{ label: "x", pattern: "(" }] } } }));
   assert.match(badPattern.errors.join("\n"), /roles\.seniority\.includePatterns\[0\]\.pattern/);
+
+  const badTrack = validateConfig(loadConfig({ roles: { tracks: { includePatterns: [{ label: "x", pattern: "(" }] } } }));
+  assert.match(badTrack.errors.join("\n"), /roles\.tracks\.includePatterns\[0\]\.pattern/);
 
   const payOff = validateConfig(loadConfig({ location: { country: "Germany" }, pay: { enabled: false, currency: "", floorAnnual: -5 } }));
   assert.equal(payOff.errors.length, 0, payOff.errors.join("\n"));

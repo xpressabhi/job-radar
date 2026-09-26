@@ -7,7 +7,7 @@ import { execFileSync } from "node:child_process";
 
 // Countries/regions to exclude when they appear in a posting: the home country is checked
 // first (see filters), so listing it here is harmless — and warned about by the validator.
-const WORLD_EXCLUDE_RE = String.raw`\b(?:united states|u\.?s\.?a\.?|usa|canada|united kingdom|germany|france|netherlands|ireland|spain|portugal|poland|romania|sweden|switzerland|singapore|australia|new zealand|japan|south korea|china|hong kong|taiwan|brazil|mexico|argentina|israel|india|united arab emirates|dubai|saudi arabia|philippines|indonesia|vietnam|thailand|malaysia|italy|denmark|norway|finland|austria|belgium|czech|hungary|greece|turkey|south africa|nigeria|kenya|egypt|pakistan|bangladesh|sri lanka|nepal|emea|latam|americas|europe)\b`;
+const WORLD_EXCLUDE_RE = String.raw`\b(?:united states(?: of america)?|u\.?s\.?a?\.?|usa|canada|united kingdom|germany|france|netherlands|ireland|spain|portugal|poland|romania|sweden|switzerland|singapore|australia|new zealand|japan|south korea|china|hong kong|taiwan|brazil|mexico|argentina|israel|india|united arab emirates|dubai|saudi arabia|philippines|indonesia|vietnam|thailand|malaysia|italy|denmark|norway|finland|austria|belgium|czech|hungary|greece|turkey|south africa|nigeria|kenya|egypt|pakistan|bangladesh|sri lanka|nepal|north america|south america|emea|latam|americas|europe)\b`;
 
 const OTHER_COUNTRY_CODES = [
   "US", "CA", "GB", "UK", "DE", "FR", "NL", "IE", "ES", "PT", "PL", "RO", "SE", "CH", "SG", "AU",
@@ -65,6 +65,13 @@ export const DEFAULTS = {
       // labels: they skip keyword matching and fall through to the assume-senior tier rule.
       skipSeniorPatterns: [{ label: "mts", pattern: String.raw`\bmember of technical staff\b|\bmts\b` }],
       assumeSeniorForTiers: ["frontier-ai"],
+    },
+    // Optional track gate: when `includePatterns` is non-empty a role's cleaned title must
+    // match an include pattern and must not match any exclude pattern (exclusions first).
+    // Empty defaults keep every engineering role — forks opt in.
+    tracks: {
+      includePatterns: [],
+      excludePatterns: [],
     },
   },
   pay: {
@@ -203,11 +210,12 @@ const ALLOWED_KEYS = {
   "": ["$comment", "site", "location", "roles", "pay", "crawl", "llm"],
   site: ["name", "title", "tagline", "description", "about", "url"],
   location: ["country", "countryCode", "acceptRemote", "cities", "excludeRegex", "excludeRemotePatterns", "excludeCountryCodes"],
-  roles: ["seniority"],
+  roles: ["seniority", "tracks"],
   "roles.seniority": [
     "includeKeywords", "excludeKeywords", "includePatterns", "excludePatterns",
     "skipSeniorPatterns", "assumeSeniorForTiers",
   ],
+  "roles.tracks": ["includePatterns", "excludePatterns"],
   pay: ["enabled", "currency", "floorAnnual", "companyFloorAnnual", "vettingRequired", "display", "fxRates", "fxNote"],
   "pay.display": ["symbol", "divisor", "suffix", "decimals"],
   crawl: ["requestDelayMs", "timeoutMs", "retries", "archiveMisses", "userAgent"],
@@ -306,6 +314,14 @@ const pay = cfg.pay ?? {};
     }
   }
   if (!Array.isArray(seniority.assumeSeniorForTiers)) errors.push("roles.seniority.assumeSeniorForTiers must be an array of tier names");
+
+  const tracks = cfg.roles?.tracks ?? {};
+  for (const list of ["includePatterns", "excludePatterns"]) {
+    for (const [i, entry] of (tracks[list] ?? []).entries()) {
+      if (!entry || typeof entry.pattern !== "string") errors.push(`roles.tracks.${list}[${i}] must have a string pattern`);
+      else checkRegex(entry.pattern, `roles.tracks.${list}[${i}].pattern`, errors);
+    }
+  }
 
   const crawl = cfg.crawl ?? {};
   for (const key of ["requestDelayMs", "timeoutMs"]) {

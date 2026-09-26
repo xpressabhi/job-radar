@@ -8,7 +8,7 @@ import { loadConfig } from "./lib/config.mjs";
 import { formatBand, formatMoney } from "./lib/money.mjs";
 import { locationScope, payMax, payMin, payVetted } from "./lib/accessors.mjs";
 import { getAdapter } from "./sources/index.mjs";
-import { applyFilters, classifyGeography, classifySeniority, isEngineeringTitle } from "./lib/filters.mjs";
+import { applyFilters, classifyGeography, classifySeniority, classifyTrack, isEngineeringTitle } from "./lib/filters.mjs";
 import { cleanTitle } from "./lib/normalize.mjs";
 import { emptyStore, mergeResults, appendCompEvidence, updateHealth, runSummaryLine } from "./lib/store.mjs";
 import { classifyBatch } from "./lib/llm.mjs";
@@ -48,6 +48,7 @@ function passesBeforePay(posting, company, config) {
   const title = cleanTitle(posting.title, config.location);
   if (!isEngineeringTitle(title)) return false;
   if (!classifySeniority(title, company.tier, config).keep) return false;
+  if (!classifyTrack(title, config).keep) return false;
   return classifyGeography(posting, config).keep;
 }
 

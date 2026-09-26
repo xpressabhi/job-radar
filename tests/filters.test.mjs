@@ -40,7 +40,7 @@ const posting = (overrides = {}) => ({
 // ---------- Engineering gate ----------
 
 test("engineering gate drops non-engineering roles", () => {
-  for (const title of ["Account Executive", "Senior Product Manager", "Sales Engineer", "Technical Recruiter", "Senior Product Designer", "Customer Success Manager"]) {
+  for (const title of ["Account Executive", "Senior Product Manager", "Sales Engineer", "Technical Recruiter", "Senior Product Designer", "Customer Success Manager", "Sr. AI GTM Engineer"]) {
     assert.equal(isEngineeringTitle(title), false, title);
   }
 });

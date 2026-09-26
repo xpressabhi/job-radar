@@ -341,3 +341,36 @@ the job-finder tracker (`~/.job-search/`) as the personal memory layer. Never ru
 **Verification:** [ ] Local run over a fixture `jobs.json`; inspect `personal-shortlist.md`
 
 **Dependencies:** T14 · **Scope:** Medium (1 script + tests)
+
+---
+
+## Completion log — 2026-09-26
+
+Executed end-to-end in one session ("continue till end" waived the human gates).
+
+- **T1–T5** — repo live, 86 boards verified by live probes (temporarily excluded: boards on
+  other ATSes or own portals), five adapters implemented, 47 tests.
+- **T6** — normalize/filters/FX implemented and spot-checked against 8 live boards
+  (79 tests). Engineering gate added after real-data review; "SDE"/"SWE" tokens added.
+- **T7** — store merge + two-strike archiving + comp evidence + health; full-universe dry
+  run: **86/86 boards ok, 12,291 raw → 499 kept**.
+- **T8/T9** — taxonomy rules and cache plus the LLM fallback. **GitHub Models was retired
+  2026-07-30** (endpoint verified to return an HTTP 200 plain-text tombstone), so the
+  fallback is now provider-agnostic and optional (`LLM_API_KEY` + `LLM_API_BASE_URL` /
+  `LLM_MODEL`); without it the pipeline is rules-only. Documented in spec §7/§10.
+- **T10** — renderer + archive + RSS/JSON feeds; page is 405KB; QA on the **live page**
+  via Playwright + Jev: Backend preset → "37 of 470 roles shown"; 390px width has no
+  horizontal overflow; archive page renders. Dark mode not visually verified.
+- **T11** — `crawl.yml` dispatched (run `36228317655`): green, data committed by the bot,
+  Pages deployed. Live: **https://xpressabhi.github.io/job-radar/** (HTTP 200, 470 roles).
+- **T12** — `ci.yml` + replay harness with golden store (2 jobs from trimmed fixtures).
+- **T13** — board-health issues + `verify:companies`; covered by unit tests with mocked
+  GitHub API.
+- **T14** — README + methodology + first-run review; spec updated for the LLM pivot.
+- **T15** — deterministic local shortlist shipped (`personal-rank.mjs`, real run produced
+  8 ranked roles); the Jev eligibility/fit pass remains the documented follow-up pending
+  `TYPESAFE_API_KEY` and a confirmed judge interface.
+
+Final state: **121 tests green**, zero required secrets, cron armed for 01:30 UTC daily.
+Open follow-ups: portfolio nav link, dark-mode visual check, Jev pass, Workday adapter,
+company-band upgrades from `comp-evidence.json`.

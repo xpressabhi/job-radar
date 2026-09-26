@@ -1,0 +1,35 @@
+- generic [ref=f1e2]:
+  - banner [ref=f1e3]:
+    - heading "Archive" [level=1] [ref=f1e4]
+    - paragraph [ref=f1e5]: 0 closed roles, grouped by the month they left the active list. The main list keeps only roles seen in the last two successful crawls.
+    - generic [ref=f1e6]:
+      - generic [ref=f1e7]:
+        - strong [ref=f1e8]: "470"
+        - text: live roles
+      - generic [ref=f1e9]:
+        - strong [ref=f1e10]: "0"
+        - text: archived
+      - generic [ref=f1e11]:
+        - strong [ref=f1e12]: 86/86
+        - text: boards scanned
+      - generic [ref=f1e13]:
+        - strong [ref=f1e14]: "11792"
+        - text: filtered out (pay/level/location)
+      - generic [ref=f1e15]:
+        - strong [ref=f1e16]: "1"
+        - text: below the ₹50L base floor
+  - paragraph [ref=f1e17]:
+    - link "← Back to the live list" [ref=f1e18] [cursor=pointer]:
+      - /url: index.html
+  - paragraph [ref=f1e19]: Nothing archived yet.
+  - contentinfo [ref=f1e20]:
+    - paragraph [ref=f1e21]:
+      - text: Last updated 26 Sep 2026 08:02 UTC.
+      - link "jobs.json" [ref=f1e22] [cursor=pointer]:
+        - /url: jobs.json
+      - text: ·
+      - link "RSS" [ref=f1e23] [cursor=pointer]:
+        - /url: feed.xml
+      - text: ·
+      - link "source" [ref=f1e24] [cursor=pointer]:
+        - /url: https://github.com/xpressabhi/job-radar

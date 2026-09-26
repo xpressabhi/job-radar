@@ -6,7 +6,7 @@ import { cleanTitle, canonicalUrl, dedupeKey } from "./normalize.mjs";
 // ---------- Title gate: engineering + seniority (§6.3) ----------
 
 const NON_ENGINEERING_RE =
-  /\b(sales|account executive|account manager|marketing|growth|recruit\w*|talent|sourcer|people partner|human resources|content|copywriter|copy writing|designer|product manager|program manager|project manager|business analyst|finance|accounting|legal|counsel|operations manager|customer success|community|support specialist|administrative)\b/i;
+  /\b(sales|gtm|go[- ]to[- ]market|account executive|account manager|marketing|growth|recruit\w*|talent|sourcer|people partner|human resources|content|copywriter|copy writing|designer|product manager|program manager|project manager|business analyst|finance|accounting|legal|counsel|operations manager|customer success|community|support specialist|administrative)\b/i;
 
 const ENGINEERING_RE =
   /\b(engineer(?:ing)?|developer|devops|sre|site reliability|software|sde|swe|programmer|back[- ]?end|front[- ]?end|full[- ]?stack|platform|infrastructure|infra|cloud|database|data|machine learning|ml|ai|artificial intelligence|llm|security|cyber|qa|quality|test|automation|mobile|ios|android|embedded|firmware|architect|systems?|network|research(?:er)?|scientist|technical staff|mts|tech(?:nical)? lead|api|sdk|compiler|kernel|gpu|distributed|robotics)\b/i;

@@ -1,0 +1,693 @@
+- generic [ref=f2e2]:
+  - banner [ref=f2e3]:
+    - heading "Job Radar" [level=1] [ref=f2e4]
+    - paragraph [ref=f2e5]: Senior+ engineering roles in India (or remote-India) at employers vetted to pay top of market. Crawled daily straight from company ATS boards.
+    - generic [ref=f2e6]:
+      - generic [ref=f2e7]:
+        - strong [ref=f2e8]: "470"
+        - text: live roles
+      - generic [ref=f2e9]:
+        - strong [ref=f2e10]: "0"
+        - text: archived
+      - generic [ref=f2e11]:
+        - strong [ref=f2e12]: 86/86
+        - text: boards scanned
+      - generic [ref=f2e13]:
+        - strong [ref=f2e14]: "11792"
+        - text: filtered out (pay/level/location)
+      - generic [ref=f2e15]:
+        - strong [ref=f2e16]: "1"
+        - text: below the ₹50L base floor
+  - generic [ref=f2e17]:
+    - generic [ref=f2e18]:
+      - text: Category
+      - combobox "Category" [ref=f2e19]:
+        - option "All"
+        - option "Ai ml"
+        - option "Backend" [selected]
+        - option "Frontend"
+        - option "Fullstack"
+        - option "Platform infra"
+        - option "Data"
+        - option "Mobile"
+        - option "Security"
+        - option "Qa"
+        - option "Embedded"
+        - option "Engineering leadership"
+        - option "Other / uncategorized"
+    - generic [ref=f2e20]:
+      - text: City
+      - combobox "City" [ref=f2e21]:
+        - option "Any" [selected]
+        - option "Bengaluru"
+        - option "Chennai"
+        - option "Delhi"
+        - option "Gurugram"
+        - option "Hyderabad"
+        - option "Mohali"
+        - option "Mumbai"
+        - option "Pune"
+    - generic [ref=f2e22]:
+      - text: Work mode
+      - combobox "Work mode" [ref=f2e23]:
+        - option "Any" [selected]
+        - option "Remote"
+        - option "Hybrid"
+        - option "On-site"
+    - generic [ref=f2e24]:
+      - text: Company
+      - combobox "Company" [ref=f2e25]:
+        - option "Any" [selected]
+        - option "Airbnb"
+        - option "Anthropic"
+        - option "Atlan"
+        - option "Cloudflare"
+        - option "Cohere"
+        - option "Databricks"
+        - option "DevRev"
+        - option "Elastic"
+        - option "ElevenLabs"
+        - option "Freshworks"
+        - option "GitLab"
+        - option "Glean"
+        - option "GoDaddy"
+        - option "Grafana Labs"
+        - option "Harvey"
+        - option "HighLevel"
+        - option "InMobi"
+        - option "LangChain"
+        - option "Linear"
+        - option "Meesho"
+        - option "Mindtickle"
+        - option "Mistral AI"
+        - option "Mixpanel"
+        - option "MongoDB"
+        - option "Observe.AI"
+        - option "Okta"
+        - option "OpenAI"
+        - option "Railway"
+        - option "Razorpay"
+        - option "Runway"
+        - option "Sarvam AI"
+        - option "Scale AI"
+        - option "Stripe"
+        - option "Supabase"
+        - option "Temporal"
+        - option "Together AI"
+        - option "Twilio"
+        - option "Vanta"
+        - option "Zscaler"
+    - generic [ref=f2e26]:
+      - text: Freshness
+      - combobox "Freshness" [ref=f2e27]:
+        - option "Any time" [selected]
+        - option "Last 24 hours"
+        - option "Last 7 days"
+        - option "Last 30 days"
+    - generic [ref=f2e28]:
+      - text: Search
+      - searchbox "Search" [ref=f2e29]
+    - button [ref=f2e31]: Reset filters
+  - paragraph [ref=f2e32]:
+    - generic [ref=f2e33]: "Quick filters:"
+    - button "AI / agentic" [ref=f2e34] [cursor=pointer]
+    - button "Backend" [active] [ref=f2e35] [cursor=pointer]
+    - button "Frontend" [ref=f2e36] [cursor=pointer]
+    - button "Platform / infra" [ref=f2e37] [cursor=pointer]
+  - paragraph [ref=f2e38]: 37 of 470 roles shown
+  - list [ref=f2e39]:
+    - listitem [ref=f2e655]:
+      - generic [ref=f2e656]:
+        - heading [level=3] [ref=f2e657]:
+          - link "Senior Software Engineer - Backend" [ref=f2e658] [cursor=pointer]:
+            - /url: https://databricks.com/company/careers/open-positions/job?gh_jid=8320183002
+        - paragraph [ref=f2e659]: Databricks · Bengaluru
+        - generic [ref=f2e660]:
+          - generic [ref=f2e661]: python
+          - generic [ref=f2e662]: java
+          - generic [ref=f2e663]: rust
+          - generic [ref=f2e664]: databricks
+          - generic [ref=f2e665]: agents
+          - generic [ref=f2e666]: distributed-systems
+          - generic [ref=f2e667]: performance
+      - generic [ref=f2e668]:
+        - generic [ref=f2e669]: vetted ≥₹60L base
+        - generic [ref=f2e670]: Senior
+        - generic [ref=f2e671]: posted 3 Dec 2025
+    - listitem [ref=f2e672]:
+      - generic [ref=f2e673]:
+        - heading [level=3] [ref=f2e674]:
+          - link "Senior Software Engineer (Backend)" [ref=f2e675] [cursor=pointer]:
+            - /url: https://databricks.com/company/careers/open-positions/job?gh_jid=6709301002
+        - paragraph [ref=f2e676]: Databricks · Bengaluru
+        - generic [ref=f2e677]:
+          - generic [ref=f2e678]: python
+          - generic [ref=f2e679]: java
+          - generic [ref=f2e680]: rust
+          - generic [ref=f2e681]: databricks
+          - generic [ref=f2e682]: agents
+          - generic [ref=f2e683]: distributed-systems
+          - generic [ref=f2e684]: performance
+      - generic [ref=f2e685]:
+        - generic [ref=f2e686]: vetted ≥₹60L base
+        - generic [ref=f2e687]: Senior
+        - generic [ref=f2e688]: posted 8 May 2023
+    - listitem [ref=f2e919]:
+      - generic [ref=f2e920]:
+        - heading [level=3] [ref=f2e921]:
+          - link "Senior Staff Software Engineer - Backend" [ref=f2e922] [cursor=pointer]:
+            - /url: https://databricks.com/company/careers/open-positions/job?gh_jid=8421894002
+        - paragraph [ref=f2e923]: Databricks · Bengaluru
+        - generic [ref=f2e924]:
+          - generic [ref=f2e925]: databricks
+          - generic [ref=f2e926]: agents
+          - generic [ref=f2e927]: distributed-systems
+          - generic [ref=f2e928]: performance
+      - generic [ref=f2e929]:
+        - generic [ref=f2e930]: vetted ≥₹60L base
+        - generic [ref=f2e931]: Senior
+        - generic [ref=f2e932]: posted 13 Feb 2026
+    - listitem [ref=f2e933]:
+      - generic [ref=f2e934]:
+        - heading [level=3] [ref=f2e935]:
+          - link "Senior Staff Software Engineer (Backend)" [ref=f2e936] [cursor=pointer]:
+            - /url: https://databricks.com/company/careers/open-positions/job?gh_jid=7651345002
+        - paragraph [ref=f2e937]: Databricks · Bengaluru
+        - generic [ref=f2e938]:
+          - generic [ref=f2e939]: databricks
+          - generic [ref=f2e940]: agents
+          - generic [ref=f2e941]: distributed-systems
+          - generic [ref=f2e942]: performance
+      - generic [ref=f2e943]:
+        - generic [ref=f2e944]: vetted ≥₹60L base
+        - generic [ref=f2e945]: Senior
+        - generic [ref=f2e946]: posted 22 Sep 2024
+    - listitem [ref=f2e1168]:
+      - generic [ref=f2e1169]:
+        - heading [level=3] [ref=f2e1170]:
+          - link "Sr Software Engineer - Backend" [ref=f2e1171] [cursor=pointer]:
+            - /url: https://databricks.com/company/careers/open-positions/job?gh_jid=7955601002
+        - paragraph [ref=f2e1172]: Databricks · Bengaluru
+        - generic [ref=f2e1173]:
+          - generic [ref=f2e1174]: python
+          - generic [ref=f2e1175]: java
+          - generic [ref=f2e1176]: rust
+          - generic [ref=f2e1177]: databricks
+          - generic [ref=f2e1178]: agents
+          - generic [ref=f2e1179]: distributed-systems
+          - generic [ref=f2e1180]: performance
+      - generic [ref=f2e1181]:
+        - generic [ref=f2e1182]: vetted ≥₹60L base
+        - generic [ref=f2e1183]: Senior
+        - generic [ref=f2e1184]: posted 12 Apr 2025
+    - listitem [ref=f2e1220]:
+      - generic [ref=f2e1221]:
+        - heading [level=3] [ref=f2e1222]:
+          - link "Sr Staff Software Engineer (Backend)" [ref=f2e1223] [cursor=pointer]:
+            - /url: https://databricks.com/company/careers/open-positions/job?gh_jid=7630152002
+        - paragraph [ref=f2e1224]: Databricks · Bengaluru
+        - generic [ref=f2e1225]:
+          - generic [ref=f2e1226]: databricks
+          - generic [ref=f2e1227]: agents
+          - generic [ref=f2e1228]: distributed-systems
+          - generic [ref=f2e1229]: performance
+      - generic [ref=f2e1230]:
+        - generic [ref=f2e1231]: vetted ≥₹60L base
+        - generic [ref=f2e1232]: Senior
+        - generic [ref=f2e1233]: posted 9 Sep 2024
+    - listitem [ref=f2e1302]:
+      - generic [ref=f2e1303]:
+        - heading [level=3] [ref=f2e1304]:
+          - link "Staff Software Engineer - Backend" [ref=f2e1305] [cursor=pointer]:
+            - /url: https://databricks.com/company/careers/open-positions/job?gh_jid=8320187002
+        - paragraph [ref=f2e1306]: Databricks · Bengaluru
+        - generic [ref=f2e1307]:
+          - generic [ref=f2e1308]: python
+          - generic [ref=f2e1309]: java
+          - generic [ref=f2e1310]: kubernetes
+          - generic [ref=f2e1311]: aws
+          - generic [ref=f2e1312]: azure
+          - generic [ref=f2e1313]: spark
+          - generic [ref=f2e1314]: databricks
+          - generic [ref=f2e1315]: agents
+      - generic [ref=f2e1316]:
+        - generic [ref=f2e1317]: vetted ≥₹60L base
+        - generic [ref=f2e1318]: Staff
+        - generic [ref=f2e1319]: posted 3 Dec 2025
+    - listitem [ref=f2e1960]:
+      - generic [ref=f2e1961]:
+        - heading [level=3] [ref=f2e1962]:
+          - link "Senior Backend Engineer" [ref=f2e1963] [cursor=pointer]:
+            - /url: https://job-boards.greenhouse.io/gitlab/jobs/8716143002
+        - paragraph [ref=f2e1964]: GitLab · Bengaluru
+        - generic [ref=f2e1965]:
+          - generic [ref=f2e1966]: agents
+          - generic [ref=f2e1967]: performance
+      - generic [ref=f2e1968]:
+        - generic [ref=f2e1969]: vetted ≥₹60L base
+        - generic [ref=f2e1970]: Senior
+        - generic [ref=f2e1971]: posted 14 Aug 2026
+    - listitem [ref=f2e1972]:
+      - generic [ref=f2e1973]:
+        - heading [level=3] [ref=f2e1974]:
+          - link "Senior Backend Engineer - Platform Integrations (Monetization)" [ref=f2e1975] [cursor=pointer]:
+            - /url: https://job-boards.greenhouse.io/gitlab/jobs/8615312002
+        - paragraph [ref=f2e1976]: GitLab · Bengaluru
+        - generic [ref=f2e1977]:
+          - generic [ref=f2e1978]: graphql
+          - generic [ref=f2e1979]: observability
+          - generic [ref=f2e1980]: performance
+          - generic [ref=f2e1981]: postgres
+      - generic [ref=f2e1982]:
+        - generic [ref=f2e1983]: vetted ≥₹60L base
+        - generic [ref=f2e1984]: Senior
+        - generic [ref=f2e1985]: posted 1 Sep 2026
+    - listitem [ref=f2e2091]:
+      - generic [ref=f2e2092]:
+        - heading [level=3] [ref=f2e2093]:
+          - link "Staff Backend Engineer - Database Change Management" [ref=f2e2094] [cursor=pointer]:
+            - /url: https://job-boards.greenhouse.io/gitlab/jobs/8716271002
+        - paragraph [ref=f2e2095]: GitLab · Bengaluru
+        - generic [ref=f2e2096]:
+          - generic [ref=f2e2097]: ci-cd
+          - generic [ref=f2e2098]: performance
+          - generic [ref=f2e2099]: postgres
+      - generic [ref=f2e2100]:
+        - generic [ref=f2e2101]: vetted ≥₹60L base
+        - generic [ref=f2e2102]: Staff
+        - generic [ref=f2e2103]: posted 24 Aug 2026
+    - listitem [ref=f2e2104]:
+      - generic [ref=f2e2105]:
+        - heading [level=3] [ref=f2e2106]:
+          - link "Staff Backend Engineer" [ref=f2e2107] [cursor=pointer]:
+            - /url: https://job-boards.greenhouse.io/gitlab/jobs/8775136002
+        - paragraph [ref=f2e2108]: GitLab · Bengaluru
+        - generic [ref=f2e2109]:
+          - generic [ref=f2e2110]: agents
+          - generic [ref=f2e2111]: observability
+          - generic [ref=f2e2112]: performance
+      - generic [ref=f2e2113]:
+        - generic [ref=f2e2114]: vetted ≥₹60L base
+        - generic [ref=f2e2115]: Staff
+        - generic [ref=f2e2116]: posted 2 Sep 2026
+    - listitem [ref=f2e2274]:
+      - generic [ref=f2e2275]:
+        - heading [level=3] [ref=f2e2276]:
+          - link "Software Engineer, Backend" [ref=f2e2277] [cursor=pointer]:
+            - /url: https://job-boards.greenhouse.io/gleanwork/jobs/4006731005
+        - paragraph [ref=f2e2278]: Glean · Bengaluru
+        - generic [ref=f2e2279]:
+          - generic [ref=f2e2280]: python
+          - generic [ref=f2e2281]: java
+          - generic [ref=f2e2282]: go
+          - generic [ref=f2e2283]: agents
+          - generic [ref=f2e2284]: distributed-systems
+      - generic [ref=f2e2285]:
+        - generic [ref=f2e2286]: vetted ≥₹70L base
+        - generic [ref=f2e2287]: Unlabeled (assumed)
+        - generic [ref=f2e2288]: posted 8 Apr 2022
+    - listitem [ref=f2e2414]:
+      - generic [ref=f2e2415]:
+        - heading [level=3] [ref=f2e2416]:
+          - link "Senior Software Engineer, Backend" [ref=f2e2417] [cursor=pointer]:
+            - /url: https://jobs.ashbyhq.com/harvey/992183a0-4526-4ea6-be3d-799a2401da4f
+        - paragraph [ref=f2e2418]: Harvey · Bengaluru · hybrid
+        - generic [ref=f2e2419]:
+          - generic [ref=f2e2420]: python
+          - generic [ref=f2e2421]: aws
+          - generic [ref=f2e2422]: gcp
+          - generic [ref=f2e2423]: azure
+          - generic [ref=f2e2424]: agents
+          - generic [ref=f2e2425]: performance
+          - generic [ref=f2e2426]: postgres
+      - generic [ref=f2e2427]:
+        - generic [ref=f2e2428]: vetted ≥₹70L base
+        - generic [ref=f2e2429]: Senior
+        - generic [ref=f2e2430]: posted 21 Apr 2026
+    - listitem [ref=f2e2431]:
+      - generic [ref=f2e2432]:
+        - heading [level=3] [ref=f2e2433]:
+          - link "Senior Staff Software Engineer, Backend" [ref=f2e2434] [cursor=pointer]:
+            - /url: https://jobs.ashbyhq.com/harvey/8b16bcf7-9255-4859-8416-a7ff921032e6
+        - paragraph [ref=f2e2435]: Harvey · Bengaluru · hybrid
+        - generic [ref=f2e2436]:
+          - generic [ref=f2e2437]: python
+          - generic [ref=f2e2438]: aws
+          - generic [ref=f2e2439]: gcp
+          - generic [ref=f2e2440]: azure
+          - generic [ref=f2e2441]: agents
+          - generic [ref=f2e2442]: performance
+          - generic [ref=f2e2443]: postgres
+      - generic [ref=f2e2444]:
+        - generic [ref=f2e2445]: vetted ≥₹70L base
+        - generic [ref=f2e2446]: Senior
+        - generic [ref=f2e2447]: posted 28 May 2026
+    - listitem [ref=f2e2448]:
+      - generic [ref=f2e2449]:
+        - heading [level=3] [ref=f2e2450]:
+          - link "Staff Software Engineer, Backend" [ref=f2e2451] [cursor=pointer]:
+            - /url: https://jobs.ashbyhq.com/harvey/bd54cfd8-933d-46a8-9796-e249b82cef7f
+        - paragraph [ref=f2e2452]: Harvey · Bengaluru · hybrid
+        - generic [ref=f2e2453]:
+          - generic [ref=f2e2454]: python
+          - generic [ref=f2e2455]: aws
+          - generic [ref=f2e2456]: gcp
+          - generic [ref=f2e2457]: azure
+          - generic [ref=f2e2458]: agents
+          - generic [ref=f2e2459]: performance
+          - generic [ref=f2e2460]: postgres
+      - generic [ref=f2e2461]:
+        - generic [ref=f2e2462]: vetted ≥₹70L base
+        - generic [ref=f2e2463]: Staff
+        - generic [ref=f2e2464]: posted 25 May 2026
+    - listitem [ref=f2e2759]:
+      - generic [ref=f2e2760]:
+        - heading [level=3] [ref=f2e2761]:
+          - link "Staff Backend Engineer - Phone Billing" [ref=f2e2762] [cursor=pointer]:
+            - /url: https://jobs.lever.co/gohighlevel/eb0220a7-bdb3-4d43-95c5-ff1f8799bcd4
+        - paragraph [ref=f2e2763]: HighLevel · Remote (India) · remote
+        - generic [ref=f2e2764]:
+          - generic [ref=f2e2765]: microservices
+          - generic [ref=f2e2766]: performance
+      - generic [ref=f2e2767]:
+        - generic [ref=f2e2768]: vetted ≥₹50L base
+        - generic [ref=f2e2769]: Staff
+        - generic [ref=f2e2770]: posted 15 Sep 2026
+    - listitem [ref=f2e2771]:
+      - generic [ref=f2e2772]:
+        - heading [level=3] [ref=f2e2773]:
+          - link "Staff Backend Engineer - Trust & Control Safety Systems" [ref=f2e2774] [cursor=pointer]:
+            - /url: https://jobs.lever.co/gohighlevel/7cc61c43-4203-467c-8b67-721925cb0fd1
+        - paragraph [ref=f2e2775]: HighLevel · Remote (India) · remote
+        - generic [ref=f2e2776]:
+          - generic [ref=f2e2777]: microservices
+          - generic [ref=f2e2778]: performance
+      - generic [ref=f2e2779]:
+        - generic [ref=f2e2780]: vetted ≥₹50L base
+        - generic [ref=f2e2781]: Staff
+        - generic [ref=f2e2782]: posted 10 Aug 2026
+    - listitem [ref=f2e2795]:
+      - generic [ref=f2e2796]:
+        - heading [level=3] [ref=f2e2797]:
+          - link "Staff Engineer - Backend" [ref=f2e2798] [cursor=pointer]:
+            - /url: https://jobs.lever.co/gohighlevel/0dcefcc6-3306-40d5-a8b2-3a227718e51c
+        - paragraph [ref=f2e2799]: HighLevel · Remote (India) · remote
+      - generic [ref=f2e2800]:
+        - generic [ref=f2e2801]: vetted ≥₹50L base
+        - generic [ref=f2e2802]: Staff
+        - generic [ref=f2e2803]: posted 21 Sep 2026
+    - listitem [ref=f2e2804]:
+      - generic [ref=f2e2805]:
+        - heading [level=3] [ref=f2e2806]:
+          - link "Staff Engineer - Distributed Systems" [ref=f2e2807] [cursor=pointer]:
+            - /url: https://jobs.lever.co/gohighlevel/4eb09872-4256-45b7-b754-634ba1a2f0c7
+        - paragraph [ref=f2e2808]: HighLevel · Remote (India) · remote
+        - generic [ref=f2e2809]:
+          - generic [ref=f2e2810]: node.js
+          - generic [ref=f2e2811]: gcp
+          - generic [ref=f2e2812]: distributed-systems
+          - generic [ref=f2e2813]: microservices
+          - generic [ref=f2e2814]: performance
+          - generic [ref=f2e2815]: mongodb
+      - generic [ref=f2e2816]:
+        - generic [ref=f2e2817]: vetted ≥₹50L base
+        - generic [ref=f2e2818]: Staff
+        - generic [ref=f2e2819]: posted 25 Sep 2026
+    - listitem [ref=f2e3697]:
+      - generic [ref=f2e3698]:
+        - heading [level=3] [ref=f2e3699]:
+          - link "Principal Software Engineer - Backend" [ref=f2e3700] [cursor=pointer]:
+            - /url: https://www.okta.com/company/careers/opportunity/8007071?gh_jid=8007071
+        - paragraph [ref=f2e3701]: Okta · Bengaluru
+      - generic [ref=f2e3702]:
+        - generic [ref=f2e3703]: vetted ≥₹60L base
+        - generic [ref=f2e3704]: Principal
+        - generic [ref=f2e3705]: first seen 26 Sep 2026
+    - listitem [ref=f2e3893]:
+      - generic [ref=f2e3894]:
+        - heading [level=3] [ref=f2e3895]:
+          - link "Software Architect, Java Backend" [ref=f2e3896] [cursor=pointer]:
+            - /url: https://www.okta.com/company/careers/opportunity/7882676?gh_jid=7882676
+        - paragraph [ref=f2e3897]: Okta · Bengaluru
+        - generic [ref=f2e3898]: java
+      - generic [ref=f2e3900]:
+        - generic [ref=f2e3901]: vetted ≥₹60L base
+        - generic [ref=f2e3902]: Architect
+        - generic [ref=f2e3903]: first seen 26 Sep 2026
+    - listitem [ref=f2e4036]:
+      - generic [ref=f2e4037]:
+        - heading [level=3] [ref=f2e4038]:
+          - link "Staff Software Engineer - Backend" [ref=f2e4039] [cursor=pointer]:
+            - /url: https://www.okta.com/company/careers/opportunity/8007085?gh_jid=8007085
+        - paragraph [ref=f2e4040]: Okta · Bengaluru
+      - generic [ref=f2e4041]:
+        - generic [ref=f2e4042]: vetted ≥₹60L base
+        - generic [ref=f2e4043]: Staff
+        - generic [ref=f2e4044]: first seen 26 Sep 2026
+    - listitem [ref=f2e4074]:
+      - generic [ref=f2e4075]:
+        - heading [level=3] [ref=f2e4076]:
+          - link "Staff Software Engineer, Java, Spring (Backend)" [ref=f2e4077] [cursor=pointer]:
+            - /url: https://www.okta.com/company/careers/opportunity/7916607?gh_jid=7916607
+        - paragraph [ref=f2e4078]: Okta · Bengaluru
+        - generic [ref=f2e4079]: java
+      - generic [ref=f2e4081]:
+        - generic [ref=f2e4082]: vetted ≥₹60L base
+        - generic [ref=f2e4083]: Staff
+        - generic [ref=f2e4084]: first seen 26 Sep 2026
+    - listitem [ref=f2e4308]:
+      - generic [ref=f2e4309]:
+        - heading [level=3] [ref=f2e4310]:
+          - link "Senior Product Engineer, Scalability" [ref=f2e4311] [cursor=pointer]:
+            - /url: https://jobs.ashbyhq.com/railway/5f51771e-339f-49f9-8da2-e3c7179c7bad
+        - paragraph [ref=f2e4312]: Railway · Remote (global) · remote
+        - generic [ref=f2e4313]:
+          - generic [ref=f2e4314]: typescript
+          - generic [ref=f2e4315]: node.js
+          - generic [ref=f2e4316]: rust
+          - generic [ref=f2e4317]: graphql
+          - generic [ref=f2e4318]: postgres
+      - generic [ref=f2e4319]:
+        - generic [ref=f2e4320]: vetted ≥₹55L base
+        - generic [ref=f2e4321]: verify eligibility
+        - generic [ref=f2e4322]: Senior
+        - generic [ref=f2e4323]: posted 11 Jun 2026
+    - listitem [ref=f2e4333]:
+      - generic [ref=f2e4334]:
+        - heading [level=3] [ref=f2e4335]:
+          - link "Member of Technical Staff, Backend Engineer, API" [ref=f2e4336] [cursor=pointer]:
+            - /url: https://jobs.ashbyhq.com/runway-ml/8489a08a-f0cf-4418-968c-c7c803d538bc
+        - paragraph [ref=f2e4337]: Runway · Remote (global) · remote
+        - generic [ref=f2e4338]:
+          - generic [ref=f2e4339]: typescript
+          - generic [ref=f2e4340]: python
+          - generic [ref=f2e4341]: kubernetes
+          - generic [ref=f2e4342]: aws
+          - generic [ref=f2e4343]: gcp
+          - generic [ref=f2e4344]: azure
+          - generic [ref=f2e4345]: terraform
+          - generic [ref=f2e4346]: pytorch
+      - generic [ref=f2e4347]:
+        - generic [ref=f2e4348]: ₹208.8–252.3L base
+        - generic [ref=f2e4349]: verify eligibility
+        - generic [ref=f2e4350]: Unlabeled (assumed)
+        - generic [ref=f2e4351]: posted 29 Apr 2022
+    - listitem [ref=f2e4571]:
+      - generic [ref=f2e4572]:
+        - heading [level=3] [ref=f2e4573]:
+          - link "Backend Engineer, Chanakya" [ref=f2e4574] [cursor=pointer]:
+            - /url: https://jobs.ashbyhq.com/sarvam/86ae80f8-b7eb-43a4-afde-fef58e77e23e
+        - paragraph [ref=f2e4575]: Sarvam AI · Bengaluru
+        - generic [ref=f2e4576]:
+          - generic [ref=f2e4577]: python
+          - generic [ref=f2e4578]: rust
+          - generic [ref=f2e4579]: kubernetes
+          - generic [ref=f2e4580]: docker
+          - generic [ref=f2e4581]: graphql
+          - generic [ref=f2e4582]: grpc
+          - generic [ref=f2e4583]: langchain
+          - generic [ref=f2e4584]: mlops
+      - generic [ref=f2e4585]:
+        - generic [ref=f2e4586]: vetted ≥₹55L base
+        - generic [ref=f2e4587]: Unlabeled (assumed)
+        - generic [ref=f2e4588]: posted 17 Apr 2026
+    - listitem [ref=f2e4795]:
+      - generic [ref=f2e4796]:
+        - heading [level=3] [ref=f2e4797]:
+          - link "Staff Engineer, API Platform" [ref=f2e4798] [cursor=pointer]:
+            - /url: https://jobs.ashbyhq.com/sarvam/48b2c236-a7e7-475d-b98b-4eb942e85dc7
+        - paragraph [ref=f2e4799]: Sarvam AI · Bengaluru
+        - generic [ref=f2e4800]:
+          - generic [ref=f2e4801]: python
+          - generic [ref=f2e4802]: kubernetes
+          - generic [ref=f2e4803]: mlops
+          - generic [ref=f2e4804]: distributed-systems
+          - generic [ref=f2e4805]: observability
+          - generic [ref=f2e4806]: performance
+          - generic [ref=f2e4807]: postgres
+      - generic [ref=f2e4808]:
+        - generic [ref=f2e4809]: vetted ≥₹55L base
+        - generic [ref=f2e4810]: Staff
+        - generic [ref=f2e4811]: posted 21 May 2026
+    - listitem [ref=f2e4812]:
+      - generic [ref=f2e4813]:
+        - heading [level=3] [ref=f2e4814]:
+          - link "Backend Engineer - Studio Media Platform" [ref=f2e4815] [cursor=pointer]:
+            - /url: https://jobs.ashbyhq.com/sarvam/b07dfd8a-208d-43c1-a811-f1c447df26f9
+        - paragraph [ref=f2e4816]: Sarvam AI · Bengaluru
+        - generic [ref=f2e4817]:
+          - generic [ref=f2e4818]: python
+          - generic [ref=f2e4819]: kubernetes
+          - generic [ref=f2e4820]: observability
+          - generic [ref=f2e4821]: ci-cd
+          - generic [ref=f2e4822]: postgres
+      - generic [ref=f2e4823]:
+        - generic [ref=f2e4824]: vetted ≥₹55L base
+        - generic [ref=f2e4825]: Unlabeled (assumed)
+        - generic [ref=f2e4826]: posted 1 Jun 2026
+    - listitem [ref=f2e4878]:
+      - generic [ref=f2e4879]:
+        - heading [level=3] [ref=f2e4880]:
+          - link "Senior Backend Engineer, Vision" [ref=f2e4881] [cursor=pointer]:
+            - /url: https://jobs.ashbyhq.com/sarvam/3652221b-d408-486b-9ad1-ab073aaf1071
+        - paragraph [ref=f2e4882]: Sarvam AI · Bengaluru
+        - generic [ref=f2e4883]:
+          - generic [ref=f2e4884]: python
+          - generic [ref=f2e4885]: kubernetes
+          - generic [ref=f2e4886]: observability
+          - generic [ref=f2e4887]: performance
+          - generic [ref=f2e4888]: postgres
+      - generic [ref=f2e4889]:
+        - generic [ref=f2e4890]: vetted ≥₹55L base
+        - generic [ref=f2e4891]: Senior
+        - generic [ref=f2e4892]: posted 18 Aug 2026
+    - listitem [ref=f2e4997]:
+      - generic [ref=f2e4998]:
+        - heading [level=3] [ref=f2e4999]:
+          - link "GTM & Strategy, Model API" [ref=f2e5000] [cursor=pointer]:
+            - /url: https://jobs.ashbyhq.com/sarvam/2fd59d81-b766-4f54-85b3-d0eae08dbfc0
+        - paragraph [ref=f2e5001]: Sarvam AI · Bengaluru
+        - generic [ref=f2e5002]: python
+      - generic [ref=f2e5004]:
+        - generic [ref=f2e5005]: vetted ≥₹55L base
+        - generic [ref=f2e5006]: Unlabeled (assumed)
+        - generic [ref=f2e5007]: posted 20 Aug 2026
+    - listitem [ref=f2e5118]:
+      - generic [ref=f2e5119]:
+        - heading [level=3] [ref=f2e5120]:
+          - link "Customer Solution Architect, Team Lead" [ref=f2e5121] [cursor=pointer]:
+            - /url: https://jobs.ashbyhq.com/supabase/66bab062-b769-43cf-ac3c-a2630257624c
+        - paragraph [ref=f2e5122]: Supabase · Remote (global) · remote
+        - generic [ref=f2e5123]:
+          - generic [ref=f2e5124]: performance
+          - generic [ref=f2e5125]: postgres
+      - generic [ref=f2e5126]:
+        - generic [ref=f2e5127]: vetted ≥₹60L base
+        - generic [ref=f2e5128]: verify eligibility
+        - generic [ref=f2e5129]: Architect
+        - generic [ref=f2e5130]: posted 29 May 2026
+    - listitem [ref=f2e5462]:
+      - generic [ref=f2e5463]:
+        - heading [level=3] [ref=f2e5464]:
+          - link "Backend Senior Software Engineer, Identity" [ref=f2e5465] [cursor=pointer]:
+            - /url: https://jobs.ashbyhq.com/vanta/470689af-bbce-4c96-818e-408bf4a6c8e5
+        - paragraph [ref=f2e5466]: Vanta · Remote (global) · remote
+        - generic [ref=f2e5467]:
+          - generic [ref=f2e5468]: agents
+          - generic [ref=f2e5469]: mcp
+          - generic [ref=f2e5470]: distributed-systems
+          - generic [ref=f2e5471]: performance
+      - generic [ref=f2e5472]:
+        - generic [ref=f2e5473]: ₹169.6–228.8L base
+        - generic [ref=f2e5474]: verify eligibility
+        - generic [ref=f2e5475]: Senior
+        - generic [ref=f2e5476]: posted 7 May 2026
+    - listitem [ref=f2e5849]:
+      - generic [ref=f2e5850]:
+        - heading [level=3] [ref=f2e5851]:
+          - link "Sr. Software Development Engineer (Backend Dev - C/C++)" [ref=f2e5852] [cursor=pointer]:
+            - /url: https://job-boards.greenhouse.io/zscaler/jobs/5211275007
+        - paragraph [ref=f2e5853]: Zscaler · Bengaluru
+      - generic [ref=f2e5854]:
+        - generic [ref=f2e5855]: vetted ≥₹60L base
+        - generic [ref=f2e5856]: Senior
+        - generic [ref=f2e5857]: first seen 26 Sep 2026
+    - listitem [ref=f2e5888]:
+      - generic [ref=f2e5889]:
+        - heading [level=3] [ref=f2e5890]:
+          - link "Sr. Staff Software Development Engineer (Backend Dev - C/C++)" [ref=f2e5891] [cursor=pointer]:
+            - /url: https://job-boards.greenhouse.io/zscaler/jobs/5215314007
+        - paragraph [ref=f2e5892]: Zscaler · Bengaluru
+      - generic [ref=f2e5893]:
+        - generic [ref=f2e5894]: vetted ≥₹60L base
+        - generic [ref=f2e5895]: Senior
+        - generic [ref=f2e5896]: first seen 26 Sep 2026
+    - listitem [ref=f2e5908]:
+      - generic [ref=f2e5909]:
+        - heading [level=3] [ref=f2e5910]:
+          - link "Sr. Staff Software Development Engineer - Java/Go + Distributed Systems" [ref=f2e5911] [cursor=pointer]:
+            - /url: https://job-boards.greenhouse.io/zscaler/jobs/5177393007
+        - paragraph [ref=f2e5912]: Zscaler · Bengaluru, Hyderabad
+        - generic [ref=f2e5913]:
+          - generic [ref=f2e5914]: java
+          - generic [ref=f2e5915]: distributed-systems
+      - generic [ref=f2e5916]:
+        - generic [ref=f2e5917]: vetted ≥₹60L base
+        - generic [ref=f2e5918]: Senior
+        - generic [ref=f2e5919]: first seen 26 Sep 2026
+    - listitem [ref=f2e5974]:
+      - generic [ref=f2e5975]:
+        - heading [level=3] [ref=f2e5976]:
+          - link "Staff Software Development Engineer (Backend - Java/API)" [ref=f2e5977] [cursor=pointer]:
+            - /url: https://job-boards.greenhouse.io/zscaler/jobs/5204740007
+        - paragraph [ref=f2e5978]: Zscaler · Mohali
+        - generic [ref=f2e5979]: java
+      - generic [ref=f2e5981]:
+        - generic [ref=f2e5982]: vetted ≥₹60L base
+        - generic [ref=f2e5983]: Staff
+        - generic [ref=f2e5984]: first seen 26 Sep 2026
+    - listitem [ref=f2e6005]:
+      - generic [ref=f2e6006]:
+        - heading [level=3] [ref=f2e6007]:
+          - link "Staff Software Development Engineer - Java + Distributed Systems" [ref=f2e6008] [cursor=pointer]:
+            - /url: https://job-boards.greenhouse.io/zscaler/jobs/5212222007
+        - paragraph [ref=f2e6009]: Zscaler · Hyderabad
+        - generic [ref=f2e6010]:
+          - generic [ref=f2e6011]: java
+          - generic [ref=f2e6012]: distributed-systems
+      - generic [ref=f2e6013]:
+        - generic [ref=f2e6014]: vetted ≥₹60L base
+        - generic [ref=f2e6015]: Staff
+        - generic [ref=f2e6016]: first seen 26 Sep 2026
+  - contentinfo [ref=f2e6037]:
+    - heading "How this list is built" [level=2] [ref=f2e6038]
+    - list [ref=f2e6039]:
+      - listitem [ref=f2e6040]:
+        - strong [ref=f2e6041]: "Companies:"
+        - text: a hand-vetted list; each employer must clear ₹20L base pay generally and ₹50L base at senior level in India. Company bands are recorded with sources in the repo and refined by pay data observed in real postings.
+      - listitem [ref=f2e6042]:
+        - strong [ref=f2e6043]: "Roles:"
+        - text: senior+ engineering titles only (Senior / Staff / Principal / Lead / Architect / Director / EM / VP). Where pay is published, the band's
+        - emphasis [ref=f2e6044]: lower bound
+        - text: must clear ₹50L base; equity and bonus never count. Where pay is not published, the company's vetted senior band applies.
+      - listitem [ref=f2e6045]:
+        - strong [ref=f2e6046]: "Geography:"
+        - text: India-located, remote-India, and unrestricted-remote roles (the latter flagged "verify eligibility"). Roles restricted to other regions are excluded.
+      - listitem [ref=f2e6047]:
+        - strong [ref=f2e6048]: "Freshness:"
+        - text: crawled daily from public ATS boards. A role leaves the active list after two consecutive successful crawls without it, and lives on in the archive. Failed crawls never remove anything.
+    - paragraph [ref=f2e6049]:
+      - text: "Data:"
+      - link "jobs.json" [ref=f2e6050] [cursor=pointer]:
+        - /url: jobs.json
+      - text: ·
+      - link "RSS feed" [ref=f2e6051] [cursor=pointer]:
+        - /url: feed.xml
+      - text: ·
+      - link "Archive (0 closed)" [ref=f2e6052] [cursor=pointer]:
+        - /url: archive.html
+    - paragraph [ref=f2e6053]:
+      - text: Last updated 26 Sep 2026 08:02 UTC. Built by
+      - link "xpressabhi/job-radar" [ref=f2e6054] [cursor=pointer]:
+        - /url: https://github.com/xpressabhi/job-radar
+      - text: with no runtime dependencies and no secrets.

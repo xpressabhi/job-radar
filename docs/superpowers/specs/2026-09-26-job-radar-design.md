@@ -369,11 +369,13 @@ Each kept job gets `cities[]`, `mode` (`onsite` | `hybrid` | `remote`), and `ind
 The public page is objective: it filters by pay, geography, and seniority. The personal
 shortlist is profile-relative, so it runs locally, never in CI:
 
-- `scripts/personal-rank.mjs` (local-only; requires `TYPESAFE_API_KEY` in the shell env,
-  which is never added to the repo or Actions) reads `data/jobs.json` plus the local/CV
-  profile and runs the job-finder-style Jev judges over candidates: eligibility (is this
-  remote role really open to India?), level + stack match, red flags. Output: a ranked
-  `output/personal-shortlist.md` with named gaps.
+- `scripts/personal-rank.mjs` (local-only; reads `data/jobs.json` plus a profile file) ranks
+  active jobs deterministically — keyword overlap with profile skills/stacks, category
+  priors, home-city and remote-India boosts, published-pay bonus — and writes
+  `output/personal-shortlist.md`. It never copies the profile anywhere and only writes
+  under `output/`. The Jev-based eligibility/level/red-flag pass is the follow-up: it
+  needs `TYPESAFE_API_KEY` and a confirmed judge interface, and this shortlist is exactly
+  the candidate set it will consume.
 - Personal state stays under `~/.job-search/` (the job-finder tracker); nothing personal
   is committed to `job-radar`.
 - Deterministic jobs (pay parsing, dedupe, archiving) never depend on Jev; it only ranks

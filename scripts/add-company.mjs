@@ -240,6 +240,8 @@ async function defaultVerify(company, config) {
   }
 }
 
+export { defaultVerify as verifyBoard };
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   process.exitCode = await runAddCompany();
 }

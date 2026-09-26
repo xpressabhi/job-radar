@@ -132,12 +132,14 @@ Config-driven; every rule unit-tested with adversarial titles ("Senior Director"
 "Director" listed, "Data Engineer II", "Remote - India", "Remote - US").
 
 **Acceptance criteria:**
-- [ ] All spec §6.2/§6.3/§6.4 cases covered by tests, including both directions of each rule
-- [ ] Unlabeled titles pass only for `frontier-ai` tier companies and set `levelSource: "tier-assumed"`
-- [ ] Total-only comp below the converted floor is dropped; at/above is kept with `base unverified`
-- [ ] FX conversion is round-down and covered by fixtures (USD/EUR/GBP)
+- [x] All spec §6.2/§6.3/§6.4 cases covered by tests, including both directions of each rule
+- [x] Unlabeled titles pass only for `frontier-ai` tier companies and set `levelSource: "tier-assumed"`
+- [x] Total-only comp below the converted floor is dropped; at/above is kept with `base unverified`
+- [x] FX conversion is round-down and covered by fixtures (USD/EUR/GBP — and CAD/INR from real payloads)
 
-**Verification:** [ ] `npm test`
+**Verification:** [x] `npm test` — 79 passing (normalize, fx, filters incl. adversarial titles)
+- [x] Live spot check (8 boards): filters behave; CRED/Meesho boards are genuinely non-engineering, not mis-dropped
+- [x] Engineering gate added (spec §6.3 updated); "SDE"/"SWE" tokens added after real-data review
 
 **Dependencies:** T3 · **Scope:** Medium (4 files)
 

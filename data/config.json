@@ -3,6 +3,7 @@
   "payFloorBaseLpa": 50,
   "companyPayFloorBaseLpa": 20,
   "fxToInr": {
+    "INR": 1,
     "USD": 87,
     "EUR": 95,
     "GBP": 112,

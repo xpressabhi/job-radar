@@ -41,7 +41,7 @@ static page with filters, an archive of closed roles, and JSON/RSS feeds. Full d
 - [x] T3: Fetch lib + adapter framework + Greenhouse adapter + crawl CLI skeleton
 - [x] T4: Lever + Ashby adapters
 - [x] T5: SmartRecruiters + Workable adapters
-- [ ] T6: Normalizer + geo/senior/pay filters + FX
+- [x] T6: Normalizer + geo/senior/pay filters + FX
 - [ ] T7: Store merge + two-strike archiving + comp evidence + health
 
 #### Checkpoint B: Crawl core

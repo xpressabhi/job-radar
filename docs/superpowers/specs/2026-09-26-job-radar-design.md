@@ -175,7 +175,8 @@ confirmation; upgraded as observed postings accrue in `comp-evidence.json`).
 `{ "published": false, "vettedSeniorMinLpa": 55 }`.
 
 `levelSource`: `title` | `llm` | `tier-assumed`.
-`seniority`: `senior` | `staff` | `principal` | `lead` | `architect` | `head` | `director` | `em` | `vp`.
+`seniority`: `senior` | `staff` | `principal` | `lead` | `architect` | `head` | `director` |
+`em` | `vp` | `unlabeled` (only with `levelSource: "tier-assumed"`).
 
 ### `data/comp-evidence.json` (appended observations)
 
@@ -215,8 +216,12 @@ confirmation; upgraded as observed postings accrue in `comp-evidence.json`).
 Each kept job gets `cities[]`, `mode` (`onsite` | `hybrid` | `remote`), and `indiaScope`:
 `located` | `remote_india` | `remote_global`.
 
-### 6.3 Seniority — title gate
+### 6.3 Title gate — engineering + seniority
 
+- **Engineering gate:** non-engineering titles are dropped (sales, marketing, design,
+  product/program management, finance, legal, HR, customer success, ...). A title must match
+  engineering tokens (engineer/developer/SRE/platform/data/ML/security/...); engineering
+  leadership (Engineering Manager, Director of Engineering, Head of Engineering) passes.
 - **Include tokens:** Senior, Sr, Staff, Principal, Lead, Tech Lead, Architect, Head of,
   Director, Engineering Manager, VP.
 - **Exclude tokens:** Intern, New Grad, Graduate, Junior, Associate, Entry, Apprentice,
@@ -233,8 +238,10 @@ Each kept job gets `cities[]`, `mode` (`onsite` | `hybrid` | `remote`), and `ind
 - For each role (all senior+ by the title gate), the floor is **₹50L base**:
   - **Published base** (Ashby compensation tiers, Lever `salaryRange`, Greenhouse pay
     transparency, Workable, SmartRecruiters): parse the base component, convert to INR with
-    the conservative FX table, enforce ≥ ₹50L. Below floor → dropped and counted in the run
-    summary ("N roles dropped below pay floor"), never silently.
+    the conservative FX table, enforce ≥ ₹50L. The floor applies to the band's **lower
+    bound** when a range is published ("minimum base ≥ ₹50L"); a single published value is
+    its own lower bound. Below floor → dropped and counted in the run summary
+    ("N roles dropped below pay floor"), never silently.
   - **Published as total only** (e.g. "$200k + equity", base not separable): keep when the
     converted total clears ₹50L, flagged `base unverified`; drop otherwise.
   - **Nothing published**: role stands on the company's senior vetting (`vettedSeniorMinLpa`).

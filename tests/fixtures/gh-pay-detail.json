@@ -1,0 +1,16 @@
+{
+  "id": 8089959,
+  "title": "3rd Party Partnerships Manager - Signals",
+  "location": {
+    "name": "New York City, NY"
+  },
+  "pay_input_ranges": [
+    {
+      "min_cents": 18900000,
+      "max_cents": 26460000,
+      "currency_type": "USD",
+      "title": "The base salary range for this position is:",
+      "blurb": "<p><strong>Pay Transparency:</strong></p>\n<p>This job posting may span more than one career level.</p>\n<p>In addition to base salary, this job is eligible to receive equity in the form of restricted stock units, and will also be eligible to receive a commission. Additionally, Reddit offers a wide range of benefits to U.S.-based employees, including medical, dental, and vision insurance, 401(k) program with employer match, generous time off for vacation, and parental leave. To learn more, please visit <a href=\"https://www.redditinc.com/careers/\" target=\"_blank\">https://www.redditinc.com/careers/</a>.</p>\n<p>To provide greater transparency to candidates, we share base salary ranges for all US-based job postings regardless of state. We set standard base pay ranges for all roles based on function, level, and country location, benchmarked against similar stage growth companies. Final offer amounts are determined by multiple factors including, skills, depth of work experience and relevant licenses/credentials, and may vary from the amounts listed below.</p>"
+    }
+  ]
+}

@@ -5,6 +5,7 @@
     "currency": "INR",
     "floorAnnual": 5000000,
     "companyFloorAnnual": 2000000,
+    "display": { "symbol": "₹", "divisor": 100000, "suffix": "L", "decimals": 1 },
     "fxRates": {
       "INR": 1,
       "USD": 87,

@@ -1,6 +1,8 @@
 // Crawl filters — the "high-paying senior engineering, India-eligible" gate.
 // Deterministic, config-driven, no network. Order (§6): title gate → geography → pay.
-import { convertToLpa, parseRangeString } from "./fx.mjs";
+import { parseRangeString } from "./fx.mjs";
+import { convertToBase, displayStep } from "./money.mjs";
+import { companyVettedMin } from "./accessors.mjs";
 import { cleanTitle, canonicalUrl, dedupeKey } from "./normalize.mjs";
 
 // ---------- Title gate: engineering + seniority (§6.3) ----------
@@ -130,8 +132,9 @@ export function classifyGeography(posting) {
 /**
  * Bands become money in three shapes: Lever `salaryRange`, Ashby `compensation`
  * (typed components; string fallback), Greenhouse `payInputRanges` (cents, annual base).
- * The floor applies to the band's LOWER bound when published ("minimum base ≥ ₹50L");
- * single-value total bands use that value. Equity/bonus never count.
+ * Amounts are converted to annual values in `pay.currency` (conservative rounding); the
+ * floor applies to the band's LOWER bound when published; single-value total bands use
+ * that value. Equity/bonus never count. `pay.enabled: false` switches the gate off.
  */
 export function classifyPay({ posting, company, config }) {
   const bands = [];
@@ -179,41 +182,46 @@ export function classifyPay({ posting, company, config }) {
     }
   }
 
-  const vetted = company.payVetting?.seniorBaseMinLpa ?? null;
+  const payCfg = config.pay ?? {};
+  const conversion = { rates: payCfg.fxRates ?? {}, base: payCfg.currency };
+  const step = displayStep(payCfg.display ?? {});
+  const gateOn = payCfg.enabled !== false;
+
+  const vetted = companyVettedMin(company);
   if (!bands.length) {
-    return { keep: true, pay: { published: false, vettedSeniorMinLpa: vetted } };
+    return { keep: true, pay: { published: false, vettedMin: vetted } };
   }
 
   const converted = [];
   const unsupported = [];
   for (const b of bands) {
     const basis = b.min ?? b.max;
-    const basisLpa = convertToLpa(basis, b.currency, b.interval, config.fxToInr);
-    if (basisLpa === null) {
+    const basisBase = convertToBase(basis, b.currency, b.interval, conversion, step);
+    if (basisBase === null) {
       unsupported.push(b.currency || "unknown");
       continue;
     }
     converted.push({
       ...b,
-      basisLpa,
-      minLpa: b.min !== null ? convertToLpa(b.min, b.currency, b.interval, config.fxToInr) : null,
-      maxLpa: b.max !== null ? convertToLpa(b.max, b.currency, b.interval, config.fxToInr) : null,
+      basisBase,
+      minBase: b.min !== null ? convertToBase(b.min, b.currency, b.interval, conversion, step) : null,
+      maxBase: b.max !== null ? convertToBase(b.max, b.currency, b.interval, conversion, step) : null,
     });
   }
   if (!converted.length) {
     return {
       keep: true,
-      pay: { published: false, unsupportedCurrency: [...new Set(unsupported)], vettedSeniorMinLpa: vetted },
+      pay: { published: false, unsupportedCurrency: [...new Set(unsupported)], vettedMin: vetted },
     };
   }
 
   const baseBands = converted.filter((b) => b.kind === "base");
-  const pool = (baseBands.length ? baseBands : converted).sort((a, b) => b.basisLpa - a.basisLpa);
+  const pool = (baseBands.length ? baseBands : converted).sort((a, b) => b.basisBase - a.basisBase);
   const pick = pool[0];
-  const floor = config.payFloorBaseLpa;
-  if (pick.basisLpa < floor) {
+  const floor = payCfg.floorAnnual ?? 0;
+  if (gateOn && pick.basisBase < floor) {
     const label = pick.kind === "total" ? "total comp" : "base";
-    return { keep: false, reason: `pay below floor (${label} ${pick.basisLpa}L < ${floor}L)` };
+    return { keep: false, reason: `pay below floor (${label} ${pick.basisBase} < ${floor})` };
   }
 
   const pay = {
@@ -222,8 +230,8 @@ export function classifyPay({ posting, company, config }) {
     raw: pick.raw ?? null,
     totalOnly: pick.kind === "total" || pick.min === null,
   };
-  if (pick.minLpa !== null) pay.baseMinLpa = pick.minLpa;
-  if (pick.maxLpa !== null) pay.baseMaxLpa = pick.maxLpa;
+  if (pick.minBase !== null) pay.baseMin = pick.minBase;
+  if (pick.maxBase !== null) pay.baseMax = pick.maxBase;
   return { keep: true, pay };
 }
 

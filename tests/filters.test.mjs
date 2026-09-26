@@ -141,8 +141,8 @@ test("published INR base band at/above floor is kept", () => {
   const r = classifyPay({ posting: posting({ salaryRange: { min: 5500000, max: 7000000, currency: "INR", interval: "per-year-salary" } }), company: company(), config });
   assert.equal(r.keep, true);
   assert.equal(r.pay.published, true);
-  assert.equal(r.pay.baseMinLpa, 55);
-  assert.equal(r.pay.baseMaxLpa, 70);
+  assert.equal(r.pay.baseMin, 5500000);
+  assert.equal(r.pay.baseMax, 7000000);
   assert.equal(r.pay.totalOnly, false);
 });
 
@@ -156,7 +156,7 @@ test("zero-value Lever ranges count as unpublished (real fixture)", () => {
   const r = classifyPay({ posting: posting({ salaryRange: leverZero.salaryRange }), company: company("saas", 60), config });
   assert.equal(r.keep, true);
   assert.equal(r.pay.published, false);
-  assert.equal(r.pay.vettedSeniorMinLpa, 60);
+  assert.equal(r.pay.vettedMin, 6000000);
 });
 
 test("Ashby typed salary components convert from CAD", () => {
@@ -169,8 +169,8 @@ test("Ashby typed salary components convert from CAD", () => {
   };
   const r = classifyPay({ posting: posting({ compensation }), company: company(), config });
   assert.equal(r.keep, true);
-  assert.equal(r.pay.baseMinLpa, 137.6);
-  assert.equal(r.pay.baseMaxLpa, 198.4);
+  assert.equal(r.pay.baseMin, 13760000);
+  assert.equal(r.pay.baseMax, 19840000);
   assert.equal(r.pay.totalOnly, false);
 });
 
@@ -192,14 +192,14 @@ test("Ashby total-only summary below floor is dropped", () => {
   };
   const r = classifyPay({ posting: posting({ compensation }), company: company(), config });
   assert.equal(r.keep, false);
-  assert.match(r.reason, /total comp 19\.2L/);
+  assert.match(r.reason, /total comp 1920000/);
 });
 
-test("Greenhouse pay transparency cents convert to LPA (real fixture)", () => {
+test("Greenhouse pay transparency cents convert to base currency (real fixture)", () => {
   const r = classifyPay({ posting: posting({ payInputRanges: ghPay.pay_input_ranges }), company: company(), config });
   assert.equal(r.keep, true);
-  assert.equal(r.pay.baseMinLpa, 164.4);
-  assert.equal(r.pay.baseMaxLpa, 230.2);
+  assert.equal(r.pay.baseMin, 16440000);
+  assert.equal(r.pay.baseMax, 23020000);
   assert.equal(r.pay.totalOnly, false);
 });
 
@@ -223,7 +223,18 @@ test("unsupported currency keeps the role on company vetting, with a flag", () =
 test("no published pay keeps the role on company vetting", () => {
   const r = classifyPay({ posting: posting(), company: company("india-product", 55), config });
   assert.equal(r.keep, true);
-  assert.deepEqual(r.pay, { published: false, vettedSeniorMinLpa: 55 });
+  assert.deepEqual(r.pay, { published: false, vettedMin: 5500000 });
+});
+
+test("pay.enabled: false switches the floor gate off but still records bands", () => {
+  const off = loadConfigFile(new URL("./fixtures/config.json", import.meta.url));
+  off.pay = { ...off.pay, enabled: false };
+  const ranges = [{ min_cents: 10000000, max_cents: 20000000, currency_type: "INR", title: "base" }];
+  const r = classifyPay({ posting: posting({ payInputRanges: ranges }), company: company(), config: off });
+  assert.equal(r.keep, true);
+  assert.equal(r.pay.published, true);
+  assert.equal(r.pay.baseMin, 100000);
+  assert.equal(r.pay.baseMax, 200000);
 });
 
 // ---------- Pipeline ----------
@@ -237,7 +248,7 @@ test("applyFilters composes title, geography, and pay into an enriched posting",
   assert.equal(res.posting.seniority, "senior");
   assert.equal(res.posting.levelSource, "title");
   assert.deepEqual(res.posting.location, { raw: "Bengaluru, India", cities: ["Bengaluru"], mode: null, indiaScope: "located" });
-  assert.equal(res.posting.pay.vettedSeniorMinLpa, 60);
+  assert.equal(res.posting.pay.vettedMin, 6000000);
 });
 
 test("applyFilters drops non-engineering and junior roles before any parsing", () => {

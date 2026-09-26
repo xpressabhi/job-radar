@@ -5,6 +5,8 @@ import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 import { createFetcher } from "./lib/fetch.mjs";
 import { loadConfig } from "./lib/config.mjs";
+import { formatBand, formatMoney } from "./lib/money.mjs";
+import { locationScope, payMax, payMin, payVetted } from "./lib/accessors.mjs";
 import { getAdapter } from "./sources/index.mjs";
 import { applyFilters, classifyGeography, classifySeniority, isEngineeringTitle } from "./lib/filters.mjs";
 import { cleanTitle } from "./lib/normalize.mjs";
@@ -199,7 +201,7 @@ export async function main(argv = process.argv.slice(2), io = console, env = pro
   const dropTop = [...dropReasons.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8);
   io.log(`\nboards ok ${summary.boardsOk}/${selected.length} · raw ${rawTotal} · kept ${keptTotal} · new ${summary.new} · archived ${summary.archived} · reopened ${summary.reopened} · duplicates ${summary.duplicates}`);
   for (const [reason, count] of dropTop) io.log(`   drop ${String(count).padStart(4)} × ${reason}`);
-  if (belowFloor.length) io.log(`   ${belowFloor.length} roles dropped below pay floor (lower bound < ₹${config.payFloorBaseLpa}L base)`);
+  if (belowFloor.length) io.log(`   ${belowFloor.length} roles dropped below pay floor (lower bound < ${formatMoney(config.pay.floorAnnual, config.pay.display)} base)`);
   io.log(`   comp evidence +${evidenceAdded} · classification pending ${classified.filter((p) => p.needsClassify).length}${cache ? "" : ""}`);
   if (degraded) io.log(`   DEGRADED RUN (>${Math.floor(selected.length / 2)} boards failed) — archiving suspended`);
 
@@ -207,9 +209,9 @@ export async function main(argv = process.argv.slice(2), io = console, env = pro
     io.log(`\nkept postings (first ${args.limit}):`);
     for (const p of keptAll.slice(0, args.limit)) {
       const pay = p.pay?.published
-        ? `pay ${p.pay.baseMinLpa ?? "?"}${p.pay.baseMaxLpa ? `–${p.pay.baseMaxLpa}` : ""}L${p.pay.totalOnly ? " total" : ""}`
-        : `vetted ${p.pay?.vettedSeniorMinLpa}L`;
-      io.log(`   ${p.title} — ${p.company} — ${p.location.cities.join("/") || p.location.indiaScope} — ${p.category} — ${p.seniority} — ${pay}`);
+        ? `pay ${formatBand(payMin(p.pay), payMax(p.pay), config.pay.display)}${p.pay.totalOnly ? " total" : ""}`
+        : `vetted ${formatMoney(payVetted(p.pay), config.pay.display)}`;
+      io.log(`   ${p.title} — ${p.company} — ${p.location.cities.join("/") || locationScope(p.location)} — ${p.category} — ${p.seniority} — ${pay}`);
     }
     io.log("\ndry run (no files written)");
     return summary.boardsOk === 0 ? 1 : 0;

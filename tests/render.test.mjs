@@ -5,7 +5,11 @@ import { renderSite, payLabel, locationLabel, formatDay } from "../scripts/rende
 import { emptyStore } from "../scripts/lib/store.mjs";
 
 const store = JSON.parse(readFileSync(new URL("./fixtures/store-sample.json", import.meta.url), "utf8"));
-const files = renderSite({ store, config: {}, now: "2026-09-26T02:00:00.000Z" });
+// The fixture intentionally keeps legacy pay/scope fields: these tests exercise the tolerant readers.
+const config = {
+  pay: { floorAnnual: 5000000, display: { symbol: "₹", divisor: 100000, suffix: "L", decimals: 1 } },
+};
+const files = renderSite({ store, config, now: "2026-09-26T02:00:00.000Z" });
 
 test("index renders server-side rows with filter hooks and real data", () => {
   const html = files["index.html"];
@@ -17,6 +21,7 @@ test("index renders server-side rows with filter hooks and real data", () => {
   assert.match(html, /₹55–70L base/);
   assert.match(html, /vetted ≥₹65L base/);
   assert.match(html, /84\/86/);
+  assert.match(html, /below the ₹50L base floor/);
   assert.match(html, /data-preset="backend"/);
 });
 
@@ -65,7 +70,7 @@ test("active jobs are ordered by employer posting date, falling back to first se
   };
   const html = renderSite({
     store: { jobs: [oldPostRecentSeen, noPosted, staleFirstSeenFresh] },
-    config: {},
+    config,
     now: "2026-09-26T02:00:00.000Z",
   })["index.html"];
   const order = [...html.matchAll(/<h3><a[^>]*>([^<]+)</g)].map((m) => m[1]);
@@ -74,16 +79,19 @@ test("active jobs are ordered by employer posting date, falling back to first se
 });
 
 test("empty store renders gracefully", () => {
-  const empty = renderSite({ store: emptyStore(), config: {}, now: "2026-09-26T02:00:00.000Z" });
+  const empty = renderSite({ store: emptyStore(), config, now: "2026-09-26T02:00:00.000Z" });
   assert.match(empty["index.html"], /No live roles right now/);
   assert.match(empty["archive.html"], /Nothing archived yet/);
 });
 
 test("labels are honest about published vs vetted pay", () => {
-  assert.equal(payLabel({ published: true, baseMinLpa: 55, baseMaxLpa: 70, totalOnly: false }), "₹55–70L base");
-  assert.equal(payLabel({ published: true, baseMinLpa: 60, baseMaxLpa: 60, totalOnly: true }), "₹60L total comp · base unverified");
-  assert.equal(payLabel({ published: false, vettedSeniorMinLpa: 70 }), "vetted ≥₹70L base");
-  assert.equal(payLabel({}), "");
+  assert.equal(payLabel({ published: true, baseMin: 5500000, baseMax: 7000000, totalOnly: false }, config.pay), "₹55–70L base");
+  assert.equal(payLabel({ published: true, baseMin: 6000000, baseMax: 6000000, totalOnly: true }, config.pay), "₹60L total comp · base unverified");
+  assert.equal(payLabel({ published: false, vettedMin: 7000000 }, config.pay), "vetted ≥₹70L base");
+  // legacy INR-lakhs shapes still render through the tolerant readers
+  assert.equal(payLabel({ published: true, baseMinLpa: 55, baseMaxLpa: 70, totalOnly: false }, config.pay), "₹55–70L base");
+  assert.equal(payLabel({ published: false, vettedSeniorMinLpa: 70 }, config.pay), "vetted ≥₹70L base");
+  assert.equal(payLabel({}, config.pay), "");
 });
 
 test("location labels cover the three India scopes", () => {

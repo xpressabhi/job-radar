@@ -163,15 +163,15 @@
         "raw": "London",
         "cities": [],
         "mode": "remote",
-        "indiaScope": "remote_global"
+        "scope": "remote_global"
       },
       "pay": {
         "published": true,
         "currency": "CAD",
         "raw": "CA$250K – CA$535K • Offers Equity • Multiple Ranges",
         "totalOnly": false,
-        "baseMinLpa": 160,
-        "baseMaxLpa": 342.4
+        "baseMin": 16000000,
+        "baseMax": 34240000
       },
       "category": "ai-ml",
       "tags": [],
@@ -209,11 +209,11 @@
           "Hyderabad"
         ],
         "mode": null,
-        "indiaScope": "located"
+        "scope": "located"
       },
       "pay": {
         "published": false,
-        "vettedSeniorMinLpa": 55
+        "vettedMin": 5500000
       },
       "category": "platform-infra",
       "tags": [],

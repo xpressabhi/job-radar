@@ -6,6 +6,8 @@ import { fileURLToPath } from "node:url";
 import { CATEGORIES } from "./lib/taxonomy.mjs";
 import { emptyStore } from "./lib/store.mjs";
 import { loadConfig } from "./lib/config.mjs";
+import { formatBand, formatMoney } from "./lib/money.mjs";
+import { payMax, payMin, payVetted, locationScope } from "./lib/accessors.mjs";
 
 const DATA = new URL("../data/", import.meta.url);
 const TEMPLATES = new URL("../templates/", import.meta.url);
@@ -25,34 +27,37 @@ export function formatDay(iso) {
 
 const capitalize = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : "");
 
-export function payLabel(pay) {
+const DEFAULT_PAY_DISPLAY = { symbol: "", divisor: 1, suffix: "", decimals: 0 };
+
+export function payLabel(pay, payConfig = {}) {
+  const display = payConfig.display ?? DEFAULT_PAY_DISPLAY;
   if (!pay) return "";
   if (pay.published) {
-    const min = pay.baseMinLpa;
-    const max = pay.baseMaxLpa;
-    const band = min && max && max !== min ? `₹${min}–${max}L` : `₹${min ?? max}L`;
+    const band = formatBand(payMin(pay), payMax(pay), display);
     const kind = pay.totalOnly ? "total comp" : "base";
     return `${band} ${kind}${pay.totalOnly ? " · base unverified" : ""}`;
   }
-  return pay.vettedSeniorMinLpa ? `vetted ≥₹${pay.vettedSeniorMinLpa}L base` : "";
+  const vetted = payVetted(pay);
+  return vetted ? `vetted ≥${formatMoney(vetted, display)} base` : "";
 }
 
 export function locationLabel(job) {
   const cities = job.location?.cities ?? [];
   if (cities.length) return cities.join(", ");
-  if (job.location?.indiaScope === "remote_india") return "Remote (India)";
-  if (job.location?.indiaScope === "remote_global") return "Remote (global)";
+  const scope = locationScope(job.location);
+  if (scope === "remote_home") return "Remote (India)";
+  if (scope === "remote_global") return "Remote (global)";
   return "India";
 }
 
-export function jobRow(job) {
+export function jobRow(job, config = {}) {
   const cities = (job.location?.cities ?? []).map((c) => c.toLowerCase()).join("|");
   const search = [job.title, job.company, ...(job.tags ?? []), ...(job.location?.cities ?? [])]
     .join(" ")
     .toLowerCase();
   const mode = job.location?.mode ?? "";
-  const scope = job.location?.indiaScope ?? "";
-  const pay = payLabel(job.pay);
+  const scope = locationScope(job.location) ?? "";
+  const pay = payLabel(job.pay, config.pay);
   const modeNote = mode === "hybrid" ? " · hybrid" : mode === "remote" ? " · remote" : "";
   const badges = [
     pay ? `<span class="badge salary${job.pay?.published ? "" : " vetted"}">${esc(pay)}</span>` : "",
@@ -74,7 +79,7 @@ export function jobRow(job) {
 </li>`;
 }
 
-function archiveGroups(archived) {
+function archiveGroups(archived, config = {}) {
   const byMonth = new Map();
   for (const job of archived) {
     const month = (job.closedAt ?? job.lastSeen ?? job.firstSeen ?? "").slice(0, 7) || "unknown";
@@ -87,7 +92,7 @@ function archiveGroups(archived) {
       const label = month === "unknown" ? "Unknown" : `${MONTHS_LONG[Number(month.slice(5, 7)) - 1]} ${month.slice(0, 4)}`;
       const rows = jobs
         .map((job) => {
-          const pay = payLabel(job.pay);
+          const pay = payLabel(job.pay, config.pay);
           return `<li class="job">
   <div class="job-main">
     <h3><a href="${esc(job.url)}" rel="noopener">${esc(job.title)}</a></h3>
@@ -105,12 +110,13 @@ function archiveGroups(archived) {
     .join("\n");
 }
 
-function coverageHtml(store, activeCount, archivedCount) {
+function coverageHtml(store, activeCount, archivedCount, config = {}) {
   const run = store.lastRun ?? {};
   const total = run.boardsTotal ?? null;
   const ok = run.boardsOk ?? null;
   const failed = total !== null && ok !== null ? total - ok : null;
   const degraded = total !== null && failed !== null && failed > total / 2;
+  const floorText = formatMoney(config.pay?.floorAnnual, config.pay?.display ?? DEFAULT_PAY_DISPLAY);
   const bits = [
     `<span><strong>${activeCount}</strong> live roles</span>`,
     `<span><strong>${archivedCount}</strong> archived</span>`,
@@ -118,17 +124,17 @@ function coverageHtml(store, activeCount, archivedCount) {
     run.new ? `<span><strong>+${run.new}</strong> new this run</span>` : "",
     run.archived ? `<span><strong>${run.archived}</strong> closed this run</span>` : "",
     run.dropped != null ? `<span><strong>${run.dropped}</strong> filtered out (pay/level/location)</span>` : "",
-    run.droppedBelowFloor ? `<span><strong>${run.droppedBelowFloor}</strong> below the ₹50L base floor</span>` : "",
+    run.droppedBelowFloor ? `<span><strong>${run.droppedBelowFloor}</strong> below the ${esc(floorText)} base floor</span>` : "",
     degraded ? `<span class="warn">degraded run — archiving suspended</span>` : "",
   ].filter(Boolean);
   return bits.join("\n  ");
 }
 
-function rssFeed(active, siteUrl) {
+function rssFeed(active, siteUrl, config = {}) {
   const items = active
     .slice(0, 50)
     .map((job) => {
-      const pay = payLabel(job.pay);
+      const pay = payLabel(job.pay, config.pay);
       const description = [job.company, locationLabel(job), pay, job.seniority].filter(Boolean).join(" · ");
       const pub = job.postedAt ?? job.firstSeen;
       return `  <item>
@@ -168,11 +174,11 @@ export function renderSite({ store, config, siteUrl = "https://xpressabhi.github
   const indexTemplate = readFileSync(new URL("index.html", TEMPLATES), "utf8");
   const archiveTemplate = readFileSync(new URL("archive.html", TEMPLATES), "utf8");
 
-  const rows = active.map(jobRow).join("\n");
+  const rows = active.map((job) => jobRow(job, config)).join("\n");
   const categoryOptions = CATEGORIES.map(
     (c) => `<option value="${esc(c)}">${esc(c === "other" ? "Other / uncategorized" : capitalize(c.replace("-", " ")))}</option>`,
   ).join("");
-  const coverage = coverageHtml(store, active.length, archived.length);
+  const coverage = coverageHtml(store, active.length, archived.length, config);
 
   const index = indexTemplate
     .replace("{{STYLE}}", style)
@@ -185,7 +191,7 @@ export function renderSite({ store, config, siteUrl = "https://xpressabhi.github
 
   const archive = archiveTemplate
     .replace("{{STYLE}}", style)
-    .replace("{{GROUPS}}", archiveGroups(archived) || `<p class="empty">Nothing archived yet.</p>`)
+    .replace("{{GROUPS}}", archiveGroups(archived, config) || `<p class="empty">Nothing archived yet.</p>`)
     .replace("{{COVERAGE}}", coverage)
     .replace("{{ARCHIVE_COUNT}}", String(archived.length))
     .replace("{{UPDATED}}", `${formatDay(now)} ${now.slice(11, 16)} UTC`);
@@ -194,7 +200,7 @@ export function renderSite({ store, config, siteUrl = "https://xpressabhi.github
     "index.html": index,
     "archive.html": archive,
     "jobs.json": JSON.stringify(store, null, 2) + "\n",
-    "feed.xml": rssFeed(active, siteUrl),
+    "feed.xml": rssFeed(active, siteUrl, config),
   };
 }
 

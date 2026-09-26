@@ -1,11 +1,13 @@
 // Job store: merge crawl results, two-strike archiving, reopen detection, comp evidence, health.
 // Pure functions over plain objects; the crawl script owns file IO.
 import { nearDupeKey } from "./normalize.mjs";
+import { migrateJob } from "./accessors.mjs";
+import { migrateLegacyEvidence } from "./money.mjs";
 
 export const emptyStore = () => ({ updated: null, lastRun: null, jobs: [] });
 
 export function mergeResults({ store, results, config, now, archive = true }) {
-  const jobs = store.jobs ?? [];
+  const jobs = (store.jobs ?? []).map(migrateJob);
   const byId = new Map(jobs.map((j) => [j.id, j]));
   const activeNear = new Map();
   for (const j of jobs) {
@@ -39,7 +41,7 @@ export function mergeResults({ store, results, config, now, archive = true }) {
           // Same company + title + city already tracked: collapse, newest data wins.
           const twin = byId.get(twinId);
           if (twin) {
-            const { dedupeKey: _dk, ...rest } = posting;
+            const { dedupeKey: _dk, ...rest } = migrateJob(posting);
             Object.assign(twin, rest, { id: twinId });
             twin.lastSeen = now;
             twin.misses = 0;
@@ -50,7 +52,7 @@ export function mergeResults({ store, results, config, now, archive = true }) {
           continue;
         }
         const record = {
-          ...posting,
+          ...migrateJob(posting),
           id,
           firstSeen: now,
           lastSeen: now,
@@ -70,7 +72,7 @@ export function mergeResults({ store, results, config, now, archive = true }) {
 
       // Existing record — update and reset the miss counter.
       const wasArchived = existing.status === "archived";
-      Object.assign(existing, posting, { id });
+      Object.assign(existing, migrateJob(posting), { id });
       existing.lastSeen = now;
       existing.misses = 0;
       if (wasArchived) {
@@ -108,26 +110,27 @@ export function mergeResults({ store, results, config, now, archive = true }) {
 
 /** Append base-pay observations, deduped by url+band so daily runs do not bloat the file. */
 export function appendCompEvidence(evidence, postings, now) {
-  const seen = new Set((evidence ?? []).map((e) => `${e.url}|${e.baseMinLpa}|${e.baseMaxLpa}|${e.totalOnly}`));
+  const migrated = (evidence ?? []).map(migrateLegacyEvidence);
+  const seen = new Set(migrated.map((e) => `${e.url}|${e.baseMin}|${e.baseMax}|${e.totalOnly}`));
   const additions = [];
   for (const p of postings) {
     if (!p?.pay?.published) continue;
-    const key = `${p.url}|${p.pay.baseMinLpa}|${p.pay.baseMaxLpa}|${p.pay.totalOnly}`;
+    const key = `${p.url}|${p.pay.baseMin}|${p.pay.baseMax}|${p.pay.totalOnly}`;
     if (seen.has(key)) continue;
     seen.add(key);
     additions.push({
       company: p.company,
       title: p.title,
       currency: p.pay.currency,
-      baseMinLpa: p.pay.baseMinLpa ?? null,
-      baseMaxLpa: p.pay.baseMaxLpa ?? null,
+      baseMin: p.pay.baseMin ?? null,
+      baseMax: p.pay.baseMax ?? null,
       totalOnly: p.pay.totalOnly ?? false,
       raw: p.pay.raw ?? null,
       observedOn: now,
       url: p.url,
     });
   }
-  return { evidence: [...(evidence ?? []), ...additions], added: additions.length };
+  return { evidence: [...migrated, ...additions], added: additions.length };
 }
 
 export function updateHealth(health, results, now) {

@@ -62,12 +62,14 @@ test("shortlist filters archived jobs, sorts by score, and caps the limit", () =
   assert.ok(all.every((r) => r.job.status === "active"));
 });
 
+const DISPLAY = { symbol: "₹", divisor: 100000, suffix: "L", decimals: 1 };
+
 test("markdown output has the table, links, and honest pay text", () => {
   const rows = shortlist({ jobs: [job({ id: "a" })], profile, limit: 5 });
-  const md = renderMarkdown(rows, "2026-09-26T02:00:00.000Z");
+  const md = renderMarkdown(rows, "2026-09-26T02:00:00.000Z", DISPLAY);
   assert.match(md, /# Personal shortlist/);
   assert.match(md, /\| 1 \| \[Senior Backend Engineer\]\(https:\/\/example\.test\/job\) \| Acme \|/);
   assert.match(md, /vetted ≥₹55L base/);
-  const paidMd = renderMarkdown(shortlist({ jobs: [job({ id: "p", pay: { published: true, baseMinLpa: 60, baseMaxLpa: 70, totalOnly: true } })], profile }), "now");
+  const paidMd = renderMarkdown(shortlist({ jobs: [job({ id: "p", pay: { published: true, baseMinLpa: 60, baseMaxLpa: 70, totalOnly: true } })], profile }), "now", DISPLAY);
   assert.match(paidMd, /₹60–70L total/);
 });

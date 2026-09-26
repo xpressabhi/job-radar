@@ -13,9 +13,9 @@ const posting = (overrides = {}) => ({
   companySlug: "acme",
   jobId: "1",
   title: "Senior Backend Engineer",
-  location: { raw: "Bengaluru, India", cities: ["Bengaluru"], mode: null, indiaScope: "located" },
+  location: { raw: "Bengaluru, India", cities: ["Bengaluru"], mode: null, scope: "located" },
   url: "https://jobs.example.com/1",
-  pay: { published: false, vettedSeniorMinLpa: 60 },
+  pay: { published: false, vettedMin: 6000000 },
   ...overrides,
 });
 
@@ -106,13 +106,39 @@ test("degraded runs (archive=false) never archive", () => {
 });
 
 test("comp evidence appends once per url+band", () => {
-  const paid = posting({ pay: { published: true, currency: "INR", baseMinLpa: 55, baseMaxLpa: 70, totalOnly: false, raw: "₹55L–70L" } });
+  const paid = posting({ pay: { published: true, currency: "INR", baseMin: 5500000, baseMax: 7000000, totalOnly: false, raw: "₹55L–70L" } });
   const first = appendCompEvidence([], [paid], NOW);
   assert.equal(first.added, 1);
+  assert.equal(first.evidence[0].baseMin, 5500000);
   const second = appendCompEvidence(first.evidence, [paid], LATER);
   assert.equal(second.added, 0);
-  const changed = appendCompEvidence(first.evidence, [posting({ pay: { ...paid.pay, baseMaxLpa: 80 } })], LATER);
+  const changed = appendCompEvidence(first.evidence, [posting({ pay: { ...paid.pay, baseMax: 8000000 } })], LATER);
   assert.equal(changed.added, 1);
+});
+
+test("legacy records migrate to the new field shapes on merge", () => {
+  const legacyStore = {
+    updated: NOW,
+    lastRun: null,
+    jobs: [{
+      ...posting(),
+      pay: { published: true, currency: "INR", baseMinLpa: 55, baseMaxLpa: 70, totalOnly: false },
+      location: { raw: "Remote - India", cities: [], mode: "remote", indiaScope: "remote_india" },
+    }],
+  };
+  const { store } = mergeResults({ store: legacyStore, results: [], config, now: LATER, archive: false });
+  assert.equal(store.jobs[0].pay.baseMin, 5500000);
+  assert.equal(store.jobs[0].pay.baseMinLpa, undefined);
+  assert.equal(store.jobs[0].location.scope, "remote_home");
+  assert.equal(store.jobs[0].location.indiaScope, undefined);
+});
+
+test("legacy evidence migrates and still dedupes against new-shaped postings", () => {
+  const legacyEvidence = [{ url: "https://jobs.example.com/1", currency: "INR", baseMinLpa: 55, baseMaxLpa: 70, totalOnly: false }];
+  const paid = posting({ pay: { published: true, currency: "INR", baseMin: 5500000, baseMax: 7000000, totalOnly: false } });
+  const res = appendCompEvidence(legacyEvidence, [paid], LATER);
+  assert.equal(res.added, 0, "migrated evidence dedupes");
+  assert.equal(res.evidence[0].baseMin, 5500000);
 });
 
 test("health tracks consecutive failures and resets on success", () => {

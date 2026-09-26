@@ -6,6 +6,9 @@
 // script's output is exactly the candidate set it would consume.
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname } from "node:path";
+import { loadConfigFile } from "./lib/config.mjs";
+import { formatBand, formatMoney } from "./lib/money.mjs";
+import { locationScope, payMax, payMin, payVetted } from "./lib/accessors.mjs";
 
 export function profileKeywords(profile) {
   const parts = [];
@@ -28,7 +31,7 @@ export function scoreJob(job, profile, keywords) {
   const home = String(profile?.basics?.location ?? "").split(",")[0].trim().toLowerCase();
   const cities = (job.location?.cities ?? []).map((c) => c.toLowerCase());
   if (home && cities.includes(home)) score += 4;
-  if (job.location?.indiaScope === "remote_india") score += 2;
+  if (locationScope(job.location) === "remote_home") score += 2;
   if (job.pay?.published) score += 1;
   return { score, matches: matches.slice(0, 8) };
 }
@@ -42,12 +45,16 @@ export function shortlist({ jobs, profile, limit = 40 }) {
     .slice(0, limit);
 }
 
-const payText = (pay) =>
-  pay?.published
-    ? `₹${pay.baseMinLpa ?? "?"}${pay.baseMaxLpa && pay.baseMaxLpa !== pay.baseMinLpa ? `–${pay.baseMaxLpa}` : ""}L${pay.totalOnly ? " total" : " base"}`
-    : `vetted ≥₹${pay?.vettedSeniorMinLpa ?? "?"}L base`;
+const payText = (pay, display = {}) => {
+  if (pay?.published) {
+    const band = formatBand(payMin(pay), payMax(pay), display);
+    return `${band}${pay.totalOnly ? " total" : " base"}`;
+  }
+  const vetted = payVetted(pay);
+  return vetted ? `vetted ≥${formatMoney(vetted, display)} base` : "";
+};
 
-export function renderMarkdown(rows, now) {
+export function renderMarkdown(rows, now, payDisplay = {}) {
   const lines = [
     "# Personal shortlist",
     "",
@@ -58,9 +65,9 @@ export function renderMarkdown(rows, now) {
     "|---|---|---|---|---|---|---|",
   ];
   rows.forEach(({ job, matches }, i) => {
-    const where = job.location?.cities?.join(", ") || job.location?.indiaScope || "";
+    const where = job.location?.cities?.join(", ") || locationScope(job.location) || "";
     lines.push(
-      `| ${i + 1} | [${job.title}](${job.url}) | ${job.company} | ${where} | ${payText(job.pay)} | ${job.category} | ${matches.join(", ") || "—"} |`,
+      `| ${i + 1} | [${job.title}](${job.url}) | ${job.company} | ${where} | ${payText(job.pay, payDisplay)} | ${job.category} | ${matches.join(", ") || "—"} |`,
     );
   });
   lines.push("");
@@ -68,11 +75,12 @@ export function renderMarkdown(rows, now) {
 }
 
 function parseArgs(argv) {
-  const args = { profile: process.env.JOB_RADAR_PROFILE ?? null, jobs: "data/jobs.json", out: "output/personal-shortlist.md", limit: 40 };
+  const args = { profile: process.env.JOB_RADAR_PROFILE ?? null, jobs: "data/jobs.json", config: "data/config.json", out: "output/personal-shortlist.md", limit: 40 };
   for (const a of argv) {
     const [key, value] = a.split("=");
     if (key === "--profile") args.profile = value;
     else if (key === "--jobs") args.jobs = value;
+    else if (key === "--config") args.config = value;
     else if (key === "--out") args.out = value;
     else if (key === "--limit") args.limit = Number(value);
   }
@@ -88,10 +96,11 @@ async function main() {
   }
   const profile = JSON.parse(readFileSync(args.profile, "utf8"));
   const store = JSON.parse(readFileSync(args.jobs, "utf8"));
+  const config = loadConfigFile(args.config, { env: process.env });
   const rows = shortlist({ jobs: store.jobs ?? [], profile, limit: args.limit });
   const now = new Date().toISOString();
   mkdirSync(dirname(args.out), { recursive: true });
-  writeFileSync(args.out, renderMarkdown(rows, now));
+  writeFileSync(args.out, renderMarkdown(rows, now, config.pay.display));
   console.log(`shortlist: ${rows.length} roles → ${args.out}`);
   return 0;
 }

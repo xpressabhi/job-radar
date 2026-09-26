@@ -15,14 +15,15 @@ create `github.com/xpressabhi/job-radar` (public), push, and enable Pages with
 `build_type: workflow` via `gh api`.
 
 **Acceptance criteria:**
-- [ ] Public repo exists with `main` pushed; commit style is conventional commits
-- [ ] `gh api repos/xpressabhi/job-radar/pages` shows `build_type: "workflow"`
-- [ ] `data/config.json` matches spec §5 (floors 50/20, FX table, delays, `archiveMisses: 2`)
-- [ ] `npm run` lists all scripts; `npm test` exits 0 (no tests yet)
+- [x] Public repo exists with `main` pushed; commit style is conventional commits
+- [x] `gh api repos/xpressabhi/job-radar/pages` shows `build_type: "workflow"`
+- [x] `data/config.json` matches spec §5 (floors 50/20, FX table, delays, `archiveMisses: 2`)
+- [x] `npm run` lists all scripts; `npm test` exits 0 (config smoke tests)
 
 **Verification:**
-- [ ] `gh repo view xpressabhi/job-radar --json visibility,defaultBranchRef`
-- [ ] `npm run` output inspected
+- [x] `gh repo view xpressabhi/job-radar --json visibility,defaultBranchRef`
+- [x] `npm run` output inspected; `npm test` = 4 passing tests
+- [x] Node 24 rejected `node --test tests/` — script uses default discovery (`node --test`), works on Node 20+
 
 **Dependencies:** None · **Scope:** Small (5 files)
 

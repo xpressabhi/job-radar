@@ -56,6 +56,56 @@ test("health issues: below threshold does nothing; missing token/repo skips", as
   assert.equal(skipped.skipped, true);
 });
 
+test("health issues: creates the board-health label when it is missing", async () => {
+  const calls = [];
+  const fetchImpl = async (url, init = {}) => {
+    calls.push({ url, method: init.method ?? "GET", body: init.body });
+    if (url.includes("/labels/board-health") && !init.method) return jsonRes({}, 404);
+    if (url.endsWith("/labels") && init.method === "POST") return jsonRes({ name: "board-health" }, 201);
+    if (url.includes("/issues?") && !init.method) return jsonRes([]);
+    if (url.endsWith("/issues") && init.method === "POST") return jsonRes({ number: 4 }, 201);
+    return jsonRes({}, 200);
+  };
+  const res = await syncHealthIssues({
+    health: { amplitude: { consecutiveFails: 7, lastError: "HTTP 404", lastOk: null } },
+    repo: "acme/jobs",
+    token: "t",
+    fetchImpl,
+  });
+  assert.deepEqual(res.opened, ["amplitude"]);
+  const labelPost = calls.find((c) => c.method === "POST" && c.url.endsWith("/labels"));
+  assert.ok(labelPost, "expected label creation POST");
+  assert.equal(JSON.parse(labelPost.body).name, "board-health");
+});
+
+test("health issues: a failed issue API call is surfaced, not swallowed", async () => {
+  const fetchImpl = async (url, init = {}) => {
+    if (url.includes("/labels/board-health") && !init.method) return jsonRes({}, 200);
+    if (url.includes("/issues?") && !init.method) return jsonRes([]);
+    if (url.endsWith("/issues") && init.method === "POST") {
+      return { ...jsonRes({ message: "Resource not accessible by integration" }, 403), text: async () => '{"message":"Resource not accessible by integration"}' };
+    }
+    return jsonRes({}, 200);
+  };
+  await assert.rejects(
+    syncHealthIssues({ health: { amplitude: { consecutiveFails: 7 } }, repo: "acme/jobs", token: "t", fetchImpl }),
+    /opening issue for amplitude failed: HTTP 403/,
+  );
+});
+
+test("health issues: a failed close is surfaced", async () => {
+  const fetchImpl = async (url, init = {}) => {
+    if (url.includes("/issues?") && !init.method) return jsonRes([{ number: 9, title: "[board-health] stripetest" }]);
+    if (url.endsWith("/comments") && init.method === "POST") return jsonRes({}, 201);
+    if (url.endsWith("/issues/9") && init.method === "PATCH") return { ...jsonRes({}, 403), text: async () => "forbidden" };
+    return jsonRes({}, 200);
+  };
+  await assert.rejects(
+    syncHealthIssues({ health: { stripetest: { consecutiveFails: 0 } }, repo: "acme/jobs", token: "t", fetchImpl }),
+    /closing issue #9 failed: HTTP 403/,
+  );
+});
+
 test("board result classification", () => {
   assert.deepEqual(classifyBoardResult({ ok: true, postings: [1, 2] }), { status: "ok", detail: "2 postings" });
   assert.equal(classifyBoardResult({ ok: true, postings: [] }).status, "empty");

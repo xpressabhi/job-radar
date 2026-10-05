@@ -6,7 +6,34 @@ import { readFileSync, existsSync } from "node:fs";
 
 const API = "https://api.github.com";
 const LABEL = "board-health";
+const LABEL_COLOR = "5319e7";
+const LABEL_DESCRIPTION = "Automated: company ATS board failing consecutive crawls";
 const TITLE_PREFIX = "[board-health]";
+
+const bodySnippet = async (res) => {
+  try {
+    const text = typeof res.text === "function" ? await res.text() : "";
+    return text ? ` — ${text.slice(0, 200)}` : "";
+  } catch {
+    return "";
+  }
+};
+
+async function ensureLabel({ repo, headers, fetchImpl }) {
+  const getRes = await fetchImpl(`${API}/repos/${repo}/labels/${encodeURIComponent(LABEL)}`, { headers });
+  if (getRes.ok) return;
+  if (getRes.status !== 404) {
+    throw new Error(`checking label "${LABEL}" failed: HTTP ${getRes.status}${await bodySnippet(getRes)}`);
+  }
+  const createRes = await fetchImpl(`${API}/repos/${repo}/labels`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ name: LABEL, color: LABEL_COLOR, description: LABEL_DESCRIPTION }),
+  });
+  if (!createRes.ok) {
+    throw new Error(`creating label "${LABEL}" failed: HTTP ${createRes.status}${await bodySnippet(createRes)}`);
+  }
+}
 
 export async function syncHealthIssues({ health, repo, token, fetchImpl = globalThis.fetch, threshold = 3 }) {
   const result = { opened: [], closed: [], skipped: false };
@@ -30,10 +57,15 @@ export async function syncHealthIssues({ health, repo, token, fetchImpl = global
     if (match) issueBySlug.set(match[1].trim(), issue.number);
   }
 
+  let labelEnsured = false;
   for (const [slug, entry] of Object.entries(health ?? {})) {
     const fails = entry?.consecutiveFails ?? 0;
     const existing = issueBySlug.get(slug);
     if (fails >= threshold && !existing) {
+      if (!labelEnsured) {
+        await ensureLabel({ repo, headers, fetchImpl });
+        labelEnsured = true;
+      }
       const res = await fetchImpl(`${API}/repos/${repo}/issues`, {
         method: "POST",
         headers,
@@ -51,23 +83,30 @@ export async function syncHealthIssues({ health, repo, token, fetchImpl = global
           ].join("\n"),
         }),
       });
-      if (res.ok) {
-        const issue = await res.json();
-        result.opened.push(slug);
-        if (issue?.number) issueBySlug.set(slug, issue.number);
+      if (!res.ok) {
+        throw new Error(`opening issue for ${slug} failed: HTTP ${res.status}${await bodySnippet(res)}`);
       }
+      const issue = await res.json();
+      result.opened.push(slug);
+      if (issue?.number) issueBySlug.set(slug, issue.number);
     } else if (fails === 0 && existing) {
-      await fetchImpl(`${API}/repos/${repo}/issues/${existing}/comments`, {
+      const commentRes = await fetchImpl(`${API}/repos/${repo}/issues/${existing}/comments`, {
         method: "POST",
         headers,
         body: JSON.stringify({ body: "Board recovered — closing automatically." }),
       });
+      if (!commentRes.ok) {
+        throw new Error(`commenting on issue #${existing} failed: HTTP ${commentRes.status}${await bodySnippet(commentRes)}`);
+      }
       const res = await fetchImpl(`${API}/repos/${repo}/issues/${existing}`, {
         method: "PATCH",
         headers,
         body: JSON.stringify({ state: "closed" }),
       });
-      if (res.ok) result.closed.push(slug);
+      if (!res.ok) {
+        throw new Error(`closing issue #${existing} failed: HTTP ${res.status}${await bodySnippet(res)}`);
+      }
+      result.closed.push(slug);
     }
   }
   return result;

@@ -2,7 +2,8 @@ name: crawl
 
 on:
   schedule:
-    # 01:30 UTC = 07:00 IST, daily
+    # 01:30 UTC = 07:00 IST intended. GitHub can dispatch scheduled runs hours
+    # late under load — observed ~06:55–07:35 UTC starts, so don't rely on punctuality.
     - cron: "30 1 * * *"
   workflow_dispatch:
     inputs:
@@ -17,6 +18,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
   pages: write
   id-token: write
 
@@ -27,14 +29,15 @@ concurrency:
 jobs:
   crawl:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Crawl
         env:
@@ -76,15 +79,44 @@ jobs:
 
       - name: Configure Pages
         if: ${{ inputs.dry_run != true }}
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Upload site artifact
         if: ${{ inputs.dry_run != true }}
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: site
 
       - name: Deploy to GitHub Pages
         if: ${{ inputs.dry_run != true }}
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
+
+      - name: Report crawl failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create crawl-failure --force --color b60205 \
+            --description "Nightly crawl failed; closes automatically on recovery" >/dev/null
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          EXISTING=$(gh issue list --repo "$GITHUB_REPOSITORY" --label crawl-failure --state open --limit 1 --json number --jq '.[0].number')
+          BODY="The crawl workflow failed.
+          Run: $RUN_URL"
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --repo "$GITHUB_REPOSITORY" --body "$BODY"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --label crawl-failure \
+              --title "[crawl-failure] workflow failed — check run logs" --body "$BODY"
+          fi
+
+      - name: Clear crawl-failure issue
+        if: success() && inputs.dry_run != true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          EXISTING=$(gh issue list --repo "$GITHUB_REPOSITORY" --label crawl-failure --state open --limit 1 --json number --jq '.[0].number')
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --repo "$GITHUB_REPOSITORY" --body "Crawl recovered — closing automatically."
+            gh issue close "$EXISTING" --repo "$GITHUB_REPOSITORY"
+          fi

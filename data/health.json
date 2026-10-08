@@ -1,516 +1,516 @@
 {
   "airbnb": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "airtable": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "amplitude": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": "2026-10-05T07:32:24.940Z",
     "consecutiveFails": 0,
     "lastError": null
   },
   "anthropic": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "asana": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "atlan": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "Atlassian2": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "braze": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "brex": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "clerk": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "cloudflare": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "cohere": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "contentful": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "cred": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "databricks": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "devrev": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "discord": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "doordashusa": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "dropbox": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "elastic": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "elevenlabs": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "epifi": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "figma": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "Freshworks": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "gitbook": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "gitlab": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "gleanwork": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "godaddy": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "grafanalabs": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "groww": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "harvey": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "gohighlevel": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "hubspotjobs": {
     "lastOk": "2026-10-06T07:58:45.614Z",
-    "lastFail": "2026-10-07T07:36:48.586Z",
-    "consecutiveFails": 1,
+    "lastFail": "2026-10-08T07:53:35.242Z",
+    "consecutiveFails": 2,
     "lastError": "HTTP 404"
   },
   "huggingface": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "inmobi": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "instacart": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "intercom": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "klaviyo": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "langchain": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "launchdarkly": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "linear": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "meesho": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "mercury": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "mindtickle": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "mistral.ai": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "mixpanel": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "modal": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "mongodb": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "neon": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "notion": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "observeai": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "okta": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "openai": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "oyster": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "pagerduty": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "palantir": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "perplexity": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "pinterest": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "railway": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "ramp": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "razorpaysoftwareprivatelimited": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "reddit": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "remotecom": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "render": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "resend": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "robinhood": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "runway-ml": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "sarvam": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "scaleai": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "sentry": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "sierra": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "slice": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "sourcegraph91": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "squarespace": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "stripe": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "supabase": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "temporal": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "thinkingmachines": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "togetherai": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "twilio": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "vanta": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "vercel": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "webflow": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "xai": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "zapier": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null
   },
   "zscaler": {
-    "lastOk": "2026-10-07T07:36:48.586Z",
+    "lastOk": "2026-10-08T07:53:35.242Z",
     "lastFail": null,
     "consecutiveFails": 0,
     "lastError": null

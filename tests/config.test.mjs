@@ -146,13 +146,29 @@ test("per-fork site URL and repo resolution", () => {
 
 test("site copy validation", () => {
   const good = validateConfig(
-    loadConfig({ location: { country: "India" }, site: { name: "Discovery Radar", title: "T", about: ["<strong>a</strong>"] } }),
+    loadConfig({
+      location: { country: "India" },
+      site: {
+        name: "Discovery Radar",
+        title: "T",
+        about: ["<strong>a</strong>"],
+        projectsLabel: "More by Someone",
+        projects: [{ label: "ordo", href: "https://example.com/ordo/" }, { label: "job-radar" }],
+      },
+    }),
   );
   assert.equal(good.errors.length, 0, good.errors.join("\n"));
 
-  const bad = validateConfig(loadConfig({ location: { country: "India" }, site: { name: "", about: "nope" } }));
+  const bad = validateConfig(
+    loadConfig({
+      location: { country: "India" },
+      site: { name: "", about: "nope", projectsLabel: 5, projects: [{ label: "ordo" }, { href: "https://x" }, "nope"] },
+    }),
+  );
   assert.match(bad.errors.join("\n"), /site\.name/);
   assert.match(bad.errors.join("\n"), /site\.about/);
+  assert.match(bad.errors.join("\n"), /site\.projectsLabel must be a string/);
+  assert.match(bad.errors.join("\n"), /site\.projects must be an array of \{ label, href \} objects/);
 });
 
 test("validator catches broken values and warns about unknown keys", () => {

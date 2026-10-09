@@ -26,6 +26,8 @@ Branding and links for the rendered site and RSS feed.
 | `tagline` | string | generic | Sentence under the heading |
 | `description` | string | generic | `<meta name="description">` and RSS channel description |
 | `about` | string[] \| null | `null` | Footer "How this list is built" bullets (raw HTML allowed). When null, bullets are generated from `location`/`pay` |
+| `projectsLabel` | string \| null | `null` | Prefix shown before the footer projects bar (e.g. "More by …") |
+| `projects` | object[] \| null | `null` | Footer cross-link bar: `[{ "label": "ordo", "href": "https://…" }]` (raw HTML not interpreted — text is escaped). An entry with no `href` marks the current site. Unset → no bar rendered |
 | `url` | string \| null | `null` | Explicit site URL for RSS/canonical links. **Leave null in forks** — the URL is derived: `site.url` → `GITHUB_REPOSITORY` → git remote → omitted |
 
 ## `location`

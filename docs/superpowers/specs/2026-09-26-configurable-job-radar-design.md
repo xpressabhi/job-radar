@@ -158,6 +158,8 @@ Notes:
 - **URL resolution order** for RSS/canonical/meta links: explicit `site.url` →
   `GITHUB_REPOSITORY` env (always set in a fork's Actions run) → `git remote origin` →
   omit the link. No fork output points at the upstream owner.
+- `site.projectsLabel` + `site.projects` render the footer cross-link bar; unset (the
+  default) renders no bar at all, keeping fork output free of upstream owner URLs.
 - Default `User-Agent`: `job-radar/1.0 (+https://github.com/<owner>/<repo>)` derived the
   same way; still overridable via config.
 - Workflow bot identity becomes `github-actions[bot]`; README documents enabling Pages and

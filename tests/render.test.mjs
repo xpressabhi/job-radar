@@ -117,6 +117,27 @@ test("branding comes from config; a fork renders no upstream owner URLs", () => 
   assert.match(fork["index.html"], /Built with no runtime dependencies/, "no repo → generic source note");
 });
 
+test("projects bar comes from site.projects; unset renders no bar", () => {
+  const withBar = renderSite({
+    store: emptyStore(),
+    config: {
+      site: {
+        name: "Discovery Radar",
+        projectsLabel: "More by Someone",
+        projects: [{ label: "ordo", href: "https://example.com/ordo/" }, { label: "job-radar" }],
+      },
+    },
+    now: "2026-10-09T00:00:00.000Z",
+  });
+  const html = withBar["index.html"];
+  assert.match(html, /<p class="projects-bar">More by Someone · /);
+  assert.match(html, /<a href="https:\/\/example\.com\/ordo\/" style="color:var\(--accent, inherit\)">ordo<\/a>/);
+  assert.match(html, /<span aria-current="page">job-radar<\/span>/, "an entry with no href is the current site");
+
+  const withoutBar = renderSite({ store: emptyStore(), config: { site: { name: "Discovery Radar" } }, now: "2026-10-09T00:00:00.000Z" });
+  assert.ok(!withoutBar["index.html"].includes("projects-bar"), "no projects config → no bar");
+});
+
 test("siteUrl and repo flow into RSS and source links when resolved", () => {
   const forked = renderSite({
     store,

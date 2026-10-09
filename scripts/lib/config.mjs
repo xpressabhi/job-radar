@@ -23,6 +23,8 @@ export const DEFAULTS = {
     tagline: "Engineering roles at employers vetted to pay well. Crawled daily straight from company ATS boards.",
     description: "Daily-updated engineering roles at employers vetted to pay well.",
     about: null,
+    projectsLabel: null,
+    projects: null,
     url: null,
   },
   location: {
@@ -208,7 +210,7 @@ export function loadConfigFile(file, opts) {
 
 const ALLOWED_KEYS = {
   "": ["$comment", "site", "location", "roles", "pay", "crawl", "llm"],
-  site: ["name", "title", "tagline", "description", "about", "url"],
+  site: ["name", "title", "tagline", "description", "about", "projectsLabel", "projects", "url"],
   location: ["country", "countryCode", "acceptRemote", "cities", "excludeRegex", "excludeRemotePatterns", "excludeCountryCodes"],
   roles: ["seniority", "tracks"],
   "roles.seniority": [
@@ -268,11 +270,24 @@ export function validateConfig(cfg = {}) {
   if (!Array.isArray(cfg.location?.excludeCountryCodes)) errors.push("location.excludeCountryCodes must be an array");
 
   const site = cfg.site ?? {};
-if (site.title != null && typeof site.title !== "string") errors.push("site.title must be a string");
-if (site.about != null && (!Array.isArray(site.about) || site.about.some((s) => typeof s !== "string"))) {
-  errors.push("site.about must be an array of strings (HTML allowed)");
-}
-if (typeof site.name !== "string" || !site.name.trim()) errors.push("site.name must be a non-empty string");
+  if (site.title != null && typeof site.title !== "string") errors.push("site.title must be a string");
+  if (site.about != null && (!Array.isArray(site.about) || site.about.some((s) => typeof s !== "string"))) {
+    errors.push("site.about must be an array of strings (HTML allowed)");
+  }
+  if (site.projectsLabel != null && typeof site.projectsLabel !== "string") {
+    errors.push("site.projectsLabel must be a string");
+  }
+  if (site.projects != null) {
+    const badShape =
+      !Array.isArray(site.projects) ||
+      site.projects.some(
+        (p) => !isPlainObject(p) || typeof p.label !== "string" || !p.label.trim() || (p.href != null && typeof p.href !== "string"),
+      );
+    if (badShape) {
+      errors.push("site.projects must be an array of { label, href } objects (href optional — omit to mark the current site)");
+    }
+  }
+  if (typeof site.name !== "string" || !site.name.trim()) errors.push("site.name must be a non-empty string");
 
 const pay = cfg.pay ?? {};
   if (pay.enabled !== false) {

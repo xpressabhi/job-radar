@@ -10,6 +10,16 @@
       "<strong>Roles:</strong> two tracks only — frontend (React/TypeScript) and AI engineering (agents, LLM apps, evals) — at senior+ levels (Senior / Staff / Principal / Lead). Where pay is published, the band's <em>lower bound</em> must clear ₹50L base; equity and bonus never count. Where pay is not published, the company's vetted senior band applies.",
       "<strong>Geography:</strong> India-located, remote-India, and unrestricted-remote roles (the latter flagged \"verify eligibility\"). Roles restricted to other regions are excluded.",
       "<strong>Freshness:</strong> crawled daily from public ATS boards. A role leaves the active list after two consecutive successful crawls without it, and lives on in the archive. Failed crawls never remove anything."
+    ],
+    "projectsLabel": "More by Abhishek Maurya",
+    "projects": [
+      { "label": "ordo", "href": "https://xpressabhi.github.io/ordo/" },
+      { "label": "jev-browser", "href": "https://xpressabhi.github.io/jev-browser/" },
+      { "label": "job-search-skills", "href": "https://xpressabhi.github.io/job-search-skills/" },
+      { "label": "intent", "href": "https://xpressabhi.github.io/intent/" },
+      { "label": "job-radar" },
+      { "label": "tutor", "href": "https://xpressabhi.github.io/tutor/" },
+      { "label": "portfolio →", "href": "https://xpressabhi.github.io/#projects" }
     ]
   },
   "location": {

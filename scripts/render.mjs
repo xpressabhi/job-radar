@@ -162,6 +162,26 @@ export function aboutItems(config = {}) {
   return items.map((item) => `<li>${item}</li>`).join("\n    ");
 }
 
+/**
+ * Footer cross-link bar: `site.projectsLabel` (e.g. "More by …") followed by `site.projects`
+ * links. Unset projects → empty string, so forks render no upstream owner URLs.
+ * An entry without `href` marks the current site (rendered as plain text).
+ */
+export function projectsBar(config = {}) {
+  const site = config.site ?? {};
+  const projects = Array.isArray(site.projects) ? site.projects : [];
+  if (!projects.length) return "";
+  const links = projects
+    .map((p) =>
+      p.href
+        ? `<a href="${esc(p.href)}" style="color:var(--accent, inherit)">${esc(p.label)}</a>`
+        : `<span aria-current="page">${esc(p.label)}</span>`,
+    )
+    .join(" · ");
+  const label = typeof site.projectsLabel === "string" ? `${esc(site.projectsLabel)} · ` : "";
+  return `<p class="projects-bar">${label}${links}</p>`;
+}
+
 function coverageHtml(store, activeCount, archivedCount, config = {}) {
   const run = store.lastRun ?? {};
   const total = run.boardsTotal ?? null;
@@ -242,6 +262,7 @@ export function renderSite({ store, config, siteUrl = null, repo = null, now = n
     .replace("{{SITE_TAGLINE}}", esc(site.tagline))
     .replace("{{ABOUT_ITEMS}}", aboutItems(config))
     .replace("{{SOURCE_NOTE}}", site.sourceNote)
+    .replace("{{PROJECTS_BAR}}", projectsBar(config))
     .replace("{{CATEGORY_OPTIONS}}", categoryOptions)
     .replace("{{ROWS}}", rows || `<li class="empty">No live roles right now — check the archive or the RSS feed.</li>`)
     .replace("{{COVERAGE}}", coverage)

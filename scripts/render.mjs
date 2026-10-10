@@ -242,7 +242,8 @@ export function renderSite({ store, config, siteUrl = null, repo = null, now = n
     .filter((j) => j.status === "archived")
     .sort((a, b) => String(b.closedAt ?? "").localeCompare(String(a.closedAt ?? "")));
 
-  const style = readFileSync(new URL("style.css", TEMPLATES), "utf8");
+  const stylePath = new URL("style.css", TEMPLATES);
+  const style = readFileSync(stylePath, "utf8");
   const script = readFileSync(new URL("app.js", TEMPLATES), "utf8");
   const indexTemplate = readFileSync(new URL("index.html", TEMPLATES), "utf8");
   const archiveTemplate = readFileSync(new URL("archive.html", TEMPLATES), "utf8");
@@ -303,6 +304,11 @@ async function main() {
   mkdirSync(outDir, { recursive: true });
   for (const [name, content] of Object.entries(files)) {
     writeFileSync(new URL(name, outDir), content);
+  }
+  // Publish the shared theme alongside the output so the templates can <link> it.
+  const themePath = new URL("theme.css", TEMPLATES);
+  if (existsSync(themePath)) {
+    writeFileSync(new URL("theme.css", outDir), readFileSync(themePath, "utf8"));
   }
   const active = store.jobs.filter((j) => j.status === "active").length;
   const archived = store.jobs.filter((j) => j.status === "archived").length;

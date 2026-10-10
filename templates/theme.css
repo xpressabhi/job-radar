@@ -1,0 +1,109 @@
+/*
+ * Shared visual system for every xpressabhi GitHub Pages site.
+ *
+ * Canonical source lives in the portfolio hub (theme/theme.css) and is copied
+ * into each sibling repo by `node scripts/sync-theme.mjs`. Light mode only:
+ * there is no dark theme anywhere in the family, by decision.
+ *
+ * Site-specific components (job-radar's filters and job rows, ordo's diagrams
+ * and KPI grid, tutor's session logs) stay in each site's own <style>. This
+ * file carries only what is genuinely shared: tokens, type, and the page
+ * skeleton (nav, section rhythm, footer).
+ */
+
+:root {
+  /* colour — roles, not decoration */
+  --paper: #f3f4ec;        /* page */
+  --panel: #fafaf3;        /* inset surface: cards, trees, code blocks */
+  --sunken: #e8ebdf;       /* one step below panel: chips, nodes, pills */
+  --ink: #20241d;          /* primary text */
+  --ink-2: #565c4e;        /* secondary text */
+  --ink-3: #666c5e;        /* meta, captions, labels */
+  --rule: #d4d7c8;         /* hairlines */
+  --rule-strong: #bfc3af;  /* emphasis rules, resting link underline */
+  --accent: #a13a1f;       /* brand: links, current state, marks */
+  --accent-bright: #e08a6e;/* accent for use on dark ink surfaces */
+  --ok: #45663a;           /* semantic — pass, live, success */
+  --warn: #7a5810;         /* semantic — caution */
+  --bad: #9c2b1f;          /* semantic — fail, removed, danger */
+
+  /* type */
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+  --wrap: 1060px;
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 1rem/1.6 var(--sans);
+  -webkit-text-size-adjust: 100%;
+}
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-inline: clamp(1.25rem, 4vw, 2.5rem); }
+
+/* type ------------------------------------------------------------------ */
+
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(2.1rem, 4.4vw, 2.8rem); line-height: 1.12; letter-spacing: -0.015em; }
+h2 { font-size: clamp(1.6rem, 3.4vw, 2.15rem); line-height: 1.15; letter-spacing: -0.01em; }
+h3 { font-size: clamp(1.15rem, 2vw, 1.35rem); line-height: 1.25; }
+p { margin: 0; }
+code { font-family: var(--mono); font-size: 0.9em; }
+
+a { color: inherit; text-decoration: underline; text-decoration-color: var(--rule-strong); text-underline-offset: 0.2em; }
+a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+::selection { background: rgba(161, 58, 31, 0.16); }
+
+.mono { font-family: var(--mono); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* skip link ------------------------------------------------------------- */
+
+.skip { position: absolute; left: -9999px; top: 0; background: var(--ink); color: var(--paper);
+  padding: 0.6rem 1rem; z-index: 10; }
+.skip:focus { left: 0; }
+
+/* nav ------------------------------------------------------------------- */
+
+.nav { border-bottom: 1px solid var(--rule); }
+.nav-in { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+.wordmark { font-family: var(--serif); font-size: 1.3rem; letter-spacing: 0.01em; text-decoration: none; }
+.wordmark:hover { color: var(--ink); text-decoration: none; }
+.nav-links { display: flex; align-items: center; gap: 1.25rem; }
+.nav-links a { text-decoration: none; color: var(--ink-2); font-size: 0.95rem; }
+.nav-links a:hover { color: var(--accent); text-decoration: underline; text-decoration-color: var(--accent); }
+
+/* section rhythm -------------------------------------------------------- */
+
+.section { border-top: 1px solid var(--rule); padding-block: clamp(3rem, 7vh, 4.5rem); }
+.section-lede { margin-top: 0.9rem; font-size: 1.02rem; color: var(--ink-2); max-width: 62ch; }
+
+/* footer ----------------------------------------------------------------- */
+
+.footer { border-top: 1px solid var(--rule); padding-block: 1.75rem 2.5rem; }
+.footer-in { display: flex; justify-content: space-between; align-items: baseline; gap: 1.5rem; flex-wrap: wrap; }
+.footer p { font-size: 0.88rem; color: var(--ink-2); }
+.footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.footer-links a { font-size: 0.88rem; color: var(--ink-2); text-decoration: none; }
+.footer-links a:hover { color: var(--accent); text-decoration: underline; text-decoration-color: var(--accent); }
+.projects-bar { margin-top: 0.7rem; line-height: 1.9; }
+
+/* responsive ------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .nav-in { height: auto; padding-block: 0.75rem; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .nav-links { flex-wrap: wrap; gap: 0.9rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

@@ -2,11 +2,8 @@
    Brand accent -> rust; semantic colours keep their roles on cream paper. */
 :root {
   --bg: var(--paper);
-  --panel: var(--panel);
-  --ink: var(--ink);
   --muted: var(--ink-2);
   --line: var(--rule);
-  --accent: var(--accent);
   --accent-soft: rgba(161, 58, 31, 0.09);
   --green: var(--ok);
   --green-soft: rgba(69, 102, 58, 0.1);

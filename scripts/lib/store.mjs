@@ -6,6 +6,18 @@ import { migrateLegacyEvidence } from "./money.mjs";
 
 export const emptyStore = () => ({ updated: null, lastRun: null, jobs: [] });
 
+/** True when the job's age date (postedAt ?? firstSeen) is older than crawl.maxAgeDays. */
+export function isStale(job, config = {}, now) {
+  const days = config.crawl?.maxAgeDays;
+  if (!Number.isInteger(days) || days < 1) return false;
+  const date = job.postedAt || job.firstSeen;
+  if (!date) return false;
+  const age = new Date(date).getTime();
+  const at = new Date(now).getTime();
+  if (Number.isNaN(age) || Number.isNaN(at)) return false;
+  return at - age > days * 24 * 60 * 60 * 1000;
+}
+
 export function mergeResults({ store, results, config, now, archive = true }) {
   const jobs = (store.jobs ?? []).map(migrateJob);
   const byId = new Map(jobs.map((j) => [j.id, j]));
@@ -14,7 +26,7 @@ export function mergeResults({ store, results, config, now, archive = true }) {
     if (j.status === "active") activeNear.set(nearDupeKey(j, config.location), j.id);
   }
 
-  const summary = { seen: 0, new: 0, archived: 0, reopened: 0, duplicates: 0, boardsOk: 0, boardsFailed: 0 };
+  const summary = { seen: 0, new: 0, archived: 0, archivedStale: 0, reopened: 0, duplicates: 0, boardsOk: 0, boardsFailed: 0 };
   const successfullyFetched = new Set();
   const seenIds = new Set();
 
@@ -76,10 +88,15 @@ export function mergeResults({ store, results, config, now, archive = true }) {
       existing.lastSeen = now;
       existing.misses = 0;
       if (wasArchived) {
-        existing.status = "active";
-        existing.reopenedAt = now;
-        existing.closedAt = null;
-        summary.reopened++;
+        if (isStale(existing, config, now)) {
+          // The board still lists it, but it is past the cutoff: refresh without reopening.
+          existing.status = "archived";
+        } else {
+          existing.status = "active";
+          existing.reopenedAt = now;
+          existing.closedAt = null;
+          summary.reopened++;
+        }
       }
       activeNear.set(near, id);
       seenIds.add(id);
@@ -98,6 +115,16 @@ export function mergeResults({ store, results, config, now, archive = true }) {
         job.status = "archived";
         job.closedAt = now;
         summary.archived++;
+      }
+    }
+    if (config.crawl?.maxAgeDays != null) {
+      for (const job of jobs) {
+        if (job.status !== "active") continue;
+        if (!isStale(job, config, now)) continue;
+        job.status = "archived";
+        job.closedAt = now;
+        summary.archived++;
+        summary.archivedStale++;
       }
     }
   }

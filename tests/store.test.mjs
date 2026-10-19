@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { emptyStore, mergeResults, appendCompEvidence, updateHealth, runSummaryLine } from "../scripts/lib/store.mjs";
+import { emptyStore, mergeResults, isStale, appendCompEvidence, updateHealth, runSummaryLine } from "../scripts/lib/store.mjs";
 
 const config = { archiveMisses: 2 };
 const NOW = "2026-09-26T02:00:00.000Z";
@@ -103,6 +103,68 @@ test("degraded runs (archive=false) never archive", () => {
   store = mergeResults({ store, results: [emptyButFetched], config, now: "2026-09-28T02:00:00.000Z", archive: false }).store;
   assert.equal(store.jobs[0].misses, 1);
   assert.equal(store.jobs[0].status, "active");
+});
+
+const agedConfig = { archiveMisses: 2, crawl: { maxAgeDays: 60 } };
+const NOW_MS = "2026-09-26T02:00:00.000Z";
+
+test("isStale uses postedAt, falls back to firstSeen, and ignores bad dates", () => {
+  assert.equal(isStale({ postedAt: "2026-07-01", firstSeen: NOW_MS }, agedConfig, NOW_MS), true);
+  assert.equal(isStale({ postedAt: "2026-09-01", firstSeen: "2026-01-01T00:00:00.000Z" }, agedConfig, NOW_MS), false);
+  assert.equal(isStale({ postedAt: null, firstSeen: "2026-07-01T00:00:00.000Z" }, agedConfig, NOW_MS), true);
+  assert.equal(isStale({ postedAt: "nonsense", firstSeen: "2026-07-01T00:00:00.000Z" }, agedConfig, NOW_MS), false);
+  assert.equal(isStale({ postedAt: null, firstSeen: null }, agedConfig, NOW_MS), false);
+  assert.equal(isStale({ postedAt: "2020-01-01" }, config, NOW_MS), false, "null cutoff disables the rule");
+});
+
+test("the age cutoff archives an old active job and counts it separately", () => {
+  const old = posting({ postedAt: "2026-07-01" });
+  const { store, summary } = mergeResults({ store: emptyStore(), results: [result([old])], config: agedConfig, now: NOW_MS });
+  assert.equal(store.jobs[0].status, "archived");
+  assert.equal(store.jobs[0].closedAt, NOW_MS);
+  assert.equal(summary.archived, 1);
+  assert.equal(summary.archivedStale, 1);
+});
+
+test("a job first seen long ago but never posted is archived on firstSeen", () => {
+  const first = mergeResults({ store: emptyStore(), results: [result([posting()])], config: agedConfig, now: "2026-07-01T02:00:00.000Z" }).store;
+  const later = mergeResults({ store: first, results: [result([posting()])], config: agedConfig, now: NOW_MS });
+  assert.equal(later.store.jobs[0].status, "archived");
+  assert.equal(later.summary.archivedStale, 1);
+});
+
+test("no cutoff archives nothing and archivedStale is zero", () => {
+  const { store, summary } = mergeResults({ store: emptyStore(), results: [result([posting({ postedAt: "2020-01-01" })])], config, now: NOW_MS });
+  assert.equal(store.jobs[0].status, "active");
+  assert.equal(summary.archivedStale, 0);
+});
+
+test("degraded runs never archive stale jobs", () => {
+  const old = posting({ postedAt: "2026-07-01" });
+  const { store, summary } = mergeResults({ store: emptyStore(), results: [result([old])], config: agedConfig, now: NOW_MS, archive: false });
+  assert.equal(store.jobs[0].status, "active");
+  assert.equal(summary.archivedStale, 0);
+});
+
+test("a stale role the board keeps listing stays archived without counting as reopened", () => {
+  const old = posting({ postedAt: "2026-07-01" });
+  let store = mergeResults({ store: emptyStore(), results: [result([old])], config: agedConfig, now: NOW_MS }).store;
+  assert.equal(store.jobs[0].status, "archived");
+  const again = mergeResults({ store, results: [result([old])], config: agedConfig, now: LATER });
+  assert.equal(again.store.jobs[0].status, "archived");
+  assert.equal(again.store.jobs[0].closedAt, NOW_MS, "closedAt is not rewritten");
+  assert.equal(again.store.jobs[0].lastSeen, LATER);
+  assert.equal(again.summary.reopened, 0);
+  assert.equal(again.summary.archivedStale, 0);
+});
+
+test("a fresh role the board lists after an age archive reopens normally", () => {
+  const old = posting({ postedAt: "2026-07-01" });
+  let store = mergeResults({ store: emptyStore(), results: [result([old])], config: agedConfig, now: NOW_MS }).store;
+  const fresh = posting({ postedAt: "2026-09-25" });
+  const back = mergeResults({ store, results: [result([fresh])], config: agedConfig, now: LATER });
+  assert.equal(back.store.jobs[0].status, "active");
+  assert.equal(back.summary.reopened, 1);
 });
 
 test("comp evidence appends once per url+band", () => {

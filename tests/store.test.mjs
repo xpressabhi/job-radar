@@ -143,6 +143,7 @@ test("degraded runs never archive stale jobs", () => {
   const old = posting({ postedAt: "2026-07-01" });
   const { store, summary } = mergeResults({ store: emptyStore(), results: [result([old])], config: agedConfig, now: NOW_MS, archive: false });
   assert.equal(store.jobs[0].status, "active");
+  assert.equal(summary.archived, 0);
   assert.equal(summary.archivedStale, 0);
 });
 
@@ -155,6 +156,7 @@ test("a stale role the board keeps listing stays archived without counting as re
   assert.equal(again.store.jobs[0].closedAt, NOW_MS, "closedAt is not rewritten");
   assert.equal(again.store.jobs[0].lastSeen, LATER);
   assert.equal(again.summary.reopened, 0);
+  assert.equal(again.summary.archived, 0);
   assert.equal(again.summary.archivedStale, 0);
 });
 
@@ -165,6 +167,45 @@ test("a fresh role the board lists after an age archive reopens normally", () =>
   const back = mergeResults({ store, results: [result([fresh])], config: agedConfig, now: LATER });
   assert.equal(back.store.jobs[0].status, "active");
   assert.equal(back.summary.reopened, 1);
+});
+
+test("a re-list without postedAt keeps the stored date and stays archived", () => {
+  const old = posting({ postedAt: "2026-07-01" });
+  const store = mergeResults({ store: emptyStore(), results: [result([old])], config: agedConfig, now: NOW_MS }).store;
+  const again = mergeResults({ store, results: [result([posting({ postedAt: null })])], config: agedConfig, now: LATER });
+  assert.equal(again.store.jobs[0].postedAt, "2026-07-01", "stored posting date survives a detail-less re-list");
+  assert.equal(again.store.jobs[0].status, "archived");
+  assert.equal(again.store.jobs[0].closedAt, NOW_MS);
+  assert.equal(again.summary.reopened, 0);
+});
+
+test("an archived stale twin does not swallow a fresh near-duplicate", () => {
+  const old = posting({ postedAt: "2026-07-01", jobId: "1", dedupeKey: "gh:acme:1" });
+  const store = mergeResults({ store: emptyStore(), results: [result([old])], config: agedConfig, now: NOW_MS }).store;
+  assert.equal(store.jobs[0].status, "archived");
+  const fresh = posting({ postedAt: "2026-09-25", jobId: "2", dedupeKey: "gh:acme:2" });
+  const res = mergeResults({ store, results: [result([old, fresh])], config: agedConfig, now: LATER });
+  assert.equal(res.store.jobs.length, 2);
+  assert.equal(res.store.jobs.find((j) => j.id === "gh:acme:1").status, "archived");
+  assert.equal(res.store.jobs.find((j) => j.id === "gh:acme:2").status, "active");
+  assert.equal(res.summary.duplicates, 0);
+});
+
+test("age archiving only touches boards fetched successfully this run", () => {
+  const old = posting({ postedAt: "2026-07-01" });
+  const store = mergeResults({ store: emptyStore(), results: [result([old])], config: agedConfig, now: NOW_MS, archive: false }).store;
+  assert.equal(store.jobs[0].status, "active");
+  const skipped = mergeResults({ store, results: [], config: agedConfig, now: LATER });
+  assert.equal(skipped.store.jobs[0].status, "active");
+  assert.equal(skipped.summary.archivedStale, 0);
+  const fetched = mergeResults({ store, results: [result([], { rawCount: 5 })], config: agedConfig, now: LATER });
+  assert.equal(fetched.store.jobs[0].status, "archived");
+  assert.equal(fetched.summary.archivedStale, 1);
+});
+
+test("the age cutoff is strictly older than N days", () => {
+  assert.equal(isStale({ firstSeen: "2026-07-28T02:00:00.000Z" }, agedConfig, NOW_MS), false);
+  assert.equal(isStale({ firstSeen: "2026-07-28T01:59:59.999Z" }, agedConfig, NOW_MS), true);
 });
 
 test("comp evidence appends once per url+band", () => {

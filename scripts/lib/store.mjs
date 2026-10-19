@@ -6,6 +6,17 @@ import { migrateLegacyEvidence } from "./money.mjs";
 
 export const emptyStore = () => ({ updated: null, lastRun: null, jobs: [] });
 
+/** Keep the newest known posting date; an absent or older incoming value never regresses it. */
+function newestPostedAt(incoming, previous) {
+  if (!incoming) return previous ?? null;
+  if (!previous) return incoming;
+  const a = new Date(incoming).getTime();
+  const b = new Date(previous).getTime();
+  if (Number.isNaN(a)) return previous;
+  if (Number.isNaN(b)) return incoming;
+  return a >= b ? incoming : previous;
+}
+
 /** True when the job's age date (postedAt ?? firstSeen) is older than crawl.maxAgeDays. */
 export function isStale(job, config = {}, now) {
   const days = config.crawl?.maxAgeDays;
@@ -54,6 +65,7 @@ export function mergeResults({ store, results, config, now, archive = true }) {
           const twin = byId.get(twinId);
           if (twin) {
             const { dedupeKey: _dk, ...rest } = migrateJob(posting);
+            rest.postedAt = newestPostedAt(rest.postedAt, twin.postedAt);
             Object.assign(twin, rest, { id: twinId });
             twin.lastSeen = now;
             twin.misses = 0;
@@ -84,7 +96,9 @@ export function mergeResults({ store, results, config, now, archive = true }) {
 
       // Existing record — update and reset the miss counter.
       const wasArchived = existing.status === "archived";
-      Object.assign(existing, migrateJob(posting), { id });
+      const incoming = migrateJob(posting);
+      incoming.postedAt = newestPostedAt(incoming.postedAt, existing.postedAt);
+      Object.assign(existing, incoming, { id });
       existing.lastSeen = now;
       existing.misses = 0;
       if (wasArchived) {
@@ -98,7 +112,7 @@ export function mergeResults({ store, results, config, now, archive = true }) {
           summary.reopened++;
         }
       }
-      activeNear.set(near, id);
+      if (existing.status === "active") activeNear.set(near, id);
       seenIds.add(id);
       summary.seen++;
     }
@@ -120,6 +134,7 @@ export function mergeResults({ store, results, config, now, archive = true }) {
     if (config.crawl?.maxAgeDays != null) {
       for (const job of jobs) {
         if (job.status !== "active") continue;
+        if (!successfullyFetched.has(job.companySlug)) continue;
         if (!isStale(job, config, now)) continue;
         job.status = "archived";
         job.closedAt = now;

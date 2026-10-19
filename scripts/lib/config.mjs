@@ -93,6 +93,7 @@ export const DEFAULTS = {
     timeoutMs: 20000,
     retries: 1,
     archiveMisses: 2,
+    maxAgeDays: null,
     userAgent: null,
   },
   llm: { maxPerRun: 40 },
@@ -220,7 +221,7 @@ const ALLOWED_KEYS = {
   "roles.tracks": ["includePatterns", "excludePatterns"],
   pay: ["enabled", "currency", "floorAnnual", "companyFloorAnnual", "vettingRequired", "display", "fxRates", "fxNote"],
   "pay.display": ["symbol", "divisor", "suffix", "decimals"],
-  crawl: ["requestDelayMs", "timeoutMs", "retries", "archiveMisses", "userAgent"],
+  crawl: ["requestDelayMs", "timeoutMs", "retries", "archiveMisses", "maxAgeDays", "userAgent"],
   llm: ["maxPerRun"],
 };
 
@@ -344,6 +345,9 @@ const pay = cfg.pay ?? {};
   }
   if (!Number.isInteger(crawl.archiveMisses) || crawl.archiveMisses < 1) {
     errors.push("crawl.archiveMisses must be an integer >= 1");
+  }
+  if (crawl.maxAgeDays != null && (!Number.isInteger(crawl.maxAgeDays) || crawl.maxAgeDays < 1)) {
+    errors.push("crawl.maxAgeDays must be null or an integer >= 1");
   }
 
   if (typeof cfg.location?.country === "string" && cfg.location.excludeRegex) {

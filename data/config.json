@@ -142,7 +142,8 @@
     "requestDelayMs": 1000,
     "timeoutMs": 20000,
     "retries": 1,
-    "archiveMisses": 2
+    "archiveMisses": 2,
+    "maxAgeDays": 60
   },
   "llm": {
     "maxPerRun": 40

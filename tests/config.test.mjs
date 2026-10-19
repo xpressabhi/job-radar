@@ -116,6 +116,21 @@ test("legacy aliases stay out of JSON output", () => {
   assert.equal(roundTripped.pay.floorAnnual, 5000000);
 });
 
+test("crawl.maxAgeDays defaults to null and round-trips a number", () => {
+  assert.equal(loadConfig({}).crawl.maxAgeDays, null);
+  assert.equal(loadConfig({ crawl: { maxAgeDays: 60 } }).crawl.maxAgeDays, 60);
+  assert.equal(loadConfig(repoRaw, { env: {} }).crawl.maxAgeDays, 60, "this instance opts in");
+});
+
+test("validator accepts only null or an integer >= 1 for crawl.maxAgeDays", () => {
+  const ok = validateConfig(loadConfig({ location: { country: "India" }, crawl: { maxAgeDays: null } }));
+  assert.equal(ok.errors.length, 0, ok.errors.join("\n"));
+  for (const bad of [0, -5, 1.5, "60"]) {
+    const res = validateConfig(loadConfig({ location: { country: "India" }, crawl: { maxAgeDays: bad } }));
+    assert.match(res.errors.join("\n"), /crawl\.maxAgeDays must be null or an integer >= 1/, `rejects ${JSON.stringify(bad)}`);
+  }
+});
+
 test("user agent derives per fork and honors an explicit override", () => {
   assert.equal(deriveUserAgent({}), "job-radar/1.0");
   assert.equal(deriveUserAgent({ GITHUB_REPOSITORY: "someone/my-jobs" }), "job-radar/1.0 (+https://github.com/someone/my-jobs)");

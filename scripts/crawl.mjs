@@ -200,7 +200,8 @@ export async function main(argv = process.argv.slice(2), io = console, env = pro
   };
 
   const dropTop = [...dropReasons.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8);
-  io.log(`\nboards ok ${summary.boardsOk}/${selected.length} · raw ${rawTotal} · kept ${keptTotal} · new ${summary.new} · archived ${summary.archived} · reopened ${summary.reopened} · duplicates ${summary.duplicates}`);
+  const staleNote = config.crawl?.maxAgeDays != null ? ` · stale ${summary.archivedStale}` : "";
+  io.log(`\nboards ok ${summary.boardsOk}/${selected.length} · raw ${rawTotal} · kept ${keptTotal} · new ${summary.new} · archived ${summary.archived}${staleNote} · reopened ${summary.reopened} · duplicates ${summary.duplicates}`);
   for (const [reason, count] of dropTop) io.log(`   drop ${String(count).padStart(4)} × ${reason}`);
   if (belowFloor.length) io.log(`   ${belowFloor.length} roles dropped below pay floor (lower bound < ${formatMoney(config.pay.floorAnnual, config.pay.display)} base)`);
   io.log(`   comp evidence +${evidenceAdded} · classification pending ${classified.filter((p) => p.needsClassify).length}${cache ? "" : ""}`);

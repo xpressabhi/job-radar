@@ -156,8 +156,11 @@ export function aboutItems(config = {}) {
       loc.acceptRemote !== false ? `, remote-${esc(country)}, and unrestricted-remote roles (the latter flagged "verify eligibility")` : ""
     }. Roles restricted to other regions are excluded.`,
   );
+  const maxAge = config.crawl?.maxAgeDays;
   items.push(
-    "<strong>Freshness:</strong> crawled daily from public ATS boards. A role leaves the active list after two consecutive successful crawls without it, and lives on in the archive. Failed crawls never remove anything.",
+    `<strong>Freshness:</strong> crawled daily from public ATS boards. A role leaves the active list after two consecutive successful crawls without it${
+      Number.isInteger(maxAge) ? `, or ${maxAge} days after posting` : ""
+    }, and lives on in the archive. Failed crawls never remove anything.`,
   );
   return items.map((item) => `<li>${item}</li>`).join("\n    ");
 }
@@ -195,6 +198,7 @@ function coverageHtml(store, activeCount, archivedCount, config = {}) {
     ok !== null && total !== null ? `<span><strong>${ok}/${total}</strong> boards scanned</span>` : "",
     run.new ? `<span><strong>+${run.new}</strong> new this run</span>` : "",
     run.archived ? `<span><strong>${run.archived}</strong> closed this run</span>` : "",
+    run.archivedStale ? `<span><strong>${run.archivedStale}</strong> archived as stale</span>` : "",
     run.dropped != null ? `<span><strong>${run.dropped}</strong> filtered out (pay/level/location)</span>` : "",
     run.droppedBelowFloor ? `<span><strong>${run.droppedBelowFloor}</strong> below the ${esc(floorText)} base floor</span>` : "",
     degraded ? `<span class="warn">degraded run — archiving suspended</span>` : "",

@@ -106,6 +106,28 @@ test("formatDay is deterministic and null-safe", () => {
   assert.equal(formatDay("nonsense"), "");
 });
 
+test("coverage shows the stale chip only when the run archived stale roles", () => {
+  const base = JSON.parse(JSON.stringify(store));
+  base.lastRun.archivedStale = 3;
+  const html = renderSite({ store: base, config, now: "2026-09-26T02:00:00.000Z" })["index.html"];
+  assert.match(html, /<strong>3<\/strong> archived as stale/);
+
+  const quiet = renderSite({ store, config, now: "2026-09-26T02:00:00.000Z" })["index.html"];
+  assert.ok(!quiet.includes("archived as stale"), "no chip when zero");
+});
+
+test("the generated Freshness bullet names the age cutoff when configured", () => {
+  const withCutoff = renderSite({
+    store: emptyStore(),
+    config: { ...config, crawl: { maxAgeDays: 60 } },
+    now: "2026-09-26T02:00:00.000Z",
+  })["index.html"];
+  assert.match(withCutoff, /or 60 days after posting/);
+
+  const without = renderSite({ store: emptyStore(), config, now: "2026-09-26T02:00:00.000Z" })["index.html"];
+  assert.ok(!without.includes("days after posting"), "no cutoff mentioned when off");
+});
+
 test("branding comes from config; a fork renders no upstream owner URLs", () => {
   const fork = renderSite({ store: emptyStore(), config: { site: { name: "Discovery Radar" } }, now: "2026-09-26T02:00:00.000Z" });
   assert.match(fork["index.html"], /Discovery Radar/);

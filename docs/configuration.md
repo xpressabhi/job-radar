@@ -125,6 +125,7 @@ switching currency means re-vetting.
 | `timeoutMs` | number | `20000` | Per-request timeout |
 | `retries` | number | `1` | Retries after a failed request |
 | `archiveMisses` | integer ≥ 1 | `2` | Consecutive successful fetches without a role before it is archived |
+| `maxAgeDays` | integer ≥ 1 \| null | `null` | Auto-archive active roles older than this many days. Age is `postedAt` when the board publishes it, otherwise `firstSeen`; roles with no usable date are kept. Suspended on degraded runs |
 | `userAgent` | string \| null | derived | Crawler identity. Default: `job-radar/1.0 (+https://github.com/<GITHUB_REPOSITORY>)`, falling back to `job-radar/1.0` locally |
 
 ## `llm`

@@ -5,6 +5,7 @@
     "seen": 2,
     "new": 2,
     "archived": 0,
+    "archivedStale": 0,
     "reopened": 0,
     "duplicates": 0,
     "boardsOk": 5,

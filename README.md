@@ -95,7 +95,8 @@ GitHub Actions (daily 01:30 UTC, or manual dispatch)
 Rules of the upstream instance (all configurable): companies vetted at ≥₹20L base
 generally and ≥₹50L base at senior level in India; senior+ engineering titles only; India
 locations, remote-India, and unrestricted remote (flagged); a role leaves the active list
-after two consecutive successful crawls without it, then lives in the archive.
+after two consecutive successful crawls without it, or once it is more than 60 days past
+its posting date, then lives in the archive.
 
 ## Testing
 

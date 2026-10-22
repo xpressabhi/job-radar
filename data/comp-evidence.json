@@ -735,5 +735,16 @@
     "url": "https://jobs.ashbyhq.com/vanta/529a6e77-c965-4b32-be80-1837fbb3d1ce",
     "baseMin": 19480000,
     "baseMax": 22880000
+  },
+  {
+    "company": "Runway",
+    "title": "Member of Applied AI Team",
+    "currency": "USD",
+    "baseMin": 19570000,
+    "baseMax": 23490000,
+    "totalOnly": false,
+    "raw": "$225K – $270K",
+    "observedOn": "2026-10-20T06:25:18.469Z",
+    "url": "https://jobs.ashbyhq.com/runway-ml/d761c781-5291-461e-aa7a-d25b3165663b"
   }
 ]
